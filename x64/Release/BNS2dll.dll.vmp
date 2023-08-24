@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Document Version="2">
+    <Protection InputFileName="BNS2dll.dll" Options="528840" LicenseDataFileName="BNS2Help.dll" OutputFileName="BNS2Help.dll">
+        <Messages />
+        <Folders />
+        <Procedures />
+        <Objects />
+    </Protection>
+    <DLLBox>
+        <Folders />
+    </DLLBox>
+    <Script />
+</Document>

@@ -1,0 +1,137 @@
+Function EnumWindowsProc(ByVal hWnd As   Long,   ByVal   lParam   As   Long)   As   Long 
+        Local   sSave   As   Asciiz *256,   Ret   As   Long 
+        Local TmpStr As String 
+        
+        
+        Ret   =   GetWindowTextLength(hWnd) 
+        'sSave   =   Space(Ret) 
+        GetWindowText   hWnd,   sSave,   Ret   +   1 
+        TmpStr = sSave     
+        If InStr(1,TmpStr,"°¢²¼") Then
+        'If sSave =  "£Ó£ô£ï£î£å£Á£ç£å" Then  '"" Then '
+            'iResult = GetWindowThreadProcessId(hWnd,pid) 
+            Call VD_ListBox_AddItem(MainhWnd,%ID_FORM1_COMBO1,Hex$(hWnd,8) & "   " & sSave,0)
+        End If      
+        Function   =   1 
+End Function 
+
+'-----------------------------------------------------------------------------------------------------------------
+Function MyReplace (ByVal expression As String, ByVal replacement1 As String, ByVal replacement2 As String) As String
+    Replace replacement1 With replacement2 In expression
+    Function = expression
+End Function 
+
+
+ '---------------------------------------------------------------------------
+Sub QSplit(ByVal expression As String, ByVal delimeter As String, StrArray() As String)
+    Local c As Long
+    If Len(delimeter) = 0 Then
+        delimeter = " "
+    End If
+    C = Max(ParseCount(expression, delimeter), 1)
+    ReDim StrArray(C - 1)
+    Parse expression, StrArray(), delimeter
+End Sub    
+
+ '---------------------------------------------------------------------------
+ 
+Function ReFormSearchCode(ByVal TmpStr As  String ,OutArray() As Byte,IsDirectPass() As Byte) As  String       
+                               
+Local i As Long
+Local TmpArr() As String
+ReDim TmpArr(0)    
+
+Local ResultStr As String
+
+Call QSplit(TmpStr," ",TmpArr())
+
+ResultStr = ""
+ReDim OutArray(UBound(TmpArr)) 
+ReDim IsDirectPass(UBound(TmpArr)) 
+              
+For i = 0 To UBound(TmpArr)  
+    If TmpArr(I) = "??" Then    
+        IsDirectPass(i) = 1
+    Else 
+        IsDirectPass(i) = 0   
+        OutArray(i) = Val("&H" & TmpArr(I))   
+    End If
+Next   
+
+
+
+Function = ResultStr
+
+End Function 
+
+ '---------------------------------------------------------------------------
+ 
+Function ReadActualAddress(ByVal TmpAddress As Long,ByVal IsNeedReadActual As Byte) As Long     
+Local IAddress As Long,NoOfByteRead As Long
+Local IResult As Long  
+If IsNeedReadActual = 1 Then  
+    If TmpAddress > 0 Then 
+        IAddress = TmpAddress       
+        '? Str$(IAddress)                                       '×xÎ»ÖÃ
+        Call CopyMemory(VarPtr(IResult) ,VarPtr(FileContent(IAddress)),4)         
+        
+        '? Str$(IResult)      
+        Function = IResult  
+    Else
+        Function = 0
+    end if 
+Else 
+    Function = TmpAddress
+End If
+
+End Function          
+              
+ '---------------------------------------------------------------------------              
+              
+Function SearchMemory(ByVal StartAddress As Long, SearchArray() As Byte,IsDirectPass() As Byte) As Long    
+Local i As Long
+Local TmpResult As Long 
+TmpResult = 0
+                        
+
+If StartAddress <= UBound(FileContent) Then        
+    For i = StartAddress To UBound(FileContent)
+        If FileContent(i) = SearchArray(0) Then  
+            If CheckMatchResult(i,SearchArray(),IsDirectPass()) = 1 Then
+                TmpResult = i
+                Exit For
+            End If
+        End If
+    Next  
+End If  
+
+ 
+Function = TmpResult
+ 
+End Function
+
+ '---------------------------------------------------------------------------     
+Function CheckMatchResult(ByVal StartAddress As Long, SearchArray() As Byte,IsDirectPass() As Byte) As Long
+Local i As Long  
+Local IsAllMatch As Long     
+
+IsAllMatch = 0
+
+If StartAddress + UBound(SearchArray) <= UBound(FileContent) Then   
+    IsAllMatch = 1
+    For i = StartAddress + 1 To StartAddress + UBound(SearchArray)  
+        If FileContent(i) <> SearchArray(i - StartAddress) And IsDirectPass(i - StartAddress) = 0 Then
+            IsAllMatch = 0
+            Exit For
+        End If  
+    Next 
+End If 
+
+If IsAllMatch = 1 Then
+   Function = 1       
+Else
+   Function = 0  
+End If
+
+End Function
+'---------------------------------------------------------------------------     

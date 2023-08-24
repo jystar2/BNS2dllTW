@@ -1,0 +1,1751 @@
+Local TmpByte() As Byte           
+Local IAddress As Long,NoOfByteRead As Long
+Local TmpArr() As Byte
+ReDim TmpByte(&H3000000)  
+Local SearchContent As String
+
+
+Local TmpSearchCode As String 
+Local ResultAddress As Long    
+
+Local i As Long,J As Long    
+       
+Local TmpStr As String 
+Local ResultStr As String
+                
+Local SearchCode() As String
+ReDim SearchCode(200)  
+
+Local TmpResultStr() As String
+ReDim TmpResultStr(200)  
+                  
+Local PostResultStr() As String
+ReDim PostResultStr(200) 
+                             
+Local SMove() As Long    
+ReDim SMove(200)  
+
+Local SAddMove() As Long    
+ReDim SAddMove(200)  
+      
+
+Local StartSearchIndex() As Long    
+ReDim StartSearchIndex(200)                         
+                            
+Local IsNeedReadActual() As Byte
+ReDim IsNeedReadActual(200)   
+
+
+Local ResultSearchAddress() As Dword    
+ReDim ResultSearchAddress(200)   
+
+                                 
+Local TmpFileName As String 
+Local FileSize As Dword
+Local F As Integer              
+                                
+TmpFileName = VD_ComboBox_Edit_GetText(nCbHndl,%ID_FORM1_COMBO1)                             
+      
+F = FreeFile
+Open TmpFileName For Binary Lock Shared As #F   
+    FileSize = Lof(F)   
+    ReDim FileContent(FileSize - 1)
+    Get #F, ,FileContent()
+Close #F   
+
+MsgBox "SO File Total Size = " & Str$(FileSize)  
+     
+
+    ResultStr = ""     
+    
+    
+    
+    
+    I = 0    '_ZNK2pa7UILabel12getFontColorEv            
+    SearchCode(I) = "70 4C BD E8 ?? ?? ?? ?? 70 8C BD E8 ?? 0F 80 E2 1E FF 2F E1 70 4C 2D E9 10 B0 8D E2"   
+    
+    PostResultStr(I) = ";" 
+    TmpResultStr(I) = "unsigned int _ZNK2pa7UILabel12getFontColorEv = "
+    SMove(I) = &H662DE0 - &H662DD4
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I)  = -1         
+                 
+                 
+                   
+    I = 1    '_ZN2pa7UILabel12getLabelTextEv            
+    SearchCode(I) = "D0 01 E0 E7 1E FF 2F E1 0D 00 A0 E3 1E FF 2F E1 ?? ?? A0 E3 F1 00 90 E1 1E FF 2F E1 00 10 A0 E1"   
+    
+    PostResultStr(I) = ";" 
+    TmpResultStr(I) = "unsigned int _ZN2pa7UILabel12getLabelTextEv = "
+    SMove(I) = &H662F0C - &H662EF0
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 0                              
+                                
+                                
+    I = 2    '_ZN2pa10UICheckBox10getCheckedEv            
+    SearchCode(I) = "00 20 E0 E3 00 30 E0 E3 00 00 50 E3 00 00 A0 E3 02 10 A0 03 00 00 8D E5 04 00 8D E5 01 10 A0 13 08 00 8D E5 04 00 A0 E1"   
+    
+    PostResultStr(I) = ";" & $CrLf 
+    TmpResultStr(I) = "unsigned int _ZN2pa10UICheckBox10getCheckedEv = "
+    SMove(I) = &H64BF8C - &H64BF58
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = -1                                        
+             
+     
+     
+    I = 3    '_ZNK2pa29qjgid04qzf7lp6f8w4rko72y1aqfz20getChildElementCountEv            
+    SearchCode(I) = "00 48 2D E9 0D B0 A0 E1 ?? ?? ?? ?? 00 88 BD E8 ?? ?? ?? ?? ?? 10 90 E5 00 00 51 E3 ?? ?? D0 11 00 00 A0 03 1E FF 2F E1 00 10 A0 E1"   
+    
+    PostResultStr(I) = ";"
+    TmpResultStr(I) = "unsigned int _ZNK2pa29qjgid04qzf7lp6f8w4rko72y1aqfz20getChildElementCountEv = "
+    SMove(I) = &H64EED4 - &H64EEC0
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = -1                   
+             
+                
+             
+    I = 4    '_ZN2pa29qjgid04qzf7lp6f8w4rko72y1aqfz8b16fluewEv            
+    SearchCode(I) = "00 50 A0 E1 5C 00 84 E2 ?? ?? ?? EB 30 00 84 E2 ?? ?? ?? EB 28 00 84 E2 ?? ?? ?? EB 05 00 A0 E1 ?? ?? ?? EB ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? F0 4D 2D E9 ?? B0 8D E2"   
+    TmpResultStr(I) = "unsigned int _ZN2pa29qjgid04qzf7lp6f8w4rko72y1aqfz8b16fluewEv = "
+    PostResultStr(I) = ";//UIElement_ReleaseElement"     
+    
+    SMove(I) = &H64EC4C - &H64EC1C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = -1      
+    
+    
+    I = 5    '_ZN2pa29qjgid04qzf7lp6f8w4rko72y1aqfz15getChildElementEi            
+    SearchCode(I) = "00 00 51 E3 00 20 A0 E1 00 00 A0 B3 1E FF 2F B1 ?? C0 92 E5 00 30 A0 E3 00 00 A0 E3 00 00 5C E3"   
+    TmpResultStr(I) = "unsigned int _ZN2pa29qjgid04qzf7lp6f8w4rko72y1aqfz15getChildElementEi = "
+    PostResultStr(I) = ";"     
+    
+    SMove(I) = &H64F0E8 - &H64F0E8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4      
+            
+    
+                    
+    I = 6   '_ZN2pa29qjgid04qzf7lp6f8w4rko72y1aqfz11ghnyq6s3qnmEv            
+    SearchCode(I) = "00 00 50 E3 00 00 A0 03 1E FF 2F 01 01 02 80 E0 10 00 80 E2 ?? ?? ?? EA 30 48 2D E9 08 B0 8D E2"   
+    TmpResultStr(I) = "unsigned int _ZN2pa29qjgid04qzf7lp6f8w4rko72y1aqfz11ghnyq6s3qnmEv = "
+    PostResultStr(I) = ";//UIElement_AddChild"     
+    
+    SMove(I) = &H656798 - &H656780
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4   
+    
+    
+     I = 7   '_ZN2pa29qjgid04qzf7lp6f8w4rko72y1aqfz9getEnableEv           
+    SearchCode(I) = "20 90 E5 02 21 C2 E3 81 1F 82 E1 ?? 10 80 E5 1E FF 2F E1 ?? 0E D0 E1 ?? ?? ?? E3 01 00 00 E0 10 0F 6F E1 A0 02 A0 E1"   
+    TmpResultStr(I) = "unsigned int _ZN2pa29qjgid04qzf7lp6f8w4rko72y1aqfz9getEnableEv = "
+    PostResultStr(I) = ";"     
+    
+    SMove(I) = &H6561BC - &H6561A9
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4       
+                                      
+                                      
+                                      
+     I = 8   '_ZN2pa29qjgid04qzf7lp6f8w4rko72y1aqfz10dp7e5q820dEiii           
+    SearchCode(I) = "00 70 A0 E1 07 00 A0 E1 1C D0 4B E2 F0 8F BD E8 ?? ?? ?? ?? F0 4D 2D E9 18 B0 8D E2 10 D0 4D ?? ?? 40 A0 E1 E2 00 D0 E5"   
+    TmpResultStr(I) = "unsigned int _ZN2pa29qjgid04qzf7lp6f8w4rko72y1aqfz10dp7e5q820dEiii = "
+    PostResultStr(I) = ";//old_UIElement_MouseDown"     
+    
+    SMove(I) = &H659DB8 - &H659DA4
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4       
+                                                                     
+           
+     I = 9   'ZN2pa29qjgid04qzf7lp6f8w4rko72y1aqfz13MouseButtonUpEiii           
+    SearchCode(I) = "03 30 9F E7 ?? C0 9C E5 ?? ?? ?? ?? 1C FF 2F E1 ?? ?? ?? ?? 1E FF 2F E1 F0 4F 2D E9 1C B0 8D E2 04 D0 4D E2"   
+    TmpResultStr(I) = "unsigned int ZN2pa29qjgid04qzf7lp6f8w4rko72y1aqfz13MouseButtonUpEiii = "
+    PostResultStr(I) = ";//old_UIElement_MouseUp" & $CrLf     
+    
+    SMove(I) = &H65A794 - &H65A77C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4       
+    
+                            
+                   
+    
+    I = 10    '_ZNK2pa10ActorProxy14getDisplayNameEv            
+    SearchCode(I) = "14 10 9D E5 01 00 50 E0 10 D0 4B 02 70 8C BD 08 ?? ?? ?? EB ?? ?? ?? ?? ?? ?? ?? ?? 70 4C 2D E9 10 B0 8D E2 00 40 A0 E1"   
+    
+    PostResultStr(I) = ";" 
+    TmpResultStr(I) = "unsigned int _ZNK2pa10ActorProxy14getDisplayNameEv = "
+    SMove(I) = +&H1C 
+    IsNeedReadActual(I) = 0 
+    StartSearchIndex(I) = 0     
+    
+    
+              
+    I = 11   '_ZNK2pa10ActorProxy19getInteractionCountEv           
+    SearchCode(I) = "00 90 E5 00 00 50 E3 00 00 A0 03 1E FF 2F 01 ?? ?? ?? EA F0 48 2D E9 10 B0 8D E2 00 40 A0 E1 00 00 90 E5 01 50 A0 E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa10ActorProxy19getInteractionCountEv = "
+    PostResultStr(I) = ";"    
+    
+    SMove(I) = &H691290 - &H691291
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4   
+                  
+                  
+    
+    I = 12   '_ZN2pa10ActorProxy18getInteractionDataEv           
+    SearchCode(I) = "00 90 E5 1E FF 2F E1 ?? 00 90 E5 00 00 50 E3 00 00 A0 03 1E FF 2F 01 10 00 D0 E5 00 00 50 E3 01 00 00 13 1E FF 2F E1 ?? 10 91 E5"   
+    TmpResultStr(I) = "unsigned int _ZN2pa10ActorProxy18getInteractionDataEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H6913B0 - &H6913B1
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4       
+                                 
+                          
+                                 
+    I = 13   '_ZNK2pa10ActorProxy17getServerPositionEv           
+    SearchCode(I) = "80 E2 1E FF 2F E1 ?? ?? 80 E2 1E FF 2F E1 70 4C 2D E9 10 B0 8D E2 00 50 A0 E3 00 60 E0 E3"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa10ActorProxy17getServerPositionEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H69153C - &H69153E
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4                                    
+                                    
+                                    
+    I = 14   '_ZNK2pa10ActorProxy16getCharacterInfoEv           
+    SearchCode(I) = "1E FF 2F E1 ?? ?? 80 E2 1E FF 2F E1 ?? ?? 81 E2 0C 10 9C E8 ?? ?? 91 E5 0C 10 80 E8"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa10ActorProxy16getCharacterInfoEv = "
+    PostResultStr(I) = ";" & $CrLf     
+    SMove(I) = &H691610 - &H69160C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4     
+    
+     I = 15   '_ZNK2pa10ActorProxy19getCharacterControlEv          
+    SearchCode(I) = "04 00 A0 E1 10 8C BD E8 ?? ?? 90 E5 1E FF 2F E1 F0 4F 2D E9 ?? B0 8D E2 04 D0 4D E2"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa10ActorProxy19getCharacterControlEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H6945A4 - &H69459C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4         
+    
+    
+    I = 16   '_ZNK2pa10ActorProxy13ee324mwbes0m5Ev           
+    SearchCode(I) = "00 10 90 E5 ?? ?? 91 E5 11 FF 2F E1 00 10 90 E5 ?? ?? 91 E5 11 FF 2F E1 00 10 90 E5 ?? ?? 91 E5 11 FF 2F E1 00 10 90 E5 ?? ?? 91 E5 11 FF 2F E1 00 10 90 E5 ?? ?? 91 E5 11 FF 2F E1 00 48 2D E9 0D B0 A0 E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa10ActorProxy13ee324mwbes0m5Ev = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H695A60 - &H695A6C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4         
+    
+                                       
+                                    
+    I = 17   '_ZNK2pa10ActorProxy37iri9agktuvrtouqggt4v7ruv5wfqdz9ya5v0bEv           
+    SearchCode(I) = "00 10 90 E5 ?? ?? 91 E5 11 FF 2F E1 00 10 90 E5 ?? ?? 91 E5 11 FF 2F E1 00 10 90 E5 ?? ?? 91 E5 11 FF 2F E1 00 10 90 E5 ?? ?? 91 E5 11 FF 2F E1 00 10 90 E5 ?? ?? 91 E5 11 FF 2F E1 00 48 2D E9 0D B0 A0 E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa10ActorProxy37iri9agktuvrtouqggt4v7ruv5wfqdz9ya5v0bEv = "
+    PostResultStr(I) = ";//ActorProxy_getMaxHP"  & $CrLf        
+    SMove(I) = &H695A6C - &H695A6C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4       
+    
+    
+    
+    I = 18   '_ZN2pa17ActorProxyManager13getSelfPlayerEv           
+    SearchCode(I) = "04 00 90 E5 1E FF 2F E1 04 00 90 E5 1E FF 2F E1 04 00 90 E5 1E FF 2F E1 F0 4B 2D E9 18 B0 8D E2 00 90 A0 E1"   
+    TmpResultStr(I) = "unsigned int _ZN2pa17ActorProxyManager13getSelfPlayerEv = "
+    PostResultStr(I) = ";"      
+    SMove(I) = &H6A0208 - &H6A0208
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4   
+    
+    
+        
+    I = 19   '_ZN2pa17ActorProxyManager14getTreasureBoxEt           
+    SearchCode(I) = "10 4C 2D E9 08 B0 8D E2 01 E0 A0 E1 ?? ?? 90 E5 ?? ?? 90 E5 02 00 51 E1"   
+    TmpResultStr(I) = "unsigned int _ZN2pa17ActorProxyManager14getTreasureBoxEt = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H6A7FF4 - &H6A7FF4
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4      
+    
+    
+        
+    I = 20   '_ZN2pa10AutoSystem18setAutoGuide_QuestENS_8QuestKeyE           
+    SearchCode(I) = "F0 4F 2D E9 1C B0 8D E2 2C D0 4D E2 ?? ?? ?? E5 00 40 A0 E1 01 50 A0 E1 0A A0 9F E7 00 00 9A E5 ?? 10 8D E5 20 00 0B E5 04 00 A0 E1 ?? ?? ?? EB 00 00 50 E3"   
+    TmpResultStr(I) = "unsigned int _ZN2pa10AutoSystem18setAutoGuide_QuestENS_8QuestKeyE = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H6C051C - &H6C051C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4          
+                                       
+                                       
+    I = 21   '_ZN2pa10AutoSystem27setGuidePosition_OtherFieldENS_14StageUniqueKeyERKNS_6float3ENS_11AutoRunModeEbb           
+    SearchCode(I) = "F0 4F 2D E9 1C B0 8D E2 04 D0 4D E2 03 80 A0 E1 02 A0 A0 E1 01 70 A0 E1 00 40 A0 E1 ?? ?? ?? EB"   
+    TmpResultStr(I) = "unsigned int _ZN2pa10AutoSystem27setGuidePosition_OtherFieldENS_14StageUniqueKeyERKNS_6float3ENS_11AutoRunModeEbb = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H006C1F70 - &H6C1F70
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4                   
+         
+      
+    I = 22   '_ZNK2pa10AutoSystem49y8a68zu2izneaeyxqor4l5tquo5nkdbu6eh1o3x1aalaes5f8Ev           
+    SearchCode(I) = "00 48 2D E9 0D B0 A0 E1 ?? ?? 90 E5 ?? ?? ?? EB 00 88 BD E8 ?? ?? ?? EB 10 4C 2D E9 08 B0 8D E2 00 40 A0 E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa10AutoSystem49y8a68zu2izneaeyxqor4l5tquo5nkdbu6eh1o3x1aalaes5f8Ev = "
+    PostResultStr(I) = ";"  & $CrLf      
+    SMove(I) = &H6C33C4 - &H6C33AC
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4                   
+            
+            
+      
+    I = 23   '_ZN2pa9BDMClient26getHousingModeProxyManagerEv           
+    SearchCode(I) = "01 10 9F E7 ?? ?? ?? E5 02 20 9F E7 ?? ?? ?? EB 00 50 A0 E1 04 00 A0 E1 ?? ?? ?? EB 05 00 A0 E1 ?? ?? ?? FA ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? E5 00 00 9F E7 1E FF 2F E1"   
+    TmpResultStr(I) = "unsigned int _ZN2pa9BDMClient26getHousingModeProxyManagerEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H006C4E90 - &H6C4E4C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4       
+      
+                   
+    I = 24   '_ZN2pa9BDMClient17getUIWrapperInvenEv           
+    SearchCode(I) = "E5 00 00 9F E7 00 00 90 E5 1E FF 2F E1 ?? ?? ?? ?? F0 4B 2D E9 18 B0 8D E2 20 D0 4D E2"   
+    TmpResultStr(I) = "unsigned int _ZN2pa9BDMClient17getUIWrapperInvenEv = "
+    PostResultStr(I) = ";"  & $CrLf      
+    SMove(I) = &HBE2598 - &HBE259B
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4    
+                        
+                        
+    I = 25   '_ZN2pa16CharacterControl13endCollectingEv           
+    SearchCode(I) = "F0 48 2D E9 10 B0 8D E2 18 D0 4D E2 ?? ?? ?? E5 00 40 A0 E1 07 70 9F E7 00 00 97 E5 14 00 8D E5 ?? ?? 94 E5 00 00 50 E3"   
+    TmpResultStr(I) = "unsigned int _ZN2pa16CharacterControl13endCollectingEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H00733C34 - &H733C34
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4                          
+                                 
+                                 
+    I = 26   '_ZNK2pa16CharacterControl12getActorBaseEv           
+    SearchCode(I) = "01 00 80 E0 1E FF 2F E1 ?? ?? 90 E5 1E FF 2F E1 ?? ?? 80 E2 1E FF 2F E1 F0 4F 2D E9"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa16CharacterControl12getActorBaseEv = "
+    PostResultStr(I) = ";" & $CrLf      
+    SMove(I) = &H736BBC - &H736BB4
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4   
+    
+    
+    I = 27   '_ZNK2pa19HousingManagerProxy10g96b1annenEv           
+    SearchCode(I) = "00 00 A0 E3 ?? ?? 84 E5 F0 8B BD E8 08 00 80 E2 1E FF 2F E1 08 00 80 E2 1E FF 2F E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa19HousingManagerProxy10g96b1annenEv = "
+    PostResultStr(I) = ";//old_getMainHousingElement"      
+    SMove(I) = &H85B610 - &H85B604
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4    
+    
+    
+    I = 28   '_ZNK2pa19HousingManagerProxy32requestReceiveHousingSupportFundEv           
+    SearchCode(I) = "00 10 94 E5 14 20 1B E5 02 10 51 E0 10 D0 4B 02 70 8C BD 08 ?? ?? ?? EB 00 40 A0 E1 08 00 8D E2 ?? ?? ?? EB 04 00 A0 E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa19HousingManagerProxy32requestReceiveHousingSupportFundEv = "
+    PostResultStr(I) = ";"      
+    SMove(I) = &H84DDB4 - &H84DD6C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4    
+        
+        
+    I = 29   '_ZNK2pa19HousingManagerProxy29getHousingSupportFundLeftTimeEv           
+    SearchCode(I) = "10 4C 2D E9 08 B0 8D E2 ?? ?? 90 E5 ?? ?? ?? EB 00 00 44 E0 10 8C BD E8 ?? ?? ?? EA"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa19HousingManagerProxy29getHousingSupportFundLeftTimeEv = "
+    PostResultStr(I) = ";"      
+    SMove(I) = &H860DB4 - &H860DB4
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4            
+        
+                                    
+    I = 30   '_ZN2pa19HousingManagerProxy20setSelectObjectForUiEPNS_14HousingElementE           
+    SearchCode(I) = "E5 1E FF 2F E1 ?? ?? 90 E5 ?? ?? 80 E5 ?? ?? 80 E5 1E FF 2F E1 F0 4B 2D E9 ?? B0 8D E2 ?? D0 4D E2"   
+    TmpResultStr(I) = "unsigned int _ZN2pa19HousingManagerProxy20setSelectObjectForUiEPNS_14HousingElementE = "
+    PostResultStr(I) = ";" & $CrLf      
+    SMove(I) = &H85C1D0 - &H85C1BB
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4   
+                                
+                               
+                               
+    I = 31   '_ZNK2pa15MinimapMarkInfo11getTypeInfoEv           
+    SearchCode(I) = "04 00 90 E5 1E FF 2F E1 00 48 2D E9 0D B0 A0 E1 04 10 91 E5 00 00 51 E3 ?? ?? ?? ?? ?? ?? ?? EB 00 88 BD E8"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa15MinimapMarkInfo11getTypeInfoEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H08EDF24 - &H8EDF24
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4                                       
+                                   
+                                   
+    I = 32   '_ZNK2pa15MinimapMarkInfo15getCharacterKeyEv           
+    SearchCode(I) = "EB 00 88 BD E8 08 00 80 E2 1E FF 2F E1 ?? 00 90 E5 1E FF 2F E1 F0 48 2D E9 10 B0 8D E2"   
+    TmpResultStr(I) = "unsigned int  _ZNK2pa15MinimapMarkInfo15getCharacterKeyEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H8EDF88 - &H8EDF73
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4                   
+    
+     I = 33   '_ZNK2pa15MinimapMarkInfo10setAutoRunEv           
+    SearchCode(I) = "00 00 50 E3 00 88 BD 08 ?? ?? ?? EB 00 88 BD E8 ?? ?? ?? EB F0 4B 2D E9 ?? B0 8D E2 ?? D0 4D E2 64 43 9F E5"   
+    TmpResultStr(I) = "unsigned int  _ZNK2pa15MinimapMarkInfo10setAutoRunEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H8EE220 - &H8EE20C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4                
+    
+    
+    I = 34   '_ZNK2pa18MinimapNpcListInfo14getDescriptionEv           
+    SearchCode(I) = "00 D0 E5 1E FF 2F E1 00 10 A0 E1 04 20 F1 E5 01 00 12 E3 01 00 81 02 ?? 00 90 15 1E FF 2F E1"   
+    TmpResultStr(I) = "unsigned int  _ZNK2pa18MinimapNpcListInfo14getDescriptionEv = "
+    PostResultStr(I) = ";"  & $CrLf     
+    SMove(I) = &H8EF9F4 - &H8EF9ED
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4                                                          
+                                   
+            
+        
+    I = 35   '_ZNK2pa14MinimapManager14getMinimapNameEv           
+    SearchCode(I) = "10 5A 00 EE 00 0A 81 EE 15 0A 8D ED 54 10 9D E5 03 00 84 E8 00 00 98 E5 1C 10 1B E5 01 00 50 E0 18 D0 4B 02 F0 8D BD 08"   
+    TmpResultStr(I) = "unsigned int  _ZNK2pa14MinimapManager14getMinimapNameEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H8F1DB4 - &H8F1D30
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4         
+                               
+                               
+    I = 36   '_ZNK2pa14MinimapManager40cc5am54i758yuq3iebfbr09umv5wnu6tkh8lcmy6Ei           
+    SearchCode(I) = "00 A0 E3 1E FF 2F E1 ?? ?? 02 E3 81 10 81 E0 02 00 90 E7 81 01 80 E0 1E FF 2F E1 ?? ?? ?? E3 ?? ?? 02 E3 01 10 90 E7 02 00 90 E7"   
+    TmpResultStr(I) = "unsigned int  _ZNK2pa14MinimapManager40cc5am54i758yuq3iebfbr09umv5wnu6tkh8lcmy6Ei = "
+    PostResultStr(I) = ";//old_GetIconNameKey"    
+    SMove(I) = &H900C04 - &H900BFD
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4         
+                                                              
+        
+    I = 37   '_ZNK2pa14MinimapManager22getMinimapNpcListCountEv           
+    SearchCode(I) = "00 A0 E3 1E FF 2F E1 ?? ?? 02 E3 81 10 81 E0 02 00 90 E7 81 01 80 E0 1E FF 2F E1 ?? ?? ?? E3 ?? ?? 02 E3 01 10 90 E7 02 00 90 E7"   
+    TmpResultStr(I) = "unsigned int  _ZNK2pa14MinimapManager22getMinimapNpcListCountEv = "
+    PostResultStr(I) = ";"  & $CrLf     
+    SMove(I) = &H900C18 - &H900BFD
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4               
+                                       
+                                       
+                                       
+    I = 38   '_ZNK2pa46k6d5wrsugp3t2opfamz088f2misngk0tooolhqwls5spjx27jqfdnifh0a492ymjv0bc5ed4f1aExijx           
+    SearchCode(I) = "06 10 8D E2 B6 00 CD E1 01 00 84 E2 02 20 D4 E5 ?? ?? ?? EB 08 00 8D E2 ?? ?? ?? EB 00 00 99 E5 24 10 1B E5 01 00 50 E0 1C D0 4B 02"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa46k6d5wrsugp3t2opfamz088f2misngk0tooolhqwls5spjx27jqfdnifh0a492ymjv0bc5ed4f1aExijx = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H93D550 - &H93D504
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4                                           
+                             
+                             
+    I = 39   '_ZNK2pa46k6d5wrsugp3t2opfamz088f2misngk0tooolhqwls5spjx11getPetCountEv           
+    SearchCode(I) = "F0 8D BD E8 ?? ?? ?? ?? ?? ?? ?? EA ?? ?? ?? EA 10 4C 2D E9 08 B0 8D E2 00 40 A0 E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa46k6d5wrsugp3t2opfamz088f2misngk0tooolhqwls5spjx11getPetCountEv = "
+    PostResultStr(I) = ";//GetPetCount"     
+    SMove(I) = &H939AA4 - &H939A94
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4                                    
+                                
+                       
+    I = 40   '_ZNK2pa46k6d5wrsugp3t2opfamz088f2misngk0tooolhqwls5spjx13getPetByIndexEi           
+    SearchCode(I) = "00 00 90 E5 10 8C BD E8 10 4C 2D E9 08 B0 8D E2 01 40 A0 E1 ?? ?? ?? EB 08 00 90 E5 01 00 54 E3 ?? ?? ?? BA 01 10 84 E2"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa46k6d5wrsugp3t2opfamz088f2misngk0tooolhqwls5spjx13getPetByIndexEi = "
+    PostResultStr(I) = ";//GetPetByIndex"     
+    SMove(I) = &H939AE0 - &H939AD8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4                             
+                       
+                   
+    I = 41   '_ZNK2pa46k6d5wrsugp3t2opfamz088f2misngk0tooolhqwls5spjx38v4zij8wiwoto97nlm33ddwxd0hj2h51w1838jyExi           
+    SearchCode(I) = "EB 04 00 A0 E1 ?? ?? ?? FA ?? ?? ?? ?? F0 4D 2D E9 18 B0 8D E2 20 D0 4D E2 ?? ?? ?? E5 08 80 9F E7 00 10 98 E5 1C 10 8D E5"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa46k6d5wrsugp3t2opfamz088f2misngk0tooolhqwls5spjx38v4zij8wiwoto97nlm33ddwxd0hj2h51w1838jyExi = "
+    PostResultStr(I) = ";//old_PetSkillTraining"     
+    SMove(I) = &H93DEF0 - &H93DEE3
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4                        
+                   
+    I = 42   '_ZNK2pa46k6d5wrsugp3t2opfamz088f2misngk0tooolhqwls5spjx26requestEndPetSkillTrainingExb           
+    SearchCode(I) = "04 00 A0 E1 ?? ?? ?? FA ?? ?? ?? ?? 30 48 2D E9 08 B0 8D E2 20 D0 4D E2 ?? ?? ?? E5 08 10 9B E5 05 50 9F E7 00 40 95 E5"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa46k6d5wrsugp3t2opfamz088f2misngk0tooolhqwls5spjx26requestEndPetSkillTrainingExb = "
+    PostResultStr(I) = ";"  & $CrLf     
+    SMove(I) = &H93E0F4 - &H93E0E8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4     
+    
+
+    I = 43   '_ZNK2pa16PlayerActorProxy8getLevelEv           
+    SearchCode(I) = "A0 E3 F1 00 90 E1 1E FF 2F E1 10 4C 2D E9 08 B0 8D E2 01 40 A0 E1 00 10 90 E5 ?? ?? 91 E5 31 FF 2F E1"   
+    TmpResultStr(I) = "unsigned int  _ZNK2pa16PlayerActorProxy8getLevelEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H944218 - &H94421A
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4    
+    
+    
+    I = 44   '_ZNK2pa16PlayerActorProxy13getExperienceEv           
+    SearchCode(I) = "90 E5 ?? ?? 90 E5 02 00 A0 E1 1E FF 2F E1 10 4C 2D E9 08 B0 8D E2 00 40 A0 E1 ?? ?? 90 E5 00 00 50 E3"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa16PlayerActorProxy13getExperienceEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H944274 - &H944276
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4     
+    
+    
+    I = 45   '_ZNK2pa16PlayerActorProxy16getMaxExperienceEv           
+    SearchCode(I) = "90 E5 ?? ?? 90 E5 02 00 A0 E1 1E FF 2F E1 10 4C 2D E9 08 B0 8D E2 00 40 A0 E1 ?? ?? 90 E5 00 00 50 E3"   
+    TmpResultStr(I) = "unsigned int  _ZNK2pa16PlayerActorProxy16getMaxExperienceEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H944284 - &H944276
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4         
+               
+                              
+    I = 46   '_ZNK2pa16PlayerActorProxy12getEquipSlotEv           
+    SearchCode(I) = "00 00 E0 E3 02 11 E0 E3 10 8C BD E8 ?? ?? 90 E5 1E FF 2F E1 F0 4F 2D E9 1C B0 8D E2 0C D0 4D E2"   
+    TmpResultStr(I) = "unsigned int  _ZNK2pa16PlayerActorProxy12getEquipSlotEv = "
+    PostResultStr(I) = ";" & $CrLf     
+    SMove(I) = &H9442EC - &H9442E0
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4     
+                              
+    
+    I = 47   '_ZN2pa20SelfCharacterControl14setAutoCollectEb           
+    SearchCode(I) = "F0 ?? 2D E9 ?? B0 8D E2 ?? D0 4D E2 ?? ?? ?? E5 00 40 A0 E1 01 50 A0 E1 06 60 9F E7 00 00 96 E5 ?? ?? CD E5 ?? ?? ?? E5 ?? ?? D4 E5 00 00 51 E1"   
+    TmpResultStr(I) = "unsigned int  _ZN2pa20SelfCharacterControl14setAutoCollectEb = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H97928C - &H97928C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4         
+               
+                            
+                            
+    I = 48   '_ZN2pa20SelfCharacterControl21onSyncNetworkPositionEfRKNS_6float3E           
+    SearchCode(I) = "D0 E5 10 0F 6F E1 A0 02 A0 E1 1E FF 2F E1 F0 4D 2D E9 ?? B0 8D E2 02 8B 2D ED ?? D0 4D E2 ?? ?? 4D E2"   
+    TmpResultStr(I) = "unsigned int  _ZN2pa20SelfCharacterControl21onSyncNetworkPositionEfRKNS_6float3E = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H9797D0 - &H9797C2
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 4                                   
+                                   
+                                   
+                                   
+     I = 49   '_ZN2pa20SelfCharacterControl11sh457xur860Ev           
+    SearchCode(I) = "EB 00 00 50 E3 ?? ?? ?? 0A ?? ?? ?? EA ?? ?? 90 E5 1E FF 2F E1 F0 4D 2D E9 ?? B0 8D E2 ?? D0 4D E2"   
+    TmpResultStr(I) = "unsigned int _ZN2pa20SelfCharacterControl11sh457xur860Ev = "
+    PostResultStr(I) = ";//old_GetAutoSystem"  &  $CrLf    
+    SMove(I) = &H979034 - &H979027
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                         
+                       
+                            
+    I = 50   '_ZN2pa20SelfPlayerActorProxy20setAutoRunToPositionENS_14StageUniqueKeyENS_6float3Ebfb           
+    SearchCode(I) = "F0 4D 2D E9 18 B0 8D E2 08 D0 4D E2 00 50 A0 E1 01 00 71 E3 ?? ?? ?? 0A 08 70 9B E5 01 40 A0 E1 14 60 9B E5 02 10 A0 E1 04 0A 9B ED"   
+    TmpResultStr(I) = "unsigned int _ZN2pa20SelfPlayerActorProxy20setAutoRunToPositionENS_14StageUniqueKeyENS_6float3Ebfb = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H985BC4 - &H985BC4
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                   
+                                                       
+    
+    I = 51   '_ZNK2pa20SelfPlayerActorProxy21getInventoryGroupBaseEv           
+    SearchCode(I) = "01 E3 01 00 90 E7 1E FF 2F E1 ?? ?? 01 E3 01 00 90 E7 1E FF 2F E1 ?? ?? 01 E3 01 00 90 E7 1E FF 2F E1 ?? ?? ?? EA F0 4D 2D E9"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa20SelfPlayerActorProxy21getInventoryGroupBaseEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H985F44 - &H985F46
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                   
+                                 
+                            
+    I = 52   '_ZNK2pa20SelfPlayerActorProxy23i6joispthl2qvvhhjl41zb4Ev           
+    SearchCode(I) = "01 00 50 E0 18 D0 4B 02 F0 8B BD 08 ?? ?? ?? EB 00 40 A0 E1 08 00 8D E2 ?? ?? ?? EB 04 00 A0 E1 ?? ?? ?? FA ?? ?? ?? ?? ?? ?? 01 E3 01 00 90 E7 1E FF 2F E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa20SelfPlayerActorProxy23i6joispthl2qvvhhjl41zb4Ev = "
+    PostResultStr(I) = ";//getQuestManager"     
+    SMove(I) = &H997D80 - &H997D58
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                   
+                                   
+                                   
+                                   
+    I = 53   '_ZNK2pa20SelfPlayerActorProxy14isValidFishingEv           
+    SearchCode(I) = "01 E3 01 00 D0 E7 1E FF 2F E1 ?? ?? 01 E3 01 10 D0 E7 00 00 51 E3 00 00 A0 03 1E FF 2F 01 30 48 2D E9"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa20SelfPlayerActorProxy14isValidFishingEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H099A7CC - &H99A7CE
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                  
+                                               
+                  
+    I = 54   '_ZNK2pa20SelfPlayerActorProxy25isTimeOverFishingCompleteEv           
+    SearchCode(I) = "01 E3 01 00 D0 E7 1E FF 2F E1 ?? ?? 01 E3 01 10 D0 E7 00 00 51 E3 00 00 A0 03 1E FF 2F 01 30 48 2D E9"   
+    TmpResultStr(I) = "unsigned int  _ZNK2pa20SelfPlayerActorProxy25isTimeOverFishingCompleteEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H099A7D8 - &H99A7CE
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39     
+    
+    
+    I = 55   '_ZN2pa20SelfPlayerActorProxy23getSelfCharacterControlEv           
+    SearchCode(I) = "00 48 2D E9 0D B0 A0 E1 00 10 90 E5 ?? ?? 91 E5 31 FF 2F E1 00 88 BD E8 00 48 2D E9 0D B0 A0 E1 ?? ?? 90 E5 00 10 90 E5"   
+    TmpResultStr(I) = "unsigned int _ZN2pa20SelfPlayerActorProxy23getSelfCharacterControlEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H099A8D8 - &H99A8D8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39  
+                      
+                                 
+     I = 56   '_ZNK2pa20SelfPlayerActorProxy13isAutoCollectEv           
+    SearchCode(I) = "00 48 2D E9 0D B0 A0 E1 00 10 90 E5 ?? ?? 91 E5 31 FF 2F E1 00 88 BD E8 00 48 2D E9 0D B0 A0 E1 ?? ?? 90 E5 00 10 90 E5"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa20SelfPlayerActorProxy13isAutoCollectEv  = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H099A8F0 - &H99A8D8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                    
+                                       
+                                       
+    I = 57   '_ZNK2pa20SelfPlayerActorProxy21cjyrx50qvv14zzwu8m8evEv           
+    SearchCode(I) = "EB 00 48 2D E9 0D B0 A0 E1 ?? ?? 90 E5 00 10 90 E5 ?? ?? 91 E5 31 FF 2F E1 00 88 BD E8 ?? ?? ?? EB 00 48 2D E9"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa20SelfPlayerActorProxy21cjyrx50qvv14zzwu8m8evEv = "
+    PostResultStr(I) = ";//old_SelfPlayerActorProxy_isAutoBattle"     
+    SMove(I) = &H099A928 - &H99A927
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                        
+                                       
+                                 
+    I = 58   '_ZN2pa20SelfPlayerActorProxy23setAutoCollect_TreasureEj           
+    SearchCode(I) = "30 88 BD 08 ?? ?? ?? EB ?? ?? ?? EB ?? ?? ?? ?? ?? ?? ?? ?? 30 48 2D E9 08 B0 8D E2 08 D0 4D E2 ?? ?? ?? E5 00 40 A0 E1 05 50 9F E7 00 00"   
+    TmpResultStr(I) = "unsigned int _ZN2pa20SelfPlayerActorProxy23setAutoCollect_TreasureEj = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H099AACC - &H99AAB8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                             
+                             
+                             
+    I = 59   '_ZNK2pa20SelfCharacterControl16isPickGroundModeEv           
+    SearchCode(I) = "00 10 E0 E3 ?? ?? 80 E5 1E FF 2F E1 ?? ?? 90 E5 1E FF 2F E1 10 4C 2D E9 08 B0 8D E2 00 40 A0 E1 ?? ?? 90 E5 ?? ?? ?? EB 00 00 50 E3 ?? ?? D0 15 00 00 50 13 ?? ?? ?? 1A"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa20SelfCharacterControl16isPickGroundModeEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0978E84 - &H978E70
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39  
+    
+    
+    I = 60  '_ZNK2pa20SelfPlayerActorProxy23getMaxSavePositionCountEv           
+    SearchCode(I) = "A0 E3 1E FF 2F E1 30 48 2D E9 08 B0 8D E2 00 50 A0 E1 01 40 A0 E1 00 00 E0 E3 04 00 51 E3"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa20SelfPlayerActorProxy23getMaxSavePositionCountEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H09A69F8 - &H9A69FA
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39         
+    
+    
+    I = 61   '_ZNK2pa20SelfPlayerActorProxy22getSavePositionByIndexEj           
+    SearchCode(I) = "70 4C 2D E9 10 B0 8D E2 02 50 A0 E1 01 60 A0 E1 00 40 A0 E1 ?? ?? 52 E3 ?? ?? ?? 3A ?? ?? ?? E5 00 00 9F E7 06 00 90 E8 08 00 90 E5"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa20SelfPlayerActorProxy22getSavePositionByIndexEj = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H99D85C - &H99D85C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39       
+    
+                      
+    I = 62   '_ZNK2pa20SelfPlayerActorProxy22getSaveStageKeyByIndexEj           
+    SearchCode(I) = "20 8F E0 01 10 A0 E3 ?? ?? ?? EB 84 02 85 E0 ?? ?? 01 E3 01 00 90 E7 30 88 BD E8 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 01 E3 02 10 C0 E7"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa20SelfPlayerActorProxy22getSaveStageKeyByIndexEj = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H99D538 - &H099D561
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                      
+               
+                                            
+    I = 63  '_ZNK2pa20SelfPlayerActorProxy19getWareHouseManagerEv           
+    SearchCode(I) = "00 50 88 E5 1C D0 4B E2 F0 8F BD E8 ?? ?? ?? E3 01 00 90 E7 1E FF 2F E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa20SelfPlayerActorProxy19getWareHouseManagerEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H9801E0 - &H09801C8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                                 
+                                            
+                                            
+                      
+    I = 64  '_ZNK2pa20SelfPlayerActorProxy13getPetManagerEv           
+    SearchCode(I) = "00 50 88 E5 1C D0 4B E2 F0 8F BD E8 ?? ?? ?? E3 01 00 90 E7 1E FF 2F E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa20SelfPlayerActorProxy13getPetManagerEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H9801EC - &H09801C8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39      
+    
+    
+    I = 65  '_ZNK2pa20SelfPlayerActorProxy30getCurrentMentalPointForScriptEv           
+    SearchCode(I) = "01 E3 01 00 90 E7 1E FF 2F E1 ?? ?? ?? E3 02 00 90 E7 ?? ?? ?? EA ?? ?? ?? E3 01 30 80 E7 ?? ?? ?? E3 01 20 80 E7 1E FF 2F E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa20SelfPlayerActorProxy30getCurrentMentalPointForScriptEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H99DD2C - &H99DD52
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39     
+    
+             
+                  
+    I = 66  '_ZNK2pa20SelfPlayerActorProxy26getMaxMentalPointForScriptEv           
+    SearchCode(I) = "01 E3 01 00 90 E7 1E FF 2F E1 ?? ?? ?? E3 02 00 90 E7 ?? ?? ?? EA ?? ?? ?? E3 01 30 80 E7 ?? ?? ?? E3 01 20 80 E7 1E FF 2F E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa20SelfPlayerActorProxy26getMaxMentalPointForScriptEv = "
+    PostResultStr(I) = ";"  &  $CrLf       
+    SMove(I) = &H99DD38 - &H99DD52
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39  
+    
+    
+    
+    
+     I = 67  '_ZNK2pa12StageManager36s26csxib8sc7239a4ealwb9evfll0mwoprjeEv           
+    SearchCode(I) = "1E FF 2F E1 1E FF 2F E1 30 48 2D E9 08 B0 8D E2 ?? 50 80 E2 00 40 A0 E1 05 00 A0 E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa12StageManager36s26csxib8sc7239a4ealwb9evfll0mwoprjeEv = "
+    PostResultStr(I) = ";//old_getCurrentStageKey"     
+    SMove(I) = &HA1AF64 - &HA1AF5C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39  
+    
+    
+     I = 68  '_ZNK2pa12StageManager9isVillageEv           
+    SearchCode(I) = "00 00 50 E3 04 00 90 15 00 00 A0 03 1E FF 2F E1 00 48 2D E9 0D B0 A0 E1 ?? ?? ?? EB 10 0F 6F E1 A0 02 A0 E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa12StageManager9isVillageEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &HA1D290 - &HA1D280
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39   
+        
+        
+    I = 69  '_ZNK2pa9StageInfo9isMissionEv           
+    SearchCode(I) = "FA 20 D0 E5 11 00 52 E3 ?? ?? ?? ?? ?? ?? ?? E3 01 30 A0 E3 02 C0 40 E3 01 10 A0 E3 13 02 1C E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa9StageInfo9isMissionEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H11E43D8 - &H11E43D8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39      
+                                
+                                
+    I = 70 '_ZNK2pa9StageInfo16isWorldBossStageEv           
+    SearchCode(I) = "20 D0 E5 00 10 A0 E1 00 00 A0 E3 02 00 52 E3 ?? 00 D1 05 01 00 40 02 10 0F 6F 01 A0 02 A0 01 1E FF 2F E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa9StageInfo16isWorldBossStageEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H11DDB04 - &H11DDB05
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                   
+                     
+    I = 71  '_ZNK2pa9StageInfo12isPartyFieldEv           
+    SearchCode(I) = "00 D0 E5 0B 00 40 E2 10 0F 6F E1 A0 02 A0 E1 1E FF 2F E1 ?? 00 D0 E5 50 01 E0 E7 1E FF 2F E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa9StageInfo12isPartyFieldEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H11E347C - &H11E347D
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39    
+    
+    I = 72  '_ZNK2pa9StageInfo7isArenaEv           
+    SearchCode(I) = "10 0F 6F E1 A0 02 A0 E1 1E FF 2F E1 ?? 00 D0 E5 07 10 40 E2 12 00 40 E2 10 0F 6F E1 11 1F 6F E1 A0 02 A0 E1 A1 12 A0 E1 00 00 81 E1"   
+    TmpResultStr(I) = "unsigned int _ZNK2pa9StageInfo7isArenaEv = "
+    PostResultStr(I) = ";" &  $CrLf    
+    SMove(I) = &H11E4FB8 - &H11E4FAC  
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39    
+                                
+                                
+                                
+     I = 73  '_ZN2pa9UIWrapper20ToClient_CancelQuestEi           
+    SearchCode(I) = "28 10 9D E5 01 27 A0 E3 30 20 8D E5 34 10 8D E5 ?? ?? 00 E3 ?? ?? ?? EB B2 03 DD E1 10 10 A0 E3 04 00 80 E2 00 10 8D E5"   
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper20ToClient_CancelQuestEi = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &HB5C104 - &HB5C610  
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39   
+    
+                                    
+    I = 74  '_ZN2pa9UIWrapper14gj5z6g6mecb47gEii           
+    SearchCode(I) = "00 00 56 E3 01 60 00 13 00 00 54 E3 01 40 00 13 00 00 50 E3 06 40 A0 11 04 00 A0 E1 70 8C BD E8 00 40 A0 E3 04 00 A0 E1"   
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper14gj5z6g6mecb47gEii = "
+    PostResultStr(I) = ";//old_StartInteraction"    
+    SMove(I) = &HB5C928 - &HB5C8F8 
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39   
+      
+      
+    I = 75  '_ZN2pa9UIWrapper24ToClient_StartQuestGuideEi           
+    SearchCode(I) = "00 00 98 E5 00 10 9A E5 08 20 9D E5 02 10 51 E0 1C D0 4B 02 F0 8F BD 08 ?? ?? ?? EB ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 2D E9 18 B0 8D E2 08 D0 4D E2 01 D9 4D E2"   
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper24ToClient_StartQuestGuideEi = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H00B61BF8 - &HB61BD0  
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39    
+    
+    
+                                         
+    I = 76  '_ZN2pa9UIWrapper17getHousingManagerEv           
+    SearchCode(I) = "10 4C 2D E9 08 B0 8D E2 ?? ?? ?? EB ?? ?? ?? EB 00 40 A0 E1 ?? ?? ?? EB 00 00 54 E3 ?? ?? ?? 0A ?? ?? ?? EB ?? ?? ?? EB 10 8C BD E8 ?? ?? ?? EB ?? ?? ?? EB 10 8C BD E8"   
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper17getHousingManagerEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0BB38F8 - &H0BB38F8 
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                          
+                                             
+    I = 77  '_ZN2pa9UIWrapper19getInventoryMaxSizeEv           
+    SearchCode(I) = "E5 00 00 8F E0 ?? ?? ?? E5 1E FF 2F E1 ?? ?? ?? ?? 00 48 2D E9 0D B0 A0 E1 ?? ?? ?? E5 00 00 9F E7 00 00 90 E5 ?? ?? ?? EB ?? ?? ?? EB ?? ?? 80 E2 00 88 BD E8"   
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper19getInventoryMaxSizeEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0BD1C5C - &H0BD1C4B 
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                           
+                                             
+                                             
+                                             
+    I = 78  '_ZN2pa9UIWrapper47p8xscntss2yjmulg2hxcwa3txv2nyyd1uhilyuffrv9xivjEiixi           
+    SearchCode(I) = "1C 10 84 E2 10 4C BD E8 ?? ?? ?? EA ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? F0 4F 2D E9 1C B0 8D E2 84 D0 4D E2 01 D9 4D E2"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper47p8xscntss2yjmulg2hxcwa3txv2nyyd1uhilyuffrv9xivjEiixi = "
+    PostResultStr(I) = ";//RequestBuyItem"    
+    SMove(I) = &H0BD2364 - &H0BD234C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                                
+                       
+                       
+    I = 79  '_ZN2pa9UIWrapper15requestSellItemEjjx           
+    SearchCode(I) = "F0 4F 2D E9 ?? B0 8D E2 ?? D0 4D E2 ?? ?? ?? E5 00 60 A0 E1 01 40 A0 E1 ?? C0 4B E2"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper15requestSellItemEjjx = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0BD362C - &H0BD362C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39   
+    
+    
+    
+    I = 80  '_ZN2pa9UIWrapper15UIWrapper_Inven9vmyilfvz1Ejj           
+    SearchCode(I) = "00 C0 90 E5 04 30 90 E5 0C 30 43 E0 43 C1 A0 E1 AB 3A 0A E3 AA 3A 4A E3 9C 03 03 E0 13 00 53 E3 00 00 A0 83 1E FF 2F 81"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper15UIWrapper_Inven9vmyilfvz1Ejj = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0BDA2F8 - &H0BDA2F8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39   
+    
+        
+                 
+        
+    I = 81  '_ZNK2pa9UIWrapper15UIWrapper_Inven34ToClient_RequestEnhanceBlackSpiritEv           
+    SearchCode(I) = "90 03 03 E0 06 00 A0 E3 01 00 53 E1 81 00 81 80 00 01 D2 87 1E FF 2F E1 F0 4F 2D E9 ?? B0 8D E2 ?? D0 4D E2 ?? ?? ?? E5 00 40 A0 E1 00 50 A0 E3"
+    TmpResultStr(I) = "unsigned int _ZNK2pa9UIWrapper15UIWrapper_Inven34ToClient_RequestEnhanceBlackSpiritEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0BDA508 - &HBDA4F0
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39
+    
+                    
+    I = 82  '_ZN2pa9UIWrapper23getSelfPlayerActorProxyEv           
+    SearchCode(I) = "01 00 50 E0 00 00 A0 03 10 D0 4B 02 70 8C BD 08 ?? ?? ?? EB ?? ?? ?? ?? ?? ?? ?? ?? 00 48 2D E9 0D B0 A0 E1"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper23getSelfPlayerActorProxyEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0C62AF8 - &HC62ADC
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                 
+                             
+       
+    I = 83  '_ZN2pa9UIWrapper19getInteractionActorEv           
+    SearchCode(I) = "01 00 50 E0 00 00 A0 03 10 D0 4B 02 70 8C BD 08 ?? ?? ?? EB ?? ?? ?? ?? ?? ?? ?? ?? 00 48 2D E9 0D B0 A0 E1"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper19getInteractionActorEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0C62B18 - &HC62ADC
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                 
+                                                    
+                       
+    I = 84  '_ZN2pa9UIWrapper15ToClient_RescueEv           
+    SearchCode(I) = "00 00 9F E7 00 00 90 E5 ?? ?? ?? EA ?? ?? ?? ?? 30 48 2D E9 08 B0 8D E2 08 D0 4D E2 ?? ?? ?? E5 05 50 9F E7 00 10 95 E5"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper15ToClient_RescueEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0C663D8 - &HC663C8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                          
+                    
+    I = 85  '_ZN2pa9UIWrapper33ToClient_SetMainCameraRotateAngleEf           
+    SearchCode(I) = "10 4C 2D E9 08 B0 8D E2 ?? ?? ?? E5 10 0A 01 EE 01 10 9F E7 ?? ?? ?? E5 00 0A 91 ED 00 00 9F E7 01 0A 20 EE 00 00 90 E5"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper33ToClient_SetMainCameraRotateAngleEf = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0C68A18 - &HC68A18
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39          
+         
+         
+    I = 86  '_ZN2pa9UIWrapper26getGuildQuestInfoListCountEi           
+    SearchCode(I) = "43 01 51 E1 01 21 9E 37 70 10 EF E6 02 00 A0 E1 ?? ?? ?? EB 00 10 90 E5 04 00 90 E5 01 00 40 E0 40 02 A0 E1 00 88 BD E8 ?? ?? ?? ?? ?? ?? ?? ?? 70 4C 2D E9 10 B0 8D E2"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper26getGuildQuestInfoListCountEi = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0C8F264 - &HC8F298
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                   
+                   
+    I = 87  '_ZN2pa9UIWrapper24getGuildQuestInfoByIndexEij           
+    SearchCode(I) = "43 01 51 E1 01 21 9E 37 70 10 EF E6 02 00 A0 E1 ?? ?? ?? EB 00 10 90 E5 04 00 90 E5 01 00 40 E0 40 02 A0 E1 00 88 BD E8 ?? ?? ?? ?? ?? ?? ?? ?? 70 4C 2D E9 10 B0 8D E2"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper24getGuildQuestInfoByIndexEij = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0C8F2C8 - &HC8F298
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39    
+    
+    
+    I = 88  '_ZN2pa9UIWrapper19xjqp9uwcnw2toy6lzaxEv           
+    SearchCode(I) = "00 00 A0 E3 00 10 E0 E3 08 00 84 E5 00 00 E0 E3 F0 00 C4 E1 70 8C BD E8 ?? ?? ?? ?? ?? ?? ?? ?? F0 4F 2D E9 ?? B0 8D E2"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper19xjqp9uwcnw2toy6lzaxEv = "
+    PostResultStr(I) = ";//old_getCurrentProgressGuildQuest"    
+    SMove(I) = &H0C8F378 - &H0C8F358
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39  
+    
+    
+    I = 89  '_ZN2pa9UIWrapper48ambwh0cy54sx7qfa3ea4x8qdgy3sow69b53zyb8r31cpn22oEi           
+    SearchCode(I) = "08 10 80 E5 0C 10 80 E5 ?? ?? ?? EA 08 C0 80 E5 00 20 E0 E3 00 30 E0 E3 F0 20 C0 E1 1E FF 2F E1 ?? ?? ?? ?? ?? ?? ?? ?? 10 4C 2D E9 08 B0 8D E2 FF DE 4D E2 03 DA 4D E2"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper48ambwh0cy54sx7qfa3ea4x8qdgy3sow69b53zyb8r31cpn22oEi = "
+    PostResultStr(I) = ";//old_getAcceptableBlackSpiritQuestInfo"    
+    SMove(I) = &H0C91290 - &H0C912E8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39          
+                              
+                                
+                                        
+    I = 90  '_ZN2pa9UIWrapper21updateCollectProgressEfb           
+    SearchCode(I) = "10 0A 00 EE 0B 1A 9D ED 01 0A 30 EE 0B 0A 8D ED ?? ?? ?? EB 00 10 A0 E1 30 00 9D E5"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper21updateCollectProgressEfb = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0CDE434 - &H0CDE514
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                                 
+                                        
+
+    I = 91  '_ZN2pa9UIWrapper15getStageManagerEv           
+    SearchCode(I) = "E5 00 00 9F E7 00 00 90 E5 1E FF 2F E1 ?? ?? ?? ?? 00 48 2D E9 0D B0 A0 E1 ?? ?? ?? E5 00 00 9F E7 00 00 90 E5 ?? ?? ?? EB 00 10 90 E5 ?? ?? 91 E5 00 48 BD E8 11 FF 2F E1"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper15getStageManagerEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0CDEEB0 - &H0CDEEB3
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39 
+                              
+                              
+    I = 92  '_ZN2pa9UIWrapper12getStoreInfoEi           
+    SearchCode(I) = "00 10 95 E5 04 20 9D E5 02 10 51 E0 08 D0 4B 02 30 88 BD 08 ?? ?? ?? EB ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 48 2D E9 0D B0 A0 E1 00 E0 A0 E1 00 00 A0 E3 00 00 5E E3 18"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper12getStoreInfoEi = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0CE8418 - &H0CE83F4
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39 
+                                       
+                                       
+    I = 93  '_ZN2pa9UIWrapper23ToClient_RequestUseItemEijxb           
+    SearchCode(I) = "0A A0 9F E7 00 10 9A E5 48 50 8D E5 20 10 0B E5 3C 30 8D E5 38 20 8D E5 44 60 8D E5 ?? ?? ?? EB"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper23ToClient_RequestUseItemEijxb = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0CEDEB8 - &H0CEDEDC
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39 
+                                                                         
+     I = 94  '_ZN2pa9UIWrapper17getMinimapManagerEv           
+    SearchCode(I) = "E5 00 00 9F E7 00 00 90 E5 1E FF 2F E1 ?? ?? ?? ?? 70 4C 2D E9 10 B0 8D E2 08 D0 4D E2 ?? ?? ?? E5 00 00 51 E3 06 60 9F E7 00 20 96 E5 04 20 8D E5"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper17getMinimapManagerEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0CEF35C - &HCEF35F
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39   
+   
+    I = 95 '_ZN2pa9UIWrapper16getCharacterInfoEi           
+    SearchCode(I) = "E5 00 00 9F E7 00 00 90 E5 1E FF 2F E1 ?? ?? ?? ?? 70 4C 2D E9 10 B0 8D E2 08 D0 4D E2 ?? ?? ?? E5 00 00 51 E3 06 60 9F E7 00 20 96 E5 04 20 8D E5"
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIWrapper16getCharacterInfoEi = "
+    PostResultStr(I) = ";" & $CrLf    
+    SMove(I) = &H0CEF370 - &HCEF35F
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                          
+             
+             
+                                                            
+    I = 96  '_ZNK2pa9StockInfo6getKeyEv           
+    SearchCode(I) = "04 00 A0 E1 ?? ?? ?? FA ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 08 00 90 E5 1E FF 2F E1 F0 4F 2D E9 1C B0 8D E2"
+    TmpResultStr(I) = "unsigned int _ZNK2pa9StockInfo6getKeyEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H00D16E6C - &H0D16E54
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39   
+            
+            
+    I = 97  '_ZNK2pa9StockInfo7getNameEv           
+    SearchCode(I) = "00 80 E2 ?? ?? ?? EA 00 10 A0 E1 ?? 20 F1 E5 01 00 12 E3 01 00 81 02 ?? 00 90 15 1E FF 2F E1 F0 ?? 2D E9 ?? B0 8D E2"
+    TmpResultStr(I) = "unsigned int _ZNK2pa9StockInfo7getNameEv = "
+    PostResultStr(I) = ";" & $CrLf    
+    SMove(I) = &H00D17288 - &H0D17281
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39    
+      
+  
+  
+    I = 98  '_ZNK2pa29qjgid04qzf7lp6f8w4rko72y1aqfz10getTypeRawEv           
+    SearchCode(I) = "00 48 2D E9 0D B0 A0 E1 00 10 90 E5 0C 10 91 E5 31 FF 2F E1 00 88 BD E8 F0 4F 2D E9 ?? B0 8D E2 ?? D0 4D E2"
+    TmpResultStr(I) = "unsigned int _ZNK2pa29qjgid04qzf7lp6f8w4rko72y1aqfz10getTypeRawEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0DAAC88 - &H0DAAC88
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39     
+                                 
+    I = 99  '_ZNK2pa29qjgid04qzf7lp6f8w4rko72y1aqfz16getNameForScriptEv           
+    SearchCode(I) = "04 00 A0 E1 ?? ?? ?? FA ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 5C 00 80 E2 ?? ?? ?? EA F0 4F 2D E9"
+    TmpResultStr(I) = "unsigned int _ZNK2pa29qjgid04qzf7lp6f8w4rko72y1aqfz16getNameForScriptEv = "
+    PostResultStr(I) = ";//old_GetUIName"     
+    SMove(I) = &H0DAB4A4 - &H0DAB48C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39  
+    
+     I = 100  '_ZN2pa29qjgid04qzf7lp6f8w4rko72y1aqfz7getShowEv           
+    SearchCode(I) = "04 00 A0 E1 ?? ?? ?? FA ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 D0 E5 50 03 E0 E7 1E FF 2F E1 F0 4F 2D E9 1C B0 8D E2 14 D0 4D E2"
+    TmpResultStr(I) = "unsigned int _ZN2pa29qjgid04qzf7lp6f8w4rko72y1aqfz7getShowEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0DAAF48 - &H0DAAF30
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39   
+    
+     I = 101  '_ZNK2pa29qjgid04qzf7lp6f8w4rko72y1aqfz18getActualPositionXEv           
+    SearchCode(I) = "68 00 90 E5 1E FF 2F E1 6C 00 90 E5 1E FF 2F E1 F0 4F 2D E9 1C B0 8D E2"  '68 6CñÝCHANGE
+    TmpResultStr(I) = "unsigned int _ZNK2pa29qjgid04qzf7lp6f8w4rko72y1aqfz18getActualPositionXEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0DAD8B8 - &H0DAD8B8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39   
+        
+    I = 102  '_ZNK2pa29qjgid04qzf7lp6f8w4rko72y1aqfz18getActualPositionYEv           
+    SearchCode(I) = "68 00 90 E5 1E FF 2F E1 6C 00 90 E5 1E FF 2F E1 F0 4F 2D E9 1C B0 8D E2"  '68 6CñÝCHANGE
+    TmpResultStr(I) = "unsigned int _ZNK2pa29qjgid04qzf7lp6f8w4rko72y1aqfz18getActualPositionYEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0DAD8C0 - &H0DAD8B8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39   
+                                
+                                
+    I = 103  '_ZNK2pa29qjgid04qzf7lp6f8w4rko72y1aqfz16getParentElementEv           
+    SearchCode(I) = "4C 00 90 E5 1E FF 2F E1 F0 4F 2D E9 1C B0 8D E2 14 D0 4D E2"  '4CñÝCHANGE
+    TmpResultStr(I) = "unsigned int _ZNK2pa29qjgid04qzf7lp6f8w4rko72y1aqfz16getParentElementEv = "
+    PostResultStr(I) = ";" & $CrLf   
+    SMove(I) = &H0DAEA14 - &H0DAEA14
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                               
+                                
+                                
+                                   
+                                   
+    I = 104  '_ZN2pa21WareHouseProxyManager15requestPushItemEv           
+    SearchCode(I) = "04 00 A0 E1 F0 88 BD E8 F0 4F 2D E9 1C B0 8D E2 5C D0 4D E2 30 45 9F E5 00 70 A0 E1"  '
+    TmpResultStr(I) = "unsigned int _ZN2pa21WareHouseProxyManager15requestPushItemEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0E13F44 - &H0E13F3C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                    
+          
+          
+                                   
+    I = 105  '_ZN2pa21WareHouseProxyManager18addPushItemForBindEjx           
+    SearchCode(I) = "F0 ?? 2D E9 ?? B0 8D E2 00 40 A0 E1 03 90 A0 E1 04 60 B4 E5 02 80 A0 E1 01 50 A0 E1 00 70 A0 E1 00 00 56 E3"  '
+    TmpResultStr(I) = "unsigned int _ZN2pa21WareHouseProxyManager18addPushItemForBindEjx = "
+    PostResultStr(I) = ";" & $CrLf    
+    SMove(I) = &H0E16E1C - &H0E16E1C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 104                                             
+               
+               
+    I = 106  '_ZNK2pa13CharacterInfo7isStoreEv           
+    SearchCode(I) = "01 20 A0 93 31 00 02 90 1E FF 2F E1 ?? 20 90 E5 00 10 A0 E1 01 00 A0 E3 00 00 52 E3 1E FF 2F C1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa13CharacterInfo7isStoreEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0EC5AD0 - &H0EC5AC4
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39     
+    
+    I = 107  '_ZNK2pa13CharacterInfo13isTreasureBoxEv           
+    SearchCode(I) = "00 00 A0 E3 00 00 51 E3 01 00 00 A3 1E FF 2F E1 ?? ?? D0 E5 1E FF 2F E1 F0 48 2D E9"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa13CharacterInfo13isTreasureBoxEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0EC5B0C - &H0EC5AFC
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39         
+                                      
+                                      
+    I = 108  '_ZNK2pa13CharacterInfo14getStoreKeyRawEv           
+    SearchCode(I) = "FF 1F 0F E3 01 00 50 E1 70 00 BF 16 1E FF 2F 11 ?? ?? ?? E5 00 00 9F E7 00 00 90 E5"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa13CharacterInfo14getStoreKeyRawEv = "
+    PostResultStr(I) = ";" & $CrLf      
+    SMove(I) = &H0EC6590 - &H0EC6554
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                                             
+              
+                
+     I = 109  '_ZNK2pa13EquipSlotBase34w3iaa7jm4ouetf8c8out9tp643a1fwz1uoEj           
+    SearchCode(I) = "00 00 A0 E3 00 00 51 E3 0C 00 94 05 05 01 90 07 30 88 BD E8 ?? ?? ?? EB F0 4D 2D E9 18 B0 8D E2 10 D0 4D E2"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa13EquipSlotBase34w3iaa7jm4ouetf8c8out9tp643a1fwz1uoEj = "
+    PostResultStr(I) = ";//old_GetEquipByIndex" & $CrLf      
+    SMove(I) = &H0FB60C8 - &HFB60E8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 39                       
+             
+                
+    I = 110  '_ZNK2pa18HousingElementInfo10getTypeRawEv           
+    SearchCode(I) = "08 00 9D E5 ?? ?? ?? EB 04 00 A0 E1 ?? ?? ?? FA ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0C 00 D0 E5 1E FF 2F E1 F0 4F 2D E9 1C B0 8D E2 14 D0 4D E2 ?? ?? ?? E5 00 60 A0"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa18HousingElementInfo10getTypeRawEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0D207D0 - &H0D207B0
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93     
+    
+     
+                    
+    I = 111  '_ZNK2pa14HousingElement21getHousingElementInfoEv           
+    SearchCode(I) = "21 18 A0 E1 ?? 20 C0 E5 ?? 10 C0 E5 1E FF 2F E1 ?? 00 90 E5 1E FF 2F E1 ?? ?? ?? E5 01 10 8F E0"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa14HousingElement21getHousingElementInfoEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0101DA20 - &H101DA10
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93   
+     
+    
+    I = 112  '_ZNK2pa18HousingElementInfo7getNameEv           
+    SearchCode(I) = "00 80 E2 ?? ?? ?? EA ?? 00 90 E5 1E FF 2F E1 30 48 2D E9 08 B0 8D E2 08 D0 4D E2"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa18HousingElementInfo7getNameEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H010341B0 - &H010341B1
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93       
+    
+     I = 113  '_ZNK2pa14HousingElement17getChildListCountEv           
+    SearchCode(I) = "00 00 50 E3 01 00 00 13 1E FF 2F E1 ?? 10 90 E5 ?? 00 90 E5 01 00 40 E0 40 01 A0 E1 1E FF 2F E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa14HousingElement17getChildListCountEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0101FBAC - &H0101FBA0
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93       
+    
+    
+     I = 114  '_ZNK2pa14HousingElement35om6pwle1nuzp8t1wfvamuidimp62ocqsw6gEi           
+    SearchCode(I) = "00 00 50 E3 01 00 00 13 1E FF 2F E1 ?? 10 90 E5 ?? 00 90 E5 01 00 40 E0 40 01 A0 E1 1E FF 2F E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa14HousingElement35om6pwle1nuzp8t1wfvamuidimp62ocqsw6gEi = "
+    PostResultStr(I) = ";//old_getHousingChildListByIndex" & $CrLf     
+    SMove(I) = &H0101FBC0 - &H0101FBA0
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93       
+         
+                                  
+                           
+                           
+     I = 115  '_ZNK2pa4Item8getCountEv           
+    SearchCode(I) = "02 10 51 E0 18 D0 4B 02 F0 8B BD 08 ?? ?? ?? EB ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? C0 E1 1E FF 2F E1 F0 4B 2D E9 18 B0 8D E2"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa4Item8getCountEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0105DBE8 - &H0105DBCC
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93      
+    
+    
+     I = 116  '_ZNK2pa4Item15getEnchantLevelEv           
+    SearchCode(I) = "10 90 E5 00 00 51 E3 ?? ?? D0 11 00 00 A0 03 70 00 BF E6 1E FF 2F E1 30 48 2D E9"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa4Item15getEnchantLevelEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0105AD84 - &H0105AD85
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93    
+    
+                                     
+      I = 117  '_ZNK2pa4Item11getItemInfoEv           
+    SearchCode(I) = "1E FF 2F E1 08 00 80 E2 1E FF 2F E1 00 48 2D E9 0D B0 A0 E1 ?? ?? ?? EB 01 00 70 E2 00 20 A0 E3 00 00 F1 E2 01 20 00 B3 02 00 A0 E1 00 88 BD E8"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa4Item11getItemInfoEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0105AAC4 - &H105AAC0
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93    
+    
+    
+     I = 118  '_ZNK2pa4Item23rpotng5jg2jdpdetxy7gt1wEv           
+    SearchCode(I) = "A0 E3 B1 00 90 E1 01 00 00 E2 1E FF 2F E1 ?? ?? A0 E3 B2 00 90 E1 01 00 10 E0 01 00 00 13 1E FF 2F E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa4Item23rpotng5jg2jdpdetxy7gt1wEv = "
+    PostResultStr(I) = ";" & $CrLf     
+    SMove(I) = &H01062978 - &H0106297A
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93   
+    
+                    
+    I = 119  '_ZNK2pa8ItemInfo7getNameEv           
+    SearchCode(I) = "D0 E5 BC 6D 06 EA 97 0F 80 E2 ?? ?? ?? EA 30 48 2D E9 08 B0 8D E2"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa8ItemInfo7getNameEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0108A764 - &H0108A75E
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                                    
+                 
+    I = 120  '_ZNK2pa8ItemInfo15getItemGradeRawEv           
+    SearchCode(I) = "D0 E5 1E FF 2F E1 F0 4B 2D E9 18 B0 8D E2 08 D0 4D E2 ?? ?? ?? E5 00 40 A0 E1 04 60 A0 E1 02 90 A0 E1 08 80 9F E7 00 00 98 E5 04 00 8D E5"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa8ItemInfo15getItemGradeRawEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0108A2C0 - &H0108A2C2
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                    
+      
+      
+    I = 121  '_ZNK2pa8ItemInfo14getItemTypeRawEv           
+    SearchCode(I) = "30 88 BD E8 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? C0 E1 1E FF 2F E1 ?? ?? D0 E5 1E FF 2F E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa8ItemInfo14getItemTypeRawEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0108A804 - &H0108A7F0
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                   
+        
+                 
+    I = 122  '_ZNK2pa8ItemInfo8isWeaponEv           
+    SearchCode(I) = "D0 E5 1E FF 2F E1 ?? ?? D0 E5 01 00 40 E2 70 10 EF E6 00 00 A0 E3 02 00 51 E3 01 00 00 33 1E FF 2F E1 ?? ?? D0 E5"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa8ItemInfo8isWeaponEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H01090A30 - &H1090A2A
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) =93 
+    
+    I = 123  '_ZNK2pa8ItemInfo18isBlackSpirit_RuneEv           
+    SearchCode(I) = "02 30 43 E0 43 01 51 E1 01 01 92 37 1E FF 2F E1 ?? ?? D0 E5 0E 00 40 E2 10 0F 6F E1 A0 02 A0 E1 1E FF 2F E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa8ItemInfo18isBlackSpirit_RuneEv = "
+    PostResultStr(I) = ";"     
+    SMove(I) = &H0108ADAC - &H108AD88
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93   
+                                      
+                                      
+                                      
+       I = 124  '_ZNK2pa8ItemInfo19getInventoryTypeRawEv           
+    SearchCode(I) = "0E 00 50 E2 01 00 00 13 1E FF 2F E1 ?? ?? D0 E5 1E FF 2F E1 F0 4B 2D E9 18 B0 8D E2 20 D0 4D E2"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa8ItemInfo19getInventoryTypeRawEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0108CB6C - &H0108CB60
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                                     
+                                      
+    I = 125  '_ZNK2pa8ItemInfo15getEquipTypeRawEv           
+    SearchCode(I) = "70 00 BF E6 30 88 BD E8 ?? ?? D0 E5 1E FF 2F E1 ?? ?? D0 E5 1E FF 2F E1 ?? ?? D0 E5 13 10 40 E2 71 20 EF E6"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa8ItemInfo15getEquipTypeRawEv = "
+    PostResultStr(I) = ";" & $CrLf    
+    SMove(I) = &H0108A68C - &H0108A684
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93   
+    
+    
+    I = 126  '_ZN2pa18InventoryGroupBase12getInventoryENS_11SpecialSlotE           
+    SearchCode(I) = "A0 E3 ?? ?? 51 E3 ?? ?? 80 32 02 00 A0 E1 1E FF 2F E1 00 10 D1 E5 05 00 51 E3 00 00 A0 83 1E FF 2F 81 04 20 8F E2"  '
+    TmpResultStr(I) = "unsigned int _ZN2pa18InventoryGroupBase12getInventoryENS_11SpecialSlotE = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H01057008 - &H0105700A
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93  
+    
+    
+    I = 127  '_ZN2pa18InventoryGroupBase12getInventoryERKNS_13InventoryTypeE           
+    SearchCode(I) = "01 00 40 E0 00 10 A0 E3 1E FF 2F E1 ?? 10 90 E5 00 20 A0 E3 ?? 00 90 E5 01 00 90 E0"  '
+    TmpResultStr(I) = "unsigned int _ZN2pa18InventoryGroupBase12getInventoryERKNS_13InventoryTypeE = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H01056E90 - &H01056E6C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93       
+                                          
+     I = 128  '_ZNK2pa18InventoryGroupBase6xoc172Ev           
+    SearchCode(I) = "10 4C 2D E9 08 B0 8D E2 ?? ?? D0 E5 00 00 90 E5 ?? ?? ?? EB 00 10 90 E5 00 00 54 E3 ?? ?? 91 E5"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa18InventoryGroupBase6xoc172Ev = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H01056C00 - &H01056C00
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93            
+      
+                    
+     I = 129  '_ZNK2pa18InventoryGroupBase6vi5iblEv           
+    SearchCode(I) = "30 48 2D E9 08 B0 8D E2 08 50 80 E2 00 40 A0 E1 05 00 A0 E1 ?? ?? ?? EB 00 20 A0 E1 02 11 E0 E3 00 00 E0 E3 00 00 52 E3 ?? ?? ?? 1A 00 20 D5 E5 04 00 52 E3"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa18InventoryGroupBase6vi5iblEv = "
+    PostResultStr(I) = ";" & $CrLf   
+    SMove(I) = &H01056B40 - &H01056B50
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                     
+                                
+                                
+                                
+    I = 130  '_ZNK2pa9Inventory10getMoney__ERKNS_11SpecialSlotE           
+    SearchCode(I) = "00 48 2D E9 0D B0 A0 E1 00 10 91 E5 1A 2E A0 E3 0C 00 90 E5 91 02 20 E0 ?? ?? ?? EB 00 88 BD E8 ?? ?? ?? EB 00 48 2D E9"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9Inventory10getMoney__ERKNS_11SpecialSlotE = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H01055FC8 - &H01055FC8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                                 
+                        
+                        
+    I = 131  '_ZNK2pa9Inventory6size__Ev           
+    SearchCode(I) = "30 48 2D E9 08 B0 8D E2 08 50 80 E2 00 40 A0 E1 05 00 A0 E1 ?? ?? ?? EB 00 20 A0 E1 02 11 E0 E3 00 00 E0 E3 00 00 52 E3 ?? ?? ?? 1A 00 20 D5 E5 04 00 52 E3"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9Inventory6size__Ev = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H01056B30 - &H01056B50
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                             
+                        
+  
+    I = 132  '_ZNK2pa9Inventory11used_size__Ev           
+    SearchCode(I) = "30 48 2D E9 08 B0 8D E2 08 50 80 E2 00 40 A0 E1 05 00 A0 E1 ?? ?? ?? EB 00 20 A0 E1 02 11 E0 E3 00 00 E0 E3 00 00 52 E3 ?? ?? ?? 1A 00 20 D5 E5 04 00 52 E3"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9Inventory11used_size__Ev = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H01056B38 - &H01056B50
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93            
+                                  
+                                  
+                                  
+    I = 133  '_ZNK2pa9Inventory9getItem__Ej           
+    SearchCode(I) = "A0 83 ?? ?? 92 85 91 20 20 80 1E FF 2F E1 F0 4F 2D E9 ?? B0 8D E2 ?? D0 4D E2 ?? ?? ?? E5 00 40 A0 E1 01 50 A0 E1 02 70 A0 E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9Inventory9getItem__Ej = "
+    PostResultStr(I) = ";" & $CrLf   
+    SMove(I) = &H01055E30 - &H010545DE
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93    
+                                   
+     
+    I = 134  '_ZNK2pa15InteractionData23getInteractionInfoCountEv           
+    SearchCode(I) = "00 80 E2 1E FF 2F E1 ?? 10 90 E5 ?? 00 90 E5 01 00 40 E0 40 02 A0 E1 1E FF 2F E1 F0 4F 2D E9"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa15InteractionData23getInteractionInfoCountEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0104A2FC - &H0104A2F5
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93      
+                                 
+                                 
+    I = 135  '_ZNK2pa21InteractionStaticInfo18getInteractionTypeEv           
+    SearchCode(I) = "01 10 8F E0 08 10 81 E2 00 10 80 E5 ?? ?? ?? EB 00 48 BD E8 ?? ?? ?? EA ?? ?? ?? ?? ?? ?? 90 E5 1E FF 2F E1 10 4C 2D E9 08 B0 8D E2 00 40 A0 E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa21InteractionStaticInfo18getInteractionTypeEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0104B968 - &H0104B94C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93   
+    
+    
+                                        
+                                 
+    I = 136  '_ZNK2pa15InteractionData18getInteractionTypeEiPNS_9ActorRootES2_           
+    SearchCode(I) = "70 8C BD E8 ?? 00 90 E5 1E FF 2F E1 ?? 00 90 E5 1E FF 2F E1 70 4C 2D E9 10 B0 8D E2 08 D0 4D E2"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa15InteractionData18getInteractionTypeEiPNS_9ActorRootES2_ = "
+    PostResultStr(I) = ";" & $CrLf   
+    SMove(I) = &H01047DF4 - &H01047DE0
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93        
+    
+     
+     
+     
+     
+     
+                         
+    I = 137  '_ZN2pa12QuestManager8getByRawEi           
+    SearchCode(I) = "30 48 2D E9 08 B0 8D E2 00 40 A0 E1 ?? ?? ?? E5 ?? ?? ?? E5 71 50 EF E6 00 00 8F E0 00 10 A0 E3 ?? 00 55 E3 02 20 8F E0 01 10 00 33 ?? ?? ?? EB 05 03 84 E0 10 00 80 E2 30 88 BD E8"  '
+    TmpResultStr(I) = "unsigned int _ZN2pa12QuestManager8getByRawEi = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H01148FF4 - &H01148FF4
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                       
+                         
+                         
+    I = 138  '_ZN2pa12QuestManager32ajivqkmdh1y6o0swj79xm84224tzdpn1Ev           
+    SearchCode(I) = "04 00 D0 E5 10 0F 6F E1 A0 02 A0 E1 1E FF 2F E1 F0 4B 2D E9 18 B0 8D E2 00 40 A0 E1"  '
+    TmpResultStr(I) = "unsigned int _ZN2pa12QuestManager32ajivqkmdh1y6o0swj79xm84224tzdpn1Ev = "
+    PostResultStr(I) = ";//old_GetMainQuest"    
+    SMove(I) = &H00114AE74 - &H114AE64
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93       
+                             
+                         
+    I = 139  '_ZN2pa12QuestManager37yvbaok84b9h2uexq612cq4bhrhsupnip2z45kEv           
+    SearchCode(I) = "00 80 E2 1E FF 2F E1 ?? ?? 2D E9 18 B0 8D E2 00 40 A0 E1 ?? ?? ?? E5 ?? ?? ?? E5 00 00 8F E0 02 20 8F E0 01 10 A0 E3 ?? ?? ?? EB"  '
+    TmpResultStr(I) = "unsigned int _ZN2pa12QuestManager37yvbaok84b9h2uexq612cq4bhrhsupnip2z45kEv = "
+    PostResultStr(I) = ";//old_getFamilyQuestData"    
+    SMove(I) = &H114B0B4 - &H114B0AD
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93  
+       
+       
+    I = 140  '_ZN2pa12QuestManager32getAcceptedFamilySubQuestDataNumEv           
+    SearchCode(I) = "00 00 A0 E3 ?? ?? ?? EA ?? 40 D2 E5 04 30 92 E5 02 00 54 E3 01 00 80 32 00 00 53 E3 04 00 00 0A 03 20 A0 E1 00 30 93 E5 00 00 53 E3"  '
+    TmpResultStr(I) = "unsigned int _ZN2pa12QuestManager32getAcceptedFamilySubQuestDataNumEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H114B568 - &H114B594
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93       
+    
+                                
+    I = 141  '_ZN2pa12QuestManager30bblcn0dufihgdlvsw5vbj3hl7c1e47Eii           
+    SearchCode(I) = "F0 4B 2D E9 18 B0 8D E2 00 60 A0 E1 ?? ?? ?? E5 02 80 A0 E1 ?? ?? ?? E5 00 00 8F E0 01 90 A0 E1 02 20 8F E0 01 10 A0 E3 ?? ?? ?? EB"  '
+    TmpResultStr(I) = "unsigned int _ZN2pa12QuestManager30bblcn0dufihgdlvsw5vbj3hl7c1e47Eii = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0114B610 - &H0114B610
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 140                               
+                                       
+                                       
+                                       
+    I = 142  '_ZN2pa12QuestManager26getAcceptedSubQuestDataNumEv           
+    SearchCode(I) = "00 00 A0 E3 ?? ?? ?? EA ?? 40 D2 E5 04 30 92 E5 02 00 54 E3 01 00 80 32 00 00 53 E3 04 00 00 0A 03 20 A0 E1 00 30 93 E5 00 00 53 E3"  '
+    TmpResultStr(I) = "unsigned int _ZN2pa12QuestManager26getAcceptedSubQuestDataNumEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H114B774 - &H114B7A0
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 141      
+    
+    
+    I = 143  '_ZN2pa12QuestManager12xemv3s3qtainEii           
+    SearchCode(I) = "F0 4B 2D E9 18 B0 8D E2 00 60 A0 E1 ?? ?? ?? E5 02 80 A0 E1 ?? ?? ?? E5 00 00 8F E0 01 90 A0 E1 02 20 8F E0 01 10 A0 E3 ?? ?? ?? EB"  '
+    TmpResultStr(I) = "unsigned int _ZN2pa12QuestManager12xemv3s3qtainEii = "
+    PostResultStr(I) = ";//old_GetSubQuest" & $CrLf   
+    SMove(I) = &H0114B81C - &H0114B81C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 141 
+    
+                                   
+                                    
+    I = 144  '_ZNK2pa9QuestData11isCompletedEv           
+    SearchCode(I) = "00 80 E2 1E FF 2F E1 04 00 D0 E5 01 00 40 E2 10 0F 6F E1 A0 02 A0 E1 1E FF 2F E1 04 00 D0 E5 10 0F 6F E1 A0 02 A0 E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9QuestData11isCompletedEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0114AE50 - &H0114AE49
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                                       
+         
+    I = 145  '_ZNK2pa9QuestData10isProgressEv           
+    SearchCode(I) = "00 80 E2 1E FF 2F E1 04 00 D0 E5 01 00 40 E2 10 0F 6F E1 A0 02 A0 E1 1E FF 2F E1 04 00 D0 E5 10 0F 6F E1 A0 02 A0 E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9QuestData10isProgressEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0114AE64 - &H0114AE49
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93             
+  
+       
+    I = 146  '_ZNK2pa9QuestData27omd75kzwhusy3p6rwabbmwfjxoaEv           
+    SearchCode(I) = "00 80 E2 1E FF 2F E1 ?? ?? 2D E9 ?? B0 8D E2"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9QuestData27omd75kzwhusy3p6rwabbmwfjxoaEv = "
+    PostResultStr(I) = ";//old_QuestDataManager_getQuestInfo"  & $CrLf           
+    SMove(I) = &H0114B0AC - &H0114B0AD
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 138     
+                                                 
+                                                 
+                                                 
+                                                 
+    
+    I = 147  '_ZNK2pa16QuestDataManager17getQuestListCountEv           
+    SearchCode(I) = "00 90 E5 1E FF 2F E1 ?? 00 90 E5 00 10 A0 E3 1E FF 2F E1 00 C0 A0 E1 00 00 A0 E3 00 00 53 E3 24 00 00 BA ?? 10 9C E5"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa16QuestDataManager17getQuestListCountEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0114D720 - &H0114D719
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93     
+    
+    
+    I = 148  '_ZNK2pa16QuestDataManager19getQuestListByIndexEx           
+    SearchCode(I) = "00 90 E5 1E FF 2F E1 ?? 00 90 E5 00 10 A0 E3 1E FF 2F E1 00 C0 A0 E1 00 00 A0 E3 00 00 53 E3 24 00 00 BA ?? 10 9C E5"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa16QuestDataManager19getQuestListByIndexEx = "
+    PostResultStr(I) = ";"  & $CrLf            
+    SMove(I) = &H0114D72C - &H0114D719
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93    
+                               
+                               
+     I = 149  '_ZNK2pa9QuestData24getConditionCurrentCountEv           
+    SearchCode(I) = "00 90 E5 1E FF 2F E1 ?? 00 80 E2 94 FF FF EA 30 48 2D E9 08 B0 8D E2 01 40 A0 E1 02 50 A0 E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9QuestData24getConditionCurrentCountEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0114F620 - &H0114F621
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                                   
+                               
+                               
+                               
+    I = 150  '_ZNK2pa9QuestData22getConditionTotalCountEv           
+    SearchCode(I) = "00 90 E5 1E FF 2F E1 ?? 00 80 E2 94 FF FF EA 30 48 2D E9 08 B0 8D E2 01 40 A0 E1 02 50 A0 E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9QuestData22getConditionTotalCountEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0114F628 - &H0114F621
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                                   
+    
+    
+    I = 151  '_ZNK2pa9QuestData21checkClearTimeIsTodayEv           
+    SearchCode(I) = "04 10 C0 E5 1E FF 2F E1 10 4C 2D E9 08 B0 8D E2 04 10 D0 E5 00 40 A0 E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9QuestData21checkClearTimeIsTodayEv = "
+    PostResultStr(I) = ";"  & $CrLf     
+    SMove(I) = &H0114F1A0 - &H0114F198
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93         
+      
+                         
+    I = 152  '_ZNK2pa7PetBase8getLevelEv           
+    SearchCode(I) = "00 90 E5 F0 00 D0 E1 1E FF 2F E1 ?? 00 90 E5 1E FF 2F E1 ?? 00 90 E5 ?? ?? ?? EA 30 48 2D E9 08 B0 8D E2"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa7PetBase8getLevelEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0110F6F8 - &H0110F6F9
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                               
+                         
+                         
+    I = 153  '_ZNK2pa7PetBase41bdo7taax10slfpqaomsmdymjhrt9k88xhecg4l2z2Ev           
+    SearchCode(I) = "00 90 E5 F0 00 D0 E1 1E FF 2F E1 ?? 00 90 E5 1E FF 2F E1 ?? 00 90 E5 ?? ?? ?? EA 30 48 2D E9 08 B0 8D E2"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa7PetBase41bdo7taax10slfpqaomsmdymjhrt9k88xhecg4l2z2Ev = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0110F704 - &H0110F6F9
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93   
+    
+    
+    I = 154 '_ZNK2pa7PetBase13getSkillCountEv           
+    SearchCode(I) = "00 90 E5 F0 00 D0 E1 1E FF 2F E1 ?? 00 90 E5 1E FF 2F E1 ?? 00 90 E5 ?? ?? ?? EA 30 48 2D E9 08 B0 8D E2"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa7PetBase13getSkillCountEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0110F70C - &H0110F6F9
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                                    
+                                 
+                                 
+    I = 155  '_ZNK2pa7PetBase8getPetNoEv           
+    SearchCode(I) = "D8 20 C1 E1 F0 20 C0 E1 1E FF 2F E1 ?? 00 90 E5 1E FF 2F E1 ?? 00 90 E5 D8 00 C0 E1 1E FF 2F E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa7PetBase8getPetNoEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0110F7BC - &H0110F7BC
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93   
+    
+    
+    I = 156  '_ZNK2pa7PetBase17getActionPointMaxEv           
+    SearchCode(I) = "14 60 94 E5 10 00 96 E5 00 10 90 E5 08 10 91 E5 31 FF 2F E1 F0 10 D6 E1 00 00 90 E5 01 01 80 E0 04 10 10 E5"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa7PetBase17getActionPointMaxEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0110F870 - &H0110F890
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93           
+                               
+    I = 157  '_ZNK2pa7PetBase13getSkillLevelEi           
+    SearchCode(I) = "C0 E1 1E FF 2F E1 30 48 2D E9 08 B0 8D E2 00 40 A0 E1 ?? ?? ?? E5 01 50 A0 E1 ?? ?? ?? E5 00 00 8F E0"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa7PetBase13getSkillLevelEi = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0110F954 - &H0110F94E
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                                          
+                               
+    I = 158  '_ZNK2pa7PetBase19duringSkillTrainingEv           
+    SearchCode(I) = "D0 E5 ?? 00 50 E2 01 00 00 13 1E FF 2F E1 30 48 2D E9 08 B0 8D E2 00 40 A0 E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa7PetBase19duringSkillTrainingEv = "
+    PostResultStr(I) = ";"    
+    SMove(I) = &H0110FCF4 - &H110FCF6
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                                          
+                                               
+    I = 159  '_ZNK2pa7PetBase33getSkillTrainingLeftTimeForScriptEi           
+    SearchCode(I) = "00 90 E5 01 00 40 E0 C0 0F C0 E1 10 0A 00 EE C0 0A B8 EE 10 0A 10 EE 1E FF 2F E1 ?? ?? D0 E5"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa7PetBase33getSkillTrainingLeftTimeForScriptEi = "
+    PostResultStr(I) = ";" & $CrLf   
+    SMove(I) = &H1110C28 - &H1110C29
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93       
+                               
+                               
+    I = 160  '_ZNK2pa13StockListInfo13getStockCountEv           
+    SearchCode(I) = "01 00 40 E0 40 01 A0 E1 1E FF 2F E1 00 20 A0 E1 00 00 A0 E3 00 00 51 E3 1E FF 2F B1 0C 30 92 E5 10 20 92 E5 03 20 42 E0 42 01 51 E1 01 01 93 B7 1E FF 2F E1 00 20 A0 E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa13StockListInfo13getStockCountEv = "
+    PostResultStr(I) = ";"  
+    SMove(I) = &H011FF100 - &H11FF108
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                                       
+                               
+                               
+     I = 161  '_ZNK2pa13StockListInfo12getStockInfoEi           
+    SearchCode(I) = "01 00 40 E0 40 01 A0 E1 1E FF 2F E1 00 20 A0 E1 00 00 A0 E3 00 00 51 E3 1E FF 2F B1 0C 30 92 E5 10 20 92 E5 03 20 42 E0 42 01 51 E1 01 01 93 B7 1E FF 2F E1 00 20 A0 E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa13StockListInfo12getStockInfoEi = "
+    PostResultStr(I) = ";" & $CrLf    
+    SMove(I) = &H011FF114 - &H11FF108
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93     
+    
+    
+     I = 162  '_ZNK2pa9StoreInfo14getStoreKeyRawEv           
+    SearchCode(I) = "02 00 40 E2 10 0F 6F E1 A0 02 A0 E1 1E FF 2F E1 ?? 00 90 E5 1E FF 2F E1 ?? 00 D0 E5 1E FF 2F E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9StoreInfo14getStoreKeyRawEv = "
+    PostResultStr(I) = ";"  
+    SMove(I) = &H012006D8 - &H12006C8
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93 
+                               
+                   
+    I = 163 '_ZNK2pa9StoreInfo26q3q5jjovp9jvvejq2ghldjjlt5Ev           
+    SearchCode(I) = "01 00 40 E0 40 01 A0 E1 1E FF 2F E1 00 20 A0 E1 00 00 A0 E3 00 00 51 E3 1E FF 2F B1 0C 30 92 E5 10 20 92 E5 03 20 42 E0 42 01 51 E1 01 01 93 B7 1E FF 2F E1 00 20 A0 E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9StoreInfo26q3q5jjovp9jvvejq2ghldjjlt5Ev = "
+    PostResultStr(I) = ";//old_getStockListInfo" & $CrLf    
+    SMove(I) = &H012006F8 - &H11FF108
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93    
+    
+    I = 164  '_ZNK2pa12InGameString5c_strEv           
+    SearchCode(I) = "00 00 A0 E3 00 00 84 E5 10 8C BD E8 ?? ?? ?? ?? 00 10 90 E5 ?? ?? ?? E5 00 00 9F E7 ?? ?? ?? EA"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa12InGameString5c_strEv = "
+    PostResultStr(I) = ";" & $CrLf    
+    SMove(I) = &H012B9510 - &H12B9500
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93    
+                   
+                   
+    I = 165  '_ZNK2pa20CharacterControlBase11getPositionEv           
+    SearchCode(I) = "94 ED 01 00 A0 E3 ?? ?? C4 E5 00 0A 31 EE ?? ?? 84 ED 30 88 BD E8 70 4C 2D E9 ?? B0 8D E2"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa20CharacterControlBase11getPositionEv = "
+    PostResultStr(I) = ";" & $CrLf    
+    SMove(I) = &H0132CB50 - &H132CB3A
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                       
+                   
+                     
+    I = 166  '_ZN2pa6Engine12getUIManagerEv           
+    SearchCode(I) = "E5 00 00 9F E7 1E FF 2F E1 ?? ?? ?? ?? ?? ?? ?? E5 01 10 8F E0 00 00 81 E5 1E FF 2F E1 ?? ?? ?? ?? ?? ?? ?? E5 00 00 9F E7 1E FF 2F E1"  '
+    TmpResultStr(I) = "unsigned int _ZN2pa6Engine12getUIManagerEv = "
+    PostResultStr(I) = ";" & $CrLf & $CrLf & "//Init_FunAdd2"  & $CrLf
+    SMove(I) = &H01371858 - &H137185B
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                           
+                   
+                               
+    I = 167  '_ZN2pa27getInfoRawForDynamicWrapperEPNS_21StaticInfoManagerBaseEPKvPv           
+    SearchCode(I) = "00 D0 E5 1E FF 2F E1 00 30 90 E5 ?? 30 93 E5 13 FF 2F E1 10 20 9F E5 ?? ?? ?? E0 08 20 82 E2 00 20 80 E5 04 10 80 E5 1E FF 2F E1"  '
+    TmpResultStr(I) = "unsigned int _ZN2pa27getInfoRawForDynamicWrapperEPNS_21StaticInfoManagerBaseEPKvPv = "
+    PostResultStr(I) = ";"  
+    SMove(I) = &H0147DF4C - &H147DF45
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93      
+    
+     I = 168  '_ZNK2pa9ActorBase11getActorKeyEv           
+    SearchCode(I) = "00 10 91 E5 ?? 10 80 E5 1E FF 2F E1 ?? 00 80 E2 1E FF 2F E1 ?? 00 80 E2 1E FF 2F E1 ?? ?? ?? E5 00 00 8F E0"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9ActorBase11getActorKeyEv = "
+    PostResultStr(I) = ";"  
+    SMove(I) = &H01474968 - &H147495C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93          
+                    
+     I = 169  '_ZNK2pa9ActorBase12getActorTypeEv           
+    SearchCode(I) = "00 10 91 E5 ?? 10 80 E5 1E FF 2F E1 ?? 00 80 E2 1E FF 2F E1 ?? 00 80 E2 1E FF 2F E1 ?? ?? ?? E5 00 00 8F E0"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9ActorBase12getActorTypeEv = "
+    PostResultStr(I) = ";"  
+    SMove(I) = &H01474970 - &H147495C
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93                                                                
+       
+         
+    I = 170  '_ZN2pa9UIManager11findElementEPKc           
+    SearchCode(I) = "08 00 A0 E1 F0 8D BD E8 F0 4B 2D E9 18 B0 8D E2 10 D0 4D E2 ?? ?? ?? E5 00 70 A0 E1"  '
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIManager11findElementEPKc = "
+    PostResultStr(I) = ";"  
+    SMove(I) = &H014CE57C - &H014CE574
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93           
+         
+           
+    I = 171 '_ZN2pa9UIManager17getFocusUIElementEv           
+    SearchCode(I) = "00 90 E5 1E FF 2F E1 06 00 51 E3 ?? ?? ?? 1A 00 48 2D E9 0D B0 A0 E1"  '
+    TmpResultStr(I) = "unsigned int _ZN2pa9UIManager17getFocusUIElementEv = "
+    PostResultStr(I) = ";" & $CrLf 
+    SMove(I) = &H014D9BDC - &H014D9BDD
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93            
+                   
+                        
+    I = 172 '_ZNK2pa9QuestInfo9getKeyRawEv           
+    SearchCode(I) = "90 E5 00 00 51 E0 01 00 00 13 1E FF 2F E1 ?? ?? D0 E5 1E FF 2F E1 ?? ?? D0 E5 1E FF 2F E1 ?? 00 90 E5 1E FF 2F E1 ?? 00 90 E5 1E FF 2F E1"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9QuestInfo9getKeyRawEv = "
+    PostResultStr(I) = ";" 
+    SMove(I) = &H0113F6C0 - &H0113F6A2
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93   
+    
+             
+    I = 173 '_ZNK2pa9QuestInfo16getConditionTypeEv           
+    SearchCode(I) = "00 88 BD E8 ?? 00 80 E2 ?? ?? ?? EA 00 48 2D E9 0D B0 A0 E1 ?? 00 80 E2"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9QuestInfo16getConditionTypeEv = "
+    PostResultStr(I) = ";" 
+    SMove(I) = &H0113FC18 - &H0113FC14
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93            
+         
+    I = 174 '_ZNK2pa9QuestInfo12isRepeatableEv           
+    SearchCode(I) = "1E FF 2F E1 ?? ?? D0 E5 01 00 40 E2 70 10 EF E6 00 00 A0 E3 04 00 51 E3 01 00 00 33 1E FF 2F E1 ?? ?? 90 E5 00 00 A0 E3 00 00 51 E3"  '
+    TmpResultStr(I) = "unsigned int _ZNK2pa9QuestInfo12isRepeatableEv = "
+    PostResultStr(I) = ";" & $CrLf 
+    SMove(I) = &H0113FF98 - &H0113FF94
+    IsNeedReadActual(I) = 0   
+    StartSearchIndex(I) = 93         
+            
+            
+ 
+    I = 175  '_ZN2pa18DynamicInfoWrapperINS_8QuestKeyENS_9QuestInfoEE9_ownerPtrE           
+    SearchCode(I) = "00 00 50 E3 00 88 BD 08 ?? ?? ?? EB 00 88 BD E8 ?? ?? ?? EB F0 4B 2D E9 ?? B0 8D E2 ?? D0 4D E2 64 43 9F E5"   
+    TmpResultStr(I) = "unsigned int _ZN2pa18DynamicInfoWrapperINS_8QuestKeyENS_9QuestInfoEE9_ownerPtrE = "
+    PostResultStr(I) = "; // _ZNK2pa15MinimapMarkInfo10setAutoRunEv ÈC2?LDR      R1, [R1,#0x28]±…Šf,   LDR             R0, =(dword_2567AC8 - 0x8EE340)  dword_2567AC8“ÆŒë"
+    SMove(I) = &H008EE5B0 - &H08EE20C   
+    SAddMove(I) = &H8EE340 - &H08EE20C 
+    
+    IsNeedReadActual(I) = 1   
+    StartSearchIndex(I) = 4        
+           
+ 
+    I = 176  '_ZN2pa9BDMClient19_pActorProxyManagerE           
+    SearchCode(I) = "F0 ?? 2D E9 ?? B0 8D E2 ?? D0 4D E2 ?? ?? ?? E5 00 40 A0 E1 01 50 A0 E1 06 60 9F E7 00 00 96 E5 ?? ?? CD E5 ?? ?? ?? E5 ?? ?? D4 E5 00 00 51 E1"   
+    TmpResultStr(I) = "unsigned int _ZN2pa9BDMClient19_pActorProxyManagerE = "
+    PostResultStr(I) = "; // _ZN2pa20SelfCharacterControl14setAutoCollectEb ÈC2?LDR   R0, =(dword_2534070 - 0x9792CC) dword_2534070“ÆŒë" & $CrLf & "unsigned int SpinCountOffsetInt = 64;"
+    SMove(I) = &H00979720 - &H097928C   
+    SAddMove(I) = &H9792CC - &H097928C
+    
+    IsNeedReadActual(I) = 1   
+    StartSearchIndex(I) = 4    
+ 
+           
+                                               
+    For j = 0 To 176               
+        ResultAddress = 0 
+        'TmpSearchCode = ReFormSearchCode(SearchCode(j))   
+        'i = InStr(1,SearchContent,TmpSearchCode)
+        'If i > 0 Then ResultAddress = &H400000 - 1 +
+           
+        ReFormSearchCode(SearchCode(j),TmpSearchArray(),TmpIsDirectPass())
+                
+                
+        If StartSearchIndex(j) > -1 Then
+            i = SearchMemory(ResultSearchAddress(StartSearchIndex(j)) + 1,TmpSearchArray(),TmpIsDirectPass()) 
+        Else    
+            i = SearchMemory(0,TmpSearchArray(),TmpIsDirectPass())  
+        End If
+                
+        
+        If i > 0 Then         
+        
+            ResultAddress = i + SMove(j) 
+            ResultSearchAddress(j) = ResultAddress    
+
+            ResultAddress = ReadActualAddress(ResultAddress,IsNeedReadActual(j))        
+           
+            If IsNeedReadActual(j) = 1 Then     
+                '? Str$(ResultAddress)
+                ResultAddress = ResultAddress + i + SAddMove(j)
+            End If   
+              
+        Else
+            ResultAddress = 0
+            ResultSearchAddress(j) = 0
+        End If
+        '
+        
+        TmpStr = TmpResultStr(j) & "0x" & Hex$(ResultAddress)
+        ResultStr = ResultStr & $CrLf & TmpStr & PostResultStr(j)  
+    Next    
+     
+     
+ 
+    
+
+
+    
+    VD_Text(MainhWnd,%ID_FORM1_TEXT1, ResultStr)
+
+
+'IAddress = FuncData.OutFightClear
+'Call ReadProcessMemory(GamePID,ByVal IAddress,ByVal VarPtr(OriData.OutFightClear(0)),16,NoOfByteRead)     
