@@ -149,6 +149,8 @@ __uint64_t _ZN12DataManager319GetEffectManualDictEv = 0x98B8F0;
 __uint64_t _EffectManualDict_GetEffectByIdEv = 0xB0BDF0;
 
 __uint64_t _ZN8B2Client45GetAccountLoginHistroy_LastConnectedWorldNameEv = 0xA56810;
+__uint64_t _ZN5Agent18IsAttackPlayerHeroEv = 0x9EAF90;
+
 
 __int64_t _ZN11UUserWidget21GetPrivateStaticClassEv = 0x2E70960;
 __int64_t _ZN6AB2HUD21GetPrivateStaticClassEv = 0x3927630;
@@ -621,7 +623,7 @@ int SkillContext6Offset = 4256;// 4248;// 4240;// 4008;// 3416; //Game::GetSkill
 int HyperRunController_Offset = 4240;// 4232;// 4224;// 3992;// 3384; //Game::GetHyperRunController@<X0>(__int64 result@<X0>, _QWORD *a2@<X8>)
 
 int EquipCollectionBookOffset = 1784;// 224 * 8;//UIEquipCollectionPanel::RefreshAll(__int64 result, char a2)  v19 = (int *)v11[177];
-int StorageShopUnknownOffset = 354 * 8;//UIStashPanel::OnClickMoveToStashButton     Bag2::RequestMoveToStash(v162, *((_QWORD *)v6 + 352), (__int64)&v171, &v176);
+int StorageShopUnknownOffset = 354 * 8;//2832 UIStashPanel::OnClickMoveToStashButton     Bag2::RequestMoveToStash(v162, *((_QWORD *)v6 + 352), (__int64)&v171, &v176);
 //int SellShopUnknownOffset = 3912;//UIBuySellItemPopupPanel::onClickedOkButton     Bag2::RequestSellItem2(v17, v30, v31, *(signed __int16 *)(v5 + 3840), 1);
 
 
@@ -633,6 +635,7 @@ int SetCameraOffset = 256;// Game::CameraReset
 int EffectBoardOffset = 672; //UIHudPlayerInfoPanel::RefreshEffectList  v49 = *(EffectBoard **)(result + 672);
 
 int IsFollowPartyLeaderOffset = 3544;// 3536; //PlayerHero::IsFollowPartyLeader   //Game::SetAttackTargetId
+int GameRecord2_Npc2_CannotBeTargetedOffSet = 504; //GameRecord2::Npc2::CannotBeTargeted
 
 
 

@@ -233,6 +233,8 @@ __uint64_t(*AController_SetControlRotation) (__uint64_t, __uint64_t);
 
 __uint64_t(*B2Client_GetAccountLoginHistroy_LastConnectedWorldName) ();
 
+char(*Agent_IsAttackPlayerHero) (__uint64_t);
+
 
 
 std::string GetUIElementByTree(char* TreeStr, char* TmpResult, int SizeOfTmpResult, int IsIgnoreHide);
@@ -289,9 +291,9 @@ __int64_t GetEquipSetPtr();
 __uint64_t GetParty();
 void SetAuto(char State);
 __int64_t GetSkillContext6();
-
-
-
+void SetNoAttackList();
+void ResetBlackNoAttackList();
+void GetBlackNoAttackList();
 
 
 std::string ReadActorList();
@@ -522,6 +524,44 @@ struct PriortyAttackListType { //Ãû·QžéstudentµÄ½Y˜‹
     std::string name;
 };
 
+struct ChangedDontAttackListType { //¦WºÙ¬°studentªºµ²ºc
+    char IsUsed;
+    std::string name;
+    char OriginVal;
+    __uint64_t FXNpcGroupDataID;
+    __uint64_t GameRecord2_Npc2;
+    
+};
+
+struct ActorProxyType { //
+    char IsUsed;
+    __uint64_t ActorProxyPointer;
+    __uint64_t ActorPtr;
+    char Type;   // 0 = player 1=monster 2=NPC 4=Pet
+    int Lv;
+    int NowHP;
+    int MaxHP;
+
+    int IsStaticNPC;
+    int IsAttackMe;
+    int IsPlayer;
+    __uint64_t ObjectID;
+    __uint64_t QuestNPCID;
+    int ObjectSerial;
+    int IsBoss;
+    int IsNpc;
+    int NpcType;
+    int MonsterGrade;
+
+    __uint64_t TargetPtr;
+    float XCoor;
+    float YCoor;
+    float ZCoor;
+    char Targetname[100];
+    char name[300];
+    char Guildname[500];
+    char NameInArray[301];
+};
 
 struct EffectDataType EffectData[1001];
 struct PriortyAttackListType PriortyAttackList[1001];
@@ -529,6 +569,8 @@ struct PriortyAttackListType DontAttackList[1001];
 struct PriortyAttackListType ReactDontAttackList[1001];
 struct PriortyAttackListType DontPickItemList[1001];
 struct PriortyAttackListType OnlyPickItemList[1001];
+struct ChangedDontAttackListType ChangedDontAttackList[3001];
+struct ActorProxyType ActorList[1501];
 
 struct FMemeryType PriortyAttackFMem;
 
@@ -669,6 +711,7 @@ int StorageItemCount = 0;
 
 unsigned int MainThreadTid = 0;
 __int64_t LastHelperThreadTime = 0;
+__uint64_t LastCallingFunTime2 = 0;
 
 int IsCallingFunStarted = 0;
 int IsCallingFun = 0;

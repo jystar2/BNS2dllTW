@@ -135,16 +135,16 @@ BOOL WINAPI fake_GetCursorPos(LPPOINT lpPoint)
         //}
     }
     else {
-        /*
+       
         if (IsHandlingCommand == 0) {  //防上Thread未讀完相撞
             IsHelperFunctioning = 1;
 
             if (DontAttackSwitch == 1 || ReactDontAttackSwitch == 1 || PriorityAttackSwitch == 1) {
                 if (NeedHelperSelect) { //&& StartCallFunction == 0
                     if (MainThreadTid != 0) {
-                        unsigned int GameTid = MainThreadTid;
+                        unsigned int GameTid = *(unsigned int*)GameThreadTid;
                         if (GameTid == (unsigned int)GetCurrentThreadId() && GameTid != 0) {
-
+                            //GENERAL_PRINT("[+]IsHelperFunctioning = %d  \n", IsHelperFunctioning);
                           
                             if (IsGameHooked == 1 && IsPassGameHooked == 1) {
                                 //GENERAL_PRINT("[+]SetNoAttackList 1\n");
@@ -152,7 +152,7 @@ BOOL WINAPI fake_GetCursorPos(LPPOINT lpPoint)
                                 if (DontAttackSwitch == 1 || ReactDontAttackSwitch == 1) {
                                     SetNoAttackList();
                                 }
-
+                                /*
                                 if (PriorityAttackSwitch == 1) {
                                     if (IsReplacedGroupMonsterAddress == 0) {
                                         ResetPriorityAttackList();
@@ -162,6 +162,7 @@ BOOL WINAPI fake_GetCursorPos(LPPOINT lpPoint)
                                     }
 
                                 }
+                                */
                                 //GENERAL_PRINT("[+]SetNoAttackList 2\n");
                                 //HelperPickTargetFunction();
                             }
@@ -176,7 +177,7 @@ BOOL WINAPI fake_GetCursorPos(LPPOINT lpPoint)
             IsHelperFunctioning = 0;
 
         }
-           */
+          
 
     }
 
@@ -187,6 +188,7 @@ BOOL WINAPI fake_GetCursorPos(LPPOINT lpPoint)
     }
     return TRUE;
 }
+
 
 
 
@@ -1249,6 +1251,146 @@ void HandleRecv(SOCKET clientSocket, std::string TmpStr)
 
                     ReturnStr = GlobalResultStr;
 
+                    break;
+
+                case 39: // 過濾
+
+                    if (!Readroot["cmd"].isNull())
+                    {
+                        if (Readroot["cmd"].asString() == "GetDontAttackList") {
+                            StartCallFunction = 71;
+                            WaitMainThreadDone2();
+                            ReturnStr = GlobalResultStr;
+                        }
+                        else if (Readroot["cmd"].asString() == "DontAttack") {
+
+                            int PDontAttackSwitch = DontAttackSwitch;
+                            if (!Readroot["Switch"].isNull())
+                            {
+                                DontAttackSwitch = Readroot["Switch"].asInt();
+                            }
+
+                            if (!Readroot["data"].isNull())
+                            {
+                                for (int i = 0; i <= 1000; i++)
+                                {
+                                    DontAttackList[i].IsUsed = 0;
+                                }
+
+
+                                for (int i = 0; i < Readroot["data"].size(); i++)
+                                {
+                                    DontAttackList[i + 1].IsUsed = 1;
+                                    DontAttackList[i + 1].name = "";
+                                    Json::Value v = Readroot["data"][i];
+
+                                    if (!v["name"].empty())
+                                    {
+                                        DontAttackList[i + 1].name = v["name"].asString();
+                                    }
+
+                                    DontAttackListCount = i + 1;
+                                }
+                            }
+
+                            if (DontAttackSwitch == 1 || PDontAttackSwitch == 1) {
+                                StartCallFunction = 72;
+                                WaitMainThreadDone2();
+
+                                if (!Readroot["data"].isNull())
+                                {
+                                    for (int i = 0; i <= 3000; i++)
+                                    {
+                                        ChangedDontAttackList[i].IsUsed = 0;
+                                    }
+                                }
+                            }
+
+                        }
+                        /*
+                        else if (Readroot["cmd"].asString() == "ReactDontAttack") {
+
+                            int PReactDontAttackSwitch = ReactDontAttackSwitch;
+                            if (!Readroot["Switch"].isNull())
+                            {
+                                ReactDontAttackSwitch = Readroot["Switch"].asInt();
+                            }
+
+                            if (!Readroot["data"].isNull())
+                            {
+                                for (int i = 0; i <= 1000; i++)
+                                {
+                                    ReactDontAttackList[i].IsUsed = 0;
+
+                                }
+                                for (int i = 0; i < Readroot["data"].size(); i++)
+                                {
+                                    ReactDontAttackList[i + 1].IsUsed = 1;
+                                    ReactDontAttackList[i + 1].name = "";
+                                    Json::Value v = Readroot["data"][i];
+
+                                    if (!v["name"].empty())
+                                    {
+                                        ReactDontAttackList[i + 1].name = v["name"].asString();
+                                    }
+
+                                    ReactDontAttackListCount = i + 1;
+                                }
+                            }
+
+                            if (ReactDontAttackSwitch == 1 || PReactDontAttackSwitch == 1) {
+                                StartCallFunction = 72;
+                                WaitMainThreadDone2();
+                            }
+
+
+
+                        }
+                      
+                        else if (Readroot["cmd"].asString() == "PriorityAttack") {
+                            int PPriorityAttackSwitch = PriorityAttackSwitch;
+                            if (!Readroot["Switch"].isNull())
+                            {
+                                PriorityAttackSwitch = Readroot["Switch"].asInt();
+                            }
+                            if (!Readroot["data"].isNull())
+                            {
+                                for (int i = 0; i <= 1000; i++)
+                                {
+                                    PriortyAttackList[i].IsUsed = 0;
+                                }
+                                for (int i = 0; i < Readroot["data"].size(); i++)
+                                {
+                                    PriortyAttackList[i + 1].IsUsed = 1;
+                                    PriortyAttackList[i + 1].name = "";
+                                    Json::Value v = Readroot["data"][i];
+
+                                    if (!v["name"].empty())
+                                    {
+                                        PriortyAttackList[i + 1].name = v["name"].asString();
+                                    }
+
+                                    PriortyAttackListCount = i + 1;
+                                }
+                                // PriortyAttackList = Readroot["data"];
+                            }
+                            if (PriorityAttackSwitch == 1 || PPriorityAttackSwitch == 1) {
+                                StartCallFunction = 73;
+                                WaitMainThreadDone2();
+                            }
+
+
+                        }
+                        else if (Readroot["cmd"].asString() == "SetScanInterval") {
+                            int PPriorityAttackSwitch = PriorityAttackSwitch;
+                            if (!Readroot["Switch"].isNull())
+                            {
+                                IsSetScanInterval = Readroot["Switch"].asInt();
+                                SettedScanInterval = Readroot["Value"].asInt();
+                            }
+                        }
+                        */
+                    }
                     break;
                 case 60://視角
 
@@ -4824,6 +4966,7 @@ void SetGameFunAddr()
     SetFuncAddr(handle, _EffectManualDict_GetEffectByIdEv, &EffectManualDict_GetEffectByIdEv);
 
     SetFuncAddr(handle, _ZN8B2Client45GetAccountLoginHistroy_LastConnectedWorldNameEv, &B2Client_GetAccountLoginHistroy_LastConnectedWorldName);
+    SetFuncAddr(handle, _ZN5Agent18IsAttackPlayerHeroEv, &Agent_IsAttackPlayerHero);
 
 
     SetFuncAddr(handle, OFF_ProcessDeferredMessage, &fake_SendMessagew);
@@ -6879,6 +7022,16 @@ void FakeCallGameFunction()
     {
          DumpEffectData();
     }
+    else if (StartCallFunction == 71) {
+        GetBlackNoAttackList();
+
+        StartCallFunction = 0;
+    }
+    else if (StartCallFunction == 72) {
+        ResetBlackNoAttackList();
+
+        StartCallFunction = 0;
+    }
     else if (StartCallFunction == 86) {
         char UTF8Text[1000];
         char UTF16[1000];
@@ -7605,6 +7758,7 @@ int UIThread(int N)
 
     }
 
+    int TmpCount = 0;
     while (!end_Healing) {
 
         time_t timestamp_sec;
@@ -7634,6 +7788,18 @@ int UIThread(int N)
             }
             /*
             */
+        }
+
+        if (IsGameHooked == 1) {
+            if (DontAttackSwitch == 1 || ReactDontAttackSwitch == 1 || PriorityAttackSwitch == 1) {
+                //if (TmpCount > 10) { //CurrentTime - LastCallingFunTime2 > 0 &&
+                NeedHelperSelect = 1;
+
+                TmpCount = 0;
+                LastCallingFunTime2 = CurrentTime;
+                // }
+                TmpCount = TmpCount + 1;
+            }
         }
 
         usleep(5 * 1000);
@@ -9241,9 +9407,13 @@ std::string ReadActorList() {
     float PosX = 0, PosY = 0, PosZ = 0;
     char type = 0;
     char ObjAddress[50];
-    int IsDead = 0, CanAttackInRange =0 ;
+    int IsDead = 0, CanAttackInRange =0, ActorCount = 0;
     struct FMemeryType TmpMem;   //FGeometry::ToString
- 
+
+    for (int i = 0; i < 1500; i++)
+    {
+        ActorList[i].IsUsed = 0;
+    }
 
     __uint64_t GameInstance = GetGameInstanceE();
     if (GameInstance != 0) {
@@ -9291,6 +9461,7 @@ std::string ReadActorList() {
                             if (rU64(Agent,PlayerHeroDisplayOffset) != 0 ) { //&& *(__uint64_t*)(Agent + PlayerHeroDisplayOffset + 8) != 0
 
                                 DEBUG_PRINT("[+]Agent=%llx\n", Agent);
+                                int IsAttackMe = 0;
 
                                 __uint64_t NPCDisplay = PlayerHero__GetPlayerHeroDisplay(Agent);
                                 if (NPCDisplay != 0) {
@@ -9344,20 +9515,6 @@ std::string ReadActorList() {
 
                                                             ISNpc = 1;
 
-                                                            /*
-                                                            __uint64_t TmpISNpc = (*(__int64(__fastcall**)(__int64*))(*(__int64*)TmpMem.A + 80LL))((__int64*)TmpMem.A);
-                                                            int ISNpc = 0;
-                                                            if ((TmpISNpc & 1)) {
-                                                                ISNpc = 1;
-                                                            }
-                                                            else {
-                                                                ISNpc = 0;
-                                                            }
-
-                                                            GENERAL_PRINT("[+]ISNpc = %d", ISNpc);
-                                                            */
-
-                                                           
 
                                                             __uint64_t IsVisiblePtr = (*(__uint64_t*)(Agent + PlayerHeroDisplayOffset) + NpcIsVisibleOffset); // Npc::IsVisible(Npc *this)
                                                             if (rU8((void*)IsVisiblePtr,0) == 1) {
@@ -9401,6 +9558,7 @@ std::string ReadActorList() {
                                                                                     }
                                                                                 }
 
+                                                                                IsAttackMe = Agent_IsAttackPlayerHero(Agent);
                                                                             }
                                                                         }
 
@@ -9512,11 +9670,20 @@ std::string ReadActorList() {
 
                                                 memset(GuildName, 0, 300);
                                                 std::string GuildNameStr = "";
+                                                std::string ActorNameStr = "";
+                                                std::string  ActorIDStr =  "";
+                                                std::string  AttackerIDStr = "";
                                                 int Isplayer = 0;
                                                 DEBUG_PRINT("[+]ISNpc = %d", ISNpc);
+
+                                                Json::Value TmpChild;
+                                                TmpChild["id"] = i;
+
+                                                
+
                                                 if (ISNpc == 0) {
                                                     DEBUG_PRINT("[+]ISNpc = 0");
-                                                    std::string ActorNameStr = ActorName;
+                                                    ActorNameStr = ActorName;
                                                     
                                                     
                                                     if (ActorNameStr == "") {
@@ -9528,8 +9695,6 @@ std::string ReadActorList() {
                                                                         //if (*(char*)((__uint64_t)TmpMem.A + 960) != 1) { //Game::snapshotHeroList(Game *this, __int64 a2)   UIPartyManagementPanel::makeInviteHeroListByFilteringZone
                                                                 DEBUG_PRINT("[+]F10 5 AttackerMp = %x  AttackerMaxMp= %x ", AttackerMp, AttackerMaxMp);
                                                                     
-                                                                    
-
 
                                                                     /*
                                                                     __uint64_t v58 = *((__uint64_t*)Agent + 149); //PlayerHeroDisplay::UpdateNamePlate(__int64 result)  電腦版的名字儲存方式跟ANDROID 版本不同
@@ -9593,7 +9758,7 @@ std::string ReadActorList() {
                                                                         }
                                                                     }
                                                                    
-
+                                                                    IsAttackMe = Agent_IsAttackPlayerHero(Agent);
                                                                     /*
                                                                     const char* v115;
                                                                     __uint64_t  v114 = *(__uint64_t*)(Agent + MsgObj_HeroGuildOffset) & 0xFFFFFFFFFFFFFFFELL;
@@ -9611,93 +9776,83 @@ std::string ReadActorList() {
                                                                     }
                                                                     */
                                                                    
-                                                                        /*
-                                                                   */
+                                                                 
                                                                     // }
                                                                // }
                                                             }
                                                         }
                                                     }
 
-                                                    Json::Value TmpChild;
-                                                    TmpChild["id"] = i;
-                                                    ActorNameStr = ActorName;
-                                                    GuildNameStr = GuildName;
+                                                    
 
-                                                    DEBUG_PRINT("[+] ActorNameStr = %s  ", ActorNameStr.c_str());
-
-                                                    memset(ObjAddress, 0, 50);
-                                                    snprintf(ObjAddress, 50, "%llx", AgentID);
-                                                    std::string  ActorIDStr = ObjAddress;
-
-                                                    TmpChild["ActorID"] = ActorIDStr;
-
-                                                    memset(ObjAddress, 0, 50);
-                                                    snprintf(ObjAddress, 50, "%llx", AttackerID);
-                                                    std::string  AttackerIDStr = ObjAddress;
-
-                                                    TmpChild["AttackerID"] = AttackerIDStr;
-                                                    TmpChild["Name"] = ActorNameStr;
-                                                    TmpChild["GuildName"] = GuildNameStr;
-                                                    TmpChild["NowHP"] = ActorHp;
-                                                    TmpChild["MaxHP"] = ActorMaxHp;
-                                                    if (Isplayer == 0){
-                                                        TmpChild["type"] = 3;
+                                                    if (Isplayer == 0) {
+                                                        type = 3;
+                                             
                                                     }
                                                     else {
-                                                        TmpChild["type"] = 20;
+                                                        type = 20;
+                                                        
                                                     }
-                                                    
-                                                    TmpChild["IsDeadState"] = IsDead;
-                                                    TmpChild["ISNpc"] = ISNpc;
-                                                    TmpChild["CanAtk"] = CanAttackInRange;
 
-                                                    TmpChild["x"] = PosX;
-                                                    TmpChild["y"] = PosY;
-                                                    TmpChild["z"] = PosZ;
-                                                    ResultJson.append(TmpChild);
-                                                    HaveData = 1;
+                                                    TmpChild["CanAtk"] = CanAttackInRange;
+                                                    GuildNameStr = GuildName;
+                                                    
+                                                    
                                                 }
                                                 else {
-
-
-
-
-
-
-
-                                                    Json::Value TmpChild;
-                                                    TmpChild["id"] = i;
-                                                    std::string ActorNameStr = ActorName;
-
-                                                    DEBUG_PRINT("[+] ActorNameStr = %s  ", ActorNameStr.c_str());
-
-                                                    memset(ObjAddress, 0, 50);
-                                                    snprintf(ObjAddress, 50, "%llx", AgentID);
-                                                    std::string  ActorIDStr = ObjAddress;
-
-                                                    TmpChild["ActorID"] = ActorIDStr;
-
-                                                    memset(ObjAddress, 0, 50);
-                                                    snprintf(ObjAddress, 50, "%llx", AttackerID);
-                                                    std::string  AttackerIDStr = ObjAddress;
-
-                                                    TmpChild["AttackerID"] = AttackerIDStr;
-                                                    TmpChild["Name"] = ActorNameStr;
-                                                    TmpChild["GuildName"] = GuildNameStr;
-                                                    TmpChild["NowHP"] = ActorHp;
-                                                    TmpChild["MaxHP"] = ActorMaxHp;
-                                                    TmpChild["type"] = type;
-                                                    TmpChild["IsDeadState"] = IsDead;
-                                                    TmpChild["ISNpc"] = ISNpc;
+                                                    
                                                     //TmpChild["CanAtk"] = CanAttackInRange;
-
-                                                    TmpChild["x"] = PosX;
-                                                    TmpChild["y"] = PosY;
-                                                    TmpChild["z"] = PosZ;
-                                                    ResultJson.append(TmpChild);
-                                                    HaveData = 1;
                                                 }
+
+                                                ActorNameStr = ActorName;
+                                                DEBUG_PRINT("[+] ActorNameStr = %s  ", ActorNameStr.c_str());
+
+                                                memset(ObjAddress, 0, 50);
+                                                snprintf(ObjAddress, 50, "%llx", AgentID);
+                                                ActorIDStr = ObjAddress;
+
+                                                TmpChild["ActorID"] = ActorIDStr;
+
+                                                memset(ObjAddress, 0, 50);
+                                                snprintf(ObjAddress, 50, "%llx", AttackerID);
+                                                AttackerIDStr = ObjAddress;
+
+                                                TmpChild["type"] = type;
+                                                TmpChild["AttackerID"] = AttackerIDStr;
+                                                TmpChild["Name"] = ActorNameStr;
+                                                TmpChild["GuildName"] = GuildNameStr;
+                                                TmpChild["NowHP"] = ActorHp;
+                                                TmpChild["MaxHP"] = ActorMaxHp;
+
+                                                TmpChild["IsDeadState"] = IsDead;
+                                                TmpChild["ISNpc"] = ISNpc;
+                                                TmpChild["IsAttackMe"] = IsAttackMe;
+                                                
+
+                                                TmpChild["x"] = PosX;
+                                                TmpChild["y"] = PosY;
+                                                TmpChild["z"] = PosZ;
+                                                ResultJson.append(TmpChild);
+                                                HaveData = 1;
+
+                                                ActorList[ActorCount].IsUsed = 1;
+                                                ActorList[ActorCount].ActorProxyPointer = Agent;
+                                                ActorList[ActorCount].ObjectID = AgentID;
+                                                ActorList[ActorCount].XCoor = PosX;
+                                                ActorList[ActorCount].YCoor = PosY;
+                                                ActorList[ActorCount].ZCoor = PosZ;
+                                                ActorList[ActorCount].Type = type;
+                                                ActorList[ActorCount].IsNpc = ISNpc;
+                                                ActorList[ActorCount].NowHP = ActorHp;
+                                                ActorList[ActorCount].MaxHP = ActorMaxHp;
+                                                ActorList[ActorCount].IsAttackMe = IsAttackMe;
+
+
+                                                memset(ActorList[ActorCount].Guildname, '\0', 500);
+                                                snprintf(ActorList[ActorCount].Guildname, 500, "%s", GuildNameStr.c_str());
+                                                memset(ActorList[ActorCount].name, '\0', 500);
+                                                snprintf(ActorList[ActorCount].name, 500, "%s", ActorNameStr.c_str());
+                                                ActorCount = ActorCount + 1;
                                             }
 
 
@@ -9737,6 +9892,139 @@ std::string ReadActorList() {
 
 }
 
+
+
+void SetNoAttackList() {
+    char ComparingName[500];
+    char* BlurrySearchPos;
+
+    //GENERAL_PRINT("[+]SetNoAttackList  \n");
+
+    for (int i = 0; i < 1500; i++)
+    {
+        if (ActorList[i].IsUsed == 1) {
+            if (ActorList[i].IsNpc == 1 ) {
+                if (DontAttackSwitch == 1) {
+                    //  GENERAL_PRINT("[+]DontAttackListCount = %d \n", DontAttackListCount);
+
+                    if (DontAttackListCount > 0) {
+                        for (int j = 1; j <= DontAttackListCount; j++) {
+                            if (DontAttackList[j].IsUsed == 1) {
+
+                                //    GENERAL_PRINT("[+]DontAttackList[j].name = %s \n", DontAttackList[j].name.c_str());
+
+                                int NeedChange = 0;
+                                if (strstr(DontAttackList[j].name.c_str(), "#")) {
+                                    memset(ComparingName, 0, 500);
+                                    strcpy(ComparingName, DontAttackList[j].name.c_str());
+                                    BlurrySearchPos = strstr(ComparingName, "#");
+                                    if (BlurrySearchPos)
+                                    {
+                                        *BlurrySearchPos = (char)0;
+                                    }
+                                    if (strstr(ActorList[i].name, ComparingName)) {
+                                        NeedChange = 1;
+                                    }
+                                }
+                                if (strcmp(ActorList[i].name, DontAttackList[j].name.c_str()) == 0) {
+                                    NeedChange = 1;
+                                }
+
+                                if (NeedChange == 1) {
+
+                                    __uint64_t v6 = rU64(ActorList[i].ActorProxyPointer, 16);
+                                    __uint64_t v24 = rU64(ActorList[i].ActorProxyPointer, 8);
+                                    if (v24 != 0 && v6 != 0) {// && ISNpc == 1
+                                            //__uint64_t v4 = *(__uint64_t*)(Agent + Npc2nameOffset);  // Npc::GetRecordName@<GameRecord2::Npc2::name((GameRecord2::Npc2 *)(result + 744));
+                                        __uint64_t GameRecord2_Npc2 = rU64(v24, Npc2nameOffset);
+                                        DEBUG_PRINT("[+] IsDead  = %d  ", IsDead);
+                                        if (GameRecord2_Npc2 != 0) {
+                                            __uint64_t Npc2id = rU64(GameRecord2_Npc2, 0);
+                                            
+                                           
+                                            int IsAdded = 0;
+                                            for (int k = 0; k < 3000; k++)
+                                            {
+                                                if (ChangedDontAttackList[k].IsUsed == 1) {
+                                                    if (strcmp(ActorList[i].name, ChangedDontAttackList[k].name.c_str()) == 0) {
+                                                        if (Npc2id == ChangedDontAttackList[k].FXNpcGroupDataID) {
+                                                            IsAdded = 1;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            
+                                            if (IsAdded == 0) {
+                                                GENERAL_PRINT("[+]DontAttackList[j].name = %s Npc2id = %lld IsAdded =%d \n", DontAttackList[j].name.c_str(), Npc2id, IsAdded);
+                                                for (int k = 0; k < 3000; k++)
+                                                {
+                                                    if (ChangedDontAttackList[k].IsUsed == 0) {
+                                                        ChangedDontAttackList[k].IsUsed = 1;
+                                                        ChangedDontAttackList[k].name = ActorList[i].name;
+                                                        ChangedDontAttackList[k].OriginVal = *(char*)(GameRecord2_Npc2 + GameRecord2_Npc2_CannotBeTargetedOffSet);
+                                                        ChangedDontAttackList[k].FXNpcGroupDataID = Npc2id;
+                                                        ChangedDontAttackList[k].GameRecord2_Npc2 = GameRecord2_Npc2;
+                                                        GENERAL_PRINT("[+]ChangedDontAttackList[k].OriginVal  =%d \n", ChangedDontAttackList[k].OriginVal);
+                                                        break;
+                                                    }
+                                                }
+                                                *(char*)(GameRecord2_Npc2 + 504) = 1;// UXTargetManager::IsBelowMobGradeLimit   if ( !v13 || *((_BYTE *)v13 + 20) != 1 || (*((_BYTE *)a2 + 216) & 2) != 0 )      
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+void GetBlackNoAttackList() {
+
+    Json::Value ResultJson;
+    int HaveData = 0;
+    for (int k = 0; k < 3000; k++)
+    {
+        if (ChangedDontAttackList[k].IsUsed == 1) {
+            Json::Value TmpChild;
+            std::string ActorNameStr = "";
+            TmpChild["id"] = k;
+            ActorNameStr = ChangedDontAttackList[k].name;
+            TmpChild["Name"] = ActorNameStr;
+            ResultJson.append(TmpChild);
+            HaveData = 1;
+        }
+    }
+    Json::FastWriter writer;
+    std::string TmpResultStr = "[]";
+    if (HaveData == 1) {
+        TmpResultStr = writer.write(ResultJson);
+    }
+    GlobalResultStr = TmpResultStr;
+}
+
+void ResetBlackNoAttackList() {
+
+    int IsAdded = 0;
+
+    GENERAL_PRINT("[+] Restore Original NoAttack ");
+
+
+    for (int k = 0; k < 3000; k++)
+    {
+        if (ChangedDontAttackList[k].IsUsed == 1) {
+            __uint64_t Npc2id = rU64(ChangedDontAttackList[k].GameRecord2_Npc2, 0);
+            if (Npc2id == ChangedDontAttackList[k].FXNpcGroupDataID) {
+                *(char*)(ChangedDontAttackList[k].GameRecord2_Npc2 + GameRecord2_Npc2_CannotBeTargetedOffSet) = ChangedDontAttackList[k].OriginVal;// UXTargetManager::IsBelowMobGradeLimit   if ( !v13 || *((_BYTE *)v13 + 20) != 1 || (*((_BYTE *)a2 + 216) & 2) != 0 )
+            }
+            ChangedDontAttackList[k].IsUsed = 0;
+        }
+    }
+
+}
 
 void hookall()
 {
