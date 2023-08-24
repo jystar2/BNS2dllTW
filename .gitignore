@@ -1,0 +1,9 @@
+packages/
+
+.vs/
+
+DllTest/x64/Release/
+
+TestCLR/
+
+LineageW.Runtime/
