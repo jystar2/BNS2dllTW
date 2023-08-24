@@ -1,0 +1,4 @@
+﻿  pch.cpp
+  dllmain.cpp
+C:\Users\jystar2\Desktop\Monitor\dlltest\DllTest\DllTest\dllmain.cpp(150,18): warning C4101: “th1”: 未引用的局部变量
+  DllTest.vcxproj -> C:\Users\jystar2\Desktop\Monitor\dlltest\DllTest\Debug\DllTest.dll

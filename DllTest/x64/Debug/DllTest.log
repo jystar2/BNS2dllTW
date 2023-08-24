@@ -1,0 +1,127 @@
+﻿e:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: 中间目录(x64\Debug\)包含从另一个项目(DllTest.vcxproj)共享的文件。   这会导致错误的清除和重新生成行为。
+  pch.cpp
+  dllmain.cpp
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\SocketInOut.h(206,35): warning C4244: “=”: 从“time_t”转换到“int”，可能丢失数据
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\SocketInOut.h(210,56): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\SocketInOut.h(212,42): warning C4244: “参数”: 从“SOCKET”转换到“int”，可能丢失数据
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\SocketInOut.h(126,10): warning C4101: “Headerbuf”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\SocketInOut.h(102,12): warning C4101: “fdset”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\SocketInOut.h(101,9): warning C4101: “Port”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\SocketInOut.h(104,20): warning C4101: “delayval”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\SocketInOut.h(105,19): warning C4101: “lRetVal”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\SocketInOut.h(297,36): warning C4101: “msg”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\SetHookGameFunHelper.h(118,10): warning C4101: “TmpFuncAddress”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\GameFunAddr.h(173,25): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\UsefulPlugin.h(23,17): warning C4101: “Tmpstr”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\UsefulPlugin.h(88,10): warning C4101: “Tmpchar”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\UsefulPlugin.h(87,12): warning C4101: “j”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\iconv.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\UTF16toUTF8_header.h(66,33): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(58,63): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(148,36): warning C4477: “snprintf”: 格式字符串“%08d”需要类型“int”的参数，但可变参数 1 拥有了类型“unsigned __int64”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(148,36): message : 请考虑在格式字符串中使用“%zd”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(334,33): warning C4477: “sprintf_s”: 格式字符串“%lx”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“uint64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(334,33): message : 请考虑在格式字符串中使用“%llx”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(334,33): message : 请考虑在格式字符串中使用“%Ix”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(334,33): message : 请考虑在格式字符串中使用“%I64x”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(337,33): warning C4477: “sprintf_s”: 格式字符串“%lx”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“uint64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(337,33): message : 请考虑在格式字符串中使用“%llx”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(337,33): message : 请考虑在格式字符串中使用“%Ix”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(337,33): message : 请考虑在格式字符串中使用“%I64x”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(360,29): warning C4477: “sprintf_s”: 格式字符串“%lx”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“uint64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(360,29): message : 请考虑在格式字符串中使用“%llx”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(360,29): message : 请考虑在格式字符串中使用“%Ix”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(360,29): message : 请考虑在格式字符串中使用“%I64x”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(381,9): warning C4477: “sprintf_s”: 格式字符串“%lx”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“uint64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(381,9): message : 请考虑在格式字符串中使用“%llx”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(381,9): message : 请考虑在格式字符串中使用“%Ix”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(381,9): message : 请考虑在格式字符串中使用“%I64x”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(379,23): warning C4102: “outFindAddress”: 未引用的标签
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(406,6): warning C4477: “sprintf_s”: 格式字符串“%lx”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“__int64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(406,6): message : 请考虑在格式字符串中使用“%llx”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(406,6): message : 请考虑在格式字符串中使用“%Ix”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(406,6): message : 请考虑在格式字符串中使用“%I64x”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(511,13): warning C4477: “sprintf_s”: 格式字符串“%lx”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“__int64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(511,13): message : 请考虑在格式字符串中使用“%llx”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(511,13): message : 请考虑在格式字符串中使用“%Ix”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(511,13): message : 请考虑在格式字符串中使用“%I64x”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(514,13): warning C4477: “sprintf_s”: 格式字符串“%lx”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“__int64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(514,13): message : 请考虑在格式字符串中使用“%llx”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(514,13): message : 请考虑在格式字符串中使用“%Ix”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(514,13): message : 请考虑在格式字符串中使用“%I64x”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(596,50): warning C4477: “snprintf”: 格式字符串“%ld”需要类型“long”的参数，但可变参数 1 拥有了类型“__uint64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(596,50): message : 请考虑在格式字符串中使用“%lld”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(596,50): message : 请考虑在格式字符串中使用“%Id”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(596,50): message : 请考虑在格式字符串中使用“%I64d”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(701,33): warning C4477: “sprintf_s”: 格式字符串“%lx”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“__int64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(701,33): message : 请考虑在格式字符串中使用“%llx”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(701,33): message : 请考虑在格式字符串中使用“%Ix”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(701,33): message : 请考虑在格式字符串中使用“%I64x”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(716,33): warning C4477: “sprintf_s”: 格式字符串“%lx”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“__int64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(716,33): message : 请考虑在格式字符串中使用“%llx”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(716,33): message : 请考虑在格式字符串中使用“%Ix”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(716,33): message : 请考虑在格式字符串中使用“%I64x”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(654,10): warning C4101: “UIPanelName”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(780,15): warning C4101: “ThisElementPtr”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(783,15): warning C4101: “TmpElementName”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(786,10): warning C4101: “UIPanelName”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(782,15): warning C4101: “ChildElement”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(781,9): warning C4101: “ChildCount”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(787,10): warning C4101: “UObjectName”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(996,24): warning C4101: “TmpParentWW”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1239,54): warning C4477: “snprintf”: 格式字符串“%lx”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“__int64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1239,54): message : 请考虑在格式字符串中使用“%llx”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1239,54): message : 请考虑在格式字符串中使用“%Ix”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1239,54): message : 请考虑在格式字符串中使用“%I64x”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1239,54): warning C4477: “snprintf”: 格式字符串“%ld”需要类型“long”的参数，但可变参数 3 拥有了类型“char *”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1239,54): warning C4313: “snprintf”: 格式字符串中的“%d”与“char *”类型的参数 3 冲突
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1239,54): warning C4477: “snprintf”: 格式字符串“%ld”需要类型“long”的参数，但可变参数 4 拥有了类型“__int64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1239,54): message : 请考虑在格式字符串中使用“%lld”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1239,54): message : 请考虑在格式字符串中使用“%Id”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1239,54): message : 请考虑在格式字符串中使用“%I64d”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1239,54): warning C4477: “snprintf”: 格式字符串“%f”需要类型“double”的参数，但可变参数 5 拥有了类型“__int64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1239,251): warning C4474: snprintf: 格式字符串中传递的参数太多
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1239,251): message : 占位符和其参数预计 8 可变参数，但提供的却是 9 参数
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1242,54): warning C4477: “snprintf”: 格式字符串“%lx”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“__int64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1242,54): message : 请考虑在格式字符串中使用“%llx”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1242,54): message : 请考虑在格式字符串中使用“%Ix”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1242,54): message : 请考虑在格式字符串中使用“%I64x”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1242,54): warning C4477: “snprintf”: 格式字符串“%ld”需要类型“long”的参数，但可变参数 3 拥有了类型“char *”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1242,54): warning C4313: “snprintf”: 格式字符串中的“%d”与“char *”类型的参数 3 冲突
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1242,54): warning C4477: “snprintf”: 格式字符串“%ld”需要类型“long”的参数，但可变参数 4 拥有了类型“__int64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1242,54): message : 请考虑在格式字符串中使用“%lld”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1242,54): message : 请考虑在格式字符串中使用“%Id”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1242,54): message : 请考虑在格式字符串中使用“%I64d”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1242,54): warning C4477: “snprintf”: 格式字符串“%f”需要类型“double”的参数，但可变参数 5 拥有了类型“__int64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1242,255): warning C4474: snprintf: 格式字符串中传递的参数太多
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1242,255): message : 占位符和其参数预计 8 可变参数，但提供的却是 9 参数
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1247,50): warning C4477: “snprintf”: 格式字符串“%lx”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“__int64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1247,50): message : 请考虑在格式字符串中使用“%llx”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1247,50): message : 请考虑在格式字符串中使用“%Ix”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1247,50): message : 请考虑在格式字符串中使用“%I64x”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1247,50): warning C4477: “snprintf”: 格式字符串“%ld”需要类型“long”的参数，但可变参数 2 拥有了类型“__int64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1247,50): message : 请考虑在格式字符串中使用“%lld”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1247,50): message : 请考虑在格式字符串中使用“%Id”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1247,50): message : 请考虑在格式字符串中使用“%I64d”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1247,50): warning C4477: “snprintf”: 格式字符串“%ld”需要类型“long”的参数，但可变参数 3 拥有了类型“__int64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1247,50): message : 请考虑在格式字符串中使用“%lld”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1247,50): message : 请考虑在格式字符串中使用“%Id”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1247,50): message : 请考虑在格式字符串中使用“%I64d”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1265,5): warning C4477: “sprintf_s”: 格式字符串“%lx”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“__uint64_t”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1265,5): message : 请考虑在格式字符串中使用“%llx”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1265,5): message : 请考虑在格式字符串中使用“%Ix”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\dllmain.cpp(1265,5): message : 请考虑在格式字符串中使用“%I64x”
+  HttpRequest.cpp
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\HttpRequest.cpp(103,18): warning C4101: “e”: 未引用的局部变量
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\HttpRequest.cpp(191,63): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\HttpRequest.cpp(254,28): warning C4477: “sprintf_s”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“unsigned __int64”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\HttpRequest.cpp(254,28): message : 请考虑在格式字符串中使用“%zd”
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\HttpRequest.cpp(273,76): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+  jsoncpp.cpp
+  CompareString.cpp
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\CompareString.cpp(35,67): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\CompareString.cpp(70,28): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\jystar2\Desktop\Monitor\Odindll\DllTest\CompareString.cpp(154,18): warning C4101: “e”: 未引用的局部变量
+  正在生成代码...
+LINK : warning LNK4098: 默认库“LIBCMT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+  DllTest.vcxproj -> C:\Users\jystar2\Desktop\Monitor\Odindll\x64\Debug\Odindll.dll
