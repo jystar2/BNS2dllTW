@@ -991,6 +991,7 @@ void HandleRecv(SOCKET clientSocket, std::string TmpStr)
                             {
                                 FakePara1 = Readroot["id"].asInt64();
                                 FakeObject = Readroot["obj"].asString();
+                                FakePara2 = Readroot["Count"].asInt64();
                                 StartCallFunction = 6;
                                 WaitMainThreadDone2();
                             }
@@ -6013,7 +6014,11 @@ void FakeCallGameFunction()
                     // __uint64_t v12 = (*(__int64(__fastcall**)(__int64))(*(__int64*)Item2Ptr + 48))(Item2Ptr);
                     __uint64_t v11 = (*(__int64(__fastcall**)(__int64))(*(__int64*)Item2Ptr + 64))(Item2Ptr);
 
-                    Bag2_RequestDisassembleItem(Bag2Ptr, TmpItemID, v11);
+                    if (FakePara2 >= BagItem[FakePara1].Count) {
+                        FakePara2 = BagItem[FakePara1].Count;
+                    }
+
+                    Bag2_RequestDisassembleItem(Bag2Ptr, TmpItemID, (int)FakePara2); //v11
                     DEBUG_PRINT("[+] Decompose Item: %ld  \n", FakePara1);
                 }
             }

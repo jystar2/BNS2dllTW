@@ -5,163 +5,157 @@ typedef unsigned __int64 uint64;
 typedef unsigned __int64 __uint64_t;
 typedef __int64 __int64_t;
 
-//20230823
 
 
-__int64_t _ZN8B2Client8instanceE = 0x5CFD208; //OK
-__uint64_t _GameThreadTid = 0x5DC0A68;
-__int64_t _EnginePtr = 0x5F55A18; //OK
-__int64_t _ZNK7UEngine25GetWorldFromContextObjectEPK7UObject18EGetWorldErrorMode = 0x3865F60; //OK
-__int64_t _ZNK5FName8ToStringEv = 0x1CF9B10;
+//20230830
 
-__int64_t _ZN7FMemory4FreeEPv = 0x1C06400;
-__int64_t _ZNK5FText8ToStringEv = 0x1C58DE0;
 
-//__int64_t _ZN10UTextBlock14GetDisplayTextEv = 0x2DE1050;
+__int64_t _ZN8B2Client8instanceE = 0x5D06068; //OK
+__uint64_t _GameThreadTid = 0x5DC99E8;
+__int64_t _EnginePtr = 0x5F5E988; //OK
+__int64_t _ZNK7UEngine25GetWorldFromContextObjectEPK7UObject18EGetWorldErrorMode = 0x386D6C0; //OK
+__int64_t _ZNK5FName8ToStringEv = 0x1D01D80;
 
-__int64_t _ZN10UTextBlock14GetDisplayTextEv = 0x2DE5EC0;
+__int64_t _ZN7FMemory4FreeEPv = 0x1C0E670;
+__int64_t _ZNK5FText8ToStringEv = 0x1C61050;
 
-__int64_t _ZNK18UObjectBaseUtility11GetFullNameEPK7UObjectR7FString20EObjectFullNameFlags = 0x1EBBFB0;
+//__int64_t _ZN10UTextBlock14GetDisplayTextEv = 0x2DE92B0;
 
-__int64_t _Z17GetObjectsOfClassPK6UClassR6TArrayIP7UObject22TSizedDefaultAllocatorILi32EEEb12EObjectFlags20EInternalObjectFlags = 0x1ED73A0;
+__int64_t _ZN10UTextBlock14GetDisplayTextEv = 0x2DEE120;
 
-__int64_t _ZNK7UWidget9IsVisibleEv = 0x2DEAA40;
-__int64_t _ZNK7UWidget12GetIsEnabledEv = 0x2DE7460;
+__int64_t _ZNK18UObjectBaseUtility11GetFullNameEPK7UObjectR7FString20EObjectFullNameFlags = 0x1EC4220;
 
-__int64_t _ZNK9UCheckBox15GetCheckedStateEv = 0x2D92090;
-__int64_t _ZN11UWidgetTree15GetChildWidgetsEP7UWidgetR6TArrayIS1_22TSizedDefaultAllocatorILi32EEE = 0x2E47090; //UWidgetTree__GetAllWidgets
-__int64_t _ZNK7UWidget17GetCachedGeometryEv = 0x2DE5080;
+__int64_t _Z17GetObjectsOfClassPK6UClassR6TArrayIP7UObject22TSizedDefaultAllocatorILi32EEEb12EObjectFlags20EInternalObjectFlags = 0x1EDF610;
 
-__int64_t _ZN22USlateBlueprintLibrary15LocalToViewportEP7UObjectRK9FGeometry9FVector2DRS5_S6_ = 0x2E28F70;
-__int64_t _ZNK19UGameViewportClient15GetViewportSizeER9FVector2D = 0x34548F0;
+__int64_t _ZNK7UWidget9IsVisibleEv = 0x2DF2CA0;
+__int64_t _ZNK7UWidget12GetIsEnabledEv = 0x2DEF6C0;
 
-__int64_t _ZN7UButton18SlateHandleClickedEv = 0x2DBBA00;
+__int64_t _ZNK9UCheckBox15GetCheckedStateEv = 0x2D9A2F0;
+__int64_t _ZN11UWidgetTree15GetChildWidgetsEP7UWidgetR6TArrayIS1_22TSizedDefaultAllocatorILi32EEE = 0x2E4F2F0; //UWidgetTree__GetAllWidgets
+__int64_t _ZNK7UWidget17GetCachedGeometryEv = 0x2DED2E0;
 
-__int64_t _ZN7UButton18SlateHandlePressedEv = 0x2DBBCC0;
+__int64_t _ZN22USlateBlueprintLibrary15LocalToViewportEP7UObjectRK9FGeometry9FVector2DRS5_S6_ = 0x2E311D0;
+__int64_t _ZNK19UGameViewportClient15GetViewportSizeER9FVector2D = 0x345BFF0;
 
-__int64_t _ZN7UButton18SlateHandleReleaseEv = 0x2DBBEC0;
+__int64_t _ZN7UButton18SlateHandleClickedEv = 0x2DC3C60;
 
-__int64_t _ZN7UEngine9SetMaxFPSEf = 0x387A6F0;
+__int64_t _ZN7UButton18SlateHandlePressedEv = 0x2DC3F20;
 
-__int64_t _ZN5Item212GetItemGradeEy = 0xBEB090;
+__int64_t _ZN7UButton18SlateHandleReleaseEv = 0x2DC4120;
 
-__int64_t _ZN5Item211GetItemNameEy = 0xBEB670;
+__int64_t _ZN7UEngine9SetMaxFPSEf = 0x3881E50;
 
-__int64_t _ZNK4Bag218RequestConsumeItemExiy = 0xA33850;
+__int64_t _ZN5Item212GetItemGradeEy = 0xBEC500;
 
-__int64_t _ZNK4Bag218RequestDestroyItemExsi = 0xA33C80;
+__int64_t _ZN5Item211GetItemNameEy = 0xBECAF0;
 
-__int64_t _ZNK15UWidgetSwitcher20GetActiveWidgetIndexEv = 0x2DE4530;
-__int64_t _ZNK14FWeakObjectPtr3GetEv = 0x1ED6E00;
+__int64_t _ZNK4Bag218RequestConsumeItemExiy = 0xA33F60;
 
-__int64_t _ZN16UISleepModePanel12OnClosePanelEv = 0x13A7420;
+__int64_t _ZNK4Bag218RequestDestroyItemExsi = 0xA34390;
 
-__int64_t _ClosePanelStartAddr = 0x5D22EA0; //UIPanelManager::ClosePanel 中
+__int64_t _ZNK15UWidgetSwitcher20GetActiveWidgetIndexEv = 0x2DEC790;
+__int64_t _ZNK14FWeakObjectPtr3GetEv = 0x1EDF070;
 
-__int64_t _ZN16UISleepModePanel4OpenEv = 0x13ABDE0;
-__int64_t _ZN16UISleepModePanel13SetSleepStateENS_11ESleepStateEb = 0x13BC1D0;
+__int64_t _ZN16UISleepModePanel12OnClosePanelEv = 0x13AED80;
 
-__int64_t _ZN14UIPanelManager9OpenPanelE11UIPanelTypeb = 0x1563420;
+__int64_t _ClosePanelStartAddr = 0x5D2BDE0; //UIPanelManager::ClosePanel 中
 
-__int64_t _ZN10UScrollBox15SetScrollOffsetEf = 0x2E03980;
+__int64_t _ZN16UISleepModePanel4OpenEv = 0x13B3740;
+__int64_t _ZN16UISleepModePanel13SetSleepStateENS_11ESleepStateEb = 0x13C3B30;
 
-__int64_t _ZN14STableViewBase15SetScrollOffsetEf = 0x214E220;
+__int64_t _ZN14UIPanelManager9OpenPanelE11UIPanelTypeb = 0x156B2B0;
 
-__int64_t _ZN4Game15AutoPlayMapMoveEy7FVectorfPKch = 0xAEC3E0;
+__int64_t _ZN10UScrollBox15SetScrollOffsetEf = 0x2E0BBE0;
 
-__int64_t _ZNK10ICharacter14HasMoveCommandEv = 0x323BF70;
+__int64_t _ZN14STableViewBase15SetScrollOffsetEf = 0x2156490;
 
-__int64_t _ZN4Game9FindAgentEy = 0xAF76C0;
+__int64_t _ZN4Game15AutoPlayMapMoveEy7FVectorfPKch = 0xAECF80;
 
-__int64_t _ZNK8EquipSet10IsEquippedEx = 0xB097F0;
+__int64_t _ZNK10ICharacter14HasMoveCommandEv = 0x3243820;
 
-__int64_t _ZNK4Bag222RequestDisassembleItemExi = 0xA34170;
+__int64_t _ZN4Game9FindAgentEy = 0xAF8260;
 
-__int64_t _ZNK5Quest26GetQuestMissionProgressMaxEv = 0xD851A0;
-__int64_t _ZN10UITradeBag17OnClickSlotButtonEi = 0x14ACD70;
-__int64_t _ZN17UIInventoryPanel221OnClickItemSlotButtonERK5FNamei = 0x1128090;
-__int64_t _ZN8Tutorial3EndEbb = 0xE5F470;
+__int64_t _ZNK8EquipSet10IsEquippedEx = 0xB0A390;
+
+__int64_t _ZNK4Bag222RequestDisassembleItemExi = 0xA34880;
+
+__int64_t _ZNK5Quest26GetQuestMissionProgressMaxEv = 0xD87430;
+__int64_t _ZN10UITradeBag17OnClickSlotButtonEi = 0x14B46D0;
+__int64_t _ZN17UIInventoryPanel221OnClickItemSlotButtonERK5FNamei = 0x112F4E0;
+__int64_t _ZN8Tutorial3EndEbb = 0xE616B0;
 // 以下数据全在 _ZN4Game15AutoPlayMapMoveEy7FVectorfPKch ず
 
-__int64_t _ZN4Game34checkAvailableAutoMoveWhatHyperRunEv = 0xB303A0;
-__int64_t _ZN17PlayerHeroDisplay14StopMoveOnPathEv = 0xD23590;
-__int64_t _ZN17PlayerHeroDisplay15StopDestGimmickEv = 0xD233A0;
-__int64_t _ZN12AgentDisplay16ClearActionTimerEv = 0x9D68B0;
+__int64_t _ZN4Game34checkAvailableAutoMoveWhatHyperRunEv = 0xB30FE0;
+__int64_t _ZN17PlayerHeroDisplay14StopMoveOnPathEv = 0xD257F0;
+__int64_t _ZN17PlayerHeroDisplay15StopDestGimmickEv = 0xD25600;
+__int64_t _ZN12AgentDisplay16ClearActionTimerEv = 0x9D68C0;
 //以下数据全在 AutoPlay2::MinimapMove 内
-__int64_t _ZN9AutoPlay26FinishEv = 0xA1BA80;
-__int64_t _ZN9AutoPlay212setMoveParamEy7FVectorf = 0xA46F30;
+__int64_t _ZN9AutoPlay26FinishEv = 0xA1BA90;
+__int64_t _ZN9AutoPlay212setMoveParamEy7FVectorf = 0xA47650;
 
-__int64_t _ZN9AutoPlay219setMoveParamDungeonEy7FVectorf = 0xA471B0;
+__int64_t _ZN9AutoPlay219setMoveParamDungeonEy7FVectorf = 0xA478D0;
 
-__int64_t _ZN9AutoPlay215changePlayStateE14AutoPlayState2b = 0xA41D00;
+__int64_t _ZN9AutoPlay215changePlayStateE14AutoPlayState2b = 0xA42420;
 
-__int64_t _ZN12AutoMovePath8FindPathERK7FVectorb = 0xA1AC50;
+__int64_t _ZN12AutoMovePath8FindPathERK7FVectorb = 0xA1AC60;
 
 //__int64_t _ZNK10PlayerHero18GetWeaponGroupTypeEv =  0x0;
-__int64_t _ZN10PlayerHero10SetUseAutoEhab = 0xCA3B20;
+__int64_t _ZN10PlayerHero10SetUseAutoEhab = 0xCA5D00;
 
-__int64_t _ZN8Grocery221ProcessUseGroceryItemEiixyybb = 0xBA3BC0;
+__int64_t _ZN8Grocery221ProcessUseGroceryItemEiixyybb = 0xBA3C50;
 
-__int64_t _ZNK8EquipSet12GetEquipSlotEas = 0xAFCD10;
-__int64_t _ZNK4Bag216RequestEquipItemEhsxhb = 0xA34C60;
+__int64_t _ZNK8EquipSet12GetEquipSlotEas = 0xAFD8B0;
+__int64_t _ZNK4Bag216RequestEquipItemEhsxhb = 0xA35370;
 
-__int64_t _ZN3Npc13GetRecordNameEv = 0xC7A100;
-__int64_t _ZN11IMap3DPanel21HandleSwipeDeltaEventE9FVector2D = 0x323BA90;
-__int64_t _ZNK5Party28RequestInvitePartyByHeroNameEPKc = 0xC98AA0;
-__int64_t _ZN4Game17SetAttackTargetIdEybb = 0xB27370;
-__int64_t _ZN4Game10PickTargetEyb = 0xB0F240;
+__int64_t _ZN3Npc13GetRecordNameEv = 0xC7C2E0;
+__int64_t _ZN11IMap3DPanel21HandleSwipeDeltaEventE9FVector2D = 0x3243340;
+__int64_t _ZNK5Party28RequestInvitePartyByHeroNameEPKc = 0xC9AC80;
+__int64_t _ZN4Game17SetAttackTargetIdEybb = 0xB27F70;
+__int64_t _ZN4Game10PickTargetEyb = 0xB0FDE0;
 
-__int64_t _ZN24FB2ScalabilityController9SetMaxFPSEf = 0x324DE60;
-__int64_t __GetFB2ScalabilityController = 0x30D8190;
+__int64_t _ZN24FB2ScalabilityController9SetMaxFPSEf = 0x3255710;
+__int64_t __GetFB2ScalabilityController = 0x30DF7B0;
 
-__int64_t _ZN9AutoPlay26CombatERK7FVector12AutoPlayMode = 0xA188C0;
+__int64_t _ZN9AutoPlay26CombatERK7FVector12AutoPlayMode = 0xA188D0;
 
-__int64_t _ZN10UIChatMain17sendMessageEscapeEv = 0xF875B0;
+__int64_t _ZN10UIChatMain17sendMessageEscapeEv = 0xF89710;
 
-__int64_t _ZN18HyperRunController21SetImpossibleAutoMoveEb = 0xE06C00;
-__int64_t _ZN18HyperRunController12PlayHyperRunEh = 0xDFCA20;
+__int64_t _ZN18HyperRunController21SetImpossibleAutoMoveEb = 0xE08F00;
+__int64_t _ZN18HyperRunController12PlayHyperRunEh = 0xDFED20;
 
-__int64_t _ZN13SkillContext623CheckCanHitTargetByAutoEy = 0xDEAD80;
+__int64_t _ZN13SkillContext623CheckCanHitTargetByAutoEy = 0xDED080;
 
-__int64_t _ZN12UI3DWorldMap29getUI3DMapObjectMapIconObjectEi = 0x1230FB0;
+__int64_t _ZN12UI3DWorldMap29getUI3DMapObjectMapIconObjectEi = 0x12384B0;
 
-__int64_t _ZN12UI3DMapPanel21OnWorldMapIconTouchedEi = 0x1210DE0;
+__int64_t _ZN12UI3DMapPanel21OnWorldMapIconTouchedEi = 0x12182E0;
 
-__int64_t _ZN12DataManager322GetEquipCollectionDictEv = 0x98BA10;
+__int64_t _ZN12DataManager322GetEquipCollectionDictEv = 0x98BA20;
 
-__int64_t _ZN18B2ClientTextFormat7GetTextEPKc = 0xAC0180;
+__int64_t _ZN18B2ClientTextFormat7GetTextEPKc = 0xAC0BC0;
 
-__int64_t _ZNK6Stash222RequestMoveToInventoryEysi = 0xE3F580;
-__int64_t _ZNK4Bag218RequestMoveToStashEysi = 0xA35E70;
-__int64_t _ZN19UICitizenShopPanel220OnClickBagSlotButtonERK5FNamei = 0x10DC4D0; //SysM.Stash.RegistFail.Registered 的那FUNCTION
+__int64_t _ZNK6Stash222RequestMoveToInventoryEysi = 0xE41810;
+__int64_t _ZNK4Bag218RequestMoveToStashEysi = 0xA36580;
+__int64_t _ZN19UICitizenShopPanel220OnClickBagSlotButtonERK5FNamei = 0x10E3930; //SysM.Stash.RegistFail.Registered 的那FUNCTION
 
-__int64_t _ZN19CircularViewWrapper21ScrollToIndexIntoViewEi27EICircularScrollDestinationb = 0x15CC870;
-__int64_t _ZN18UIItemCircularView16GetGridDataIndexEi = 0x115CB30;
+__int64_t _ZN19CircularViewWrapper21ScrollToIndexIntoViewEi27EICircularScrollDestinationb = 0x15D4810;
+__int64_t _ZN18UIItemCircularView16GetGridDataIndexEi = 0x1163F90;
 
-__int64_t OFF_ProcessDeferredMessage = 0x1F10D80;
+__int64_t OFF_ProcessDeferredMessage = 0x1F18FF0;
 
-__int64_t _ZN6TArrayIDs22TSizedDefaultAllocatorILi32EEE13ResizeForCopyEii = 0x67F900;
-__uint64_t _ZN18FScreenshotRequest17RequestScreenshotERK7FStringbb = 0x3878D10; //aShowui 
+__int64_t _ZN6TArrayIDs22TSizedDefaultAllocatorILi32EEE13ResizeForCopyEii = 0x67F840;
+__uint64_t _ZN18FScreenshotRequest17RequestScreenshotERK7FStringbb = 0x3880470; //aShowui 
 
-__uint64_t _ZN8B2Client39GetContentsOptionSkipEnchantResultPopupEv = 0xA57CF0;
+__uint64_t _ZN8B2Client39GetContentsOptionSkipEnchantResultPopupEv = 0xA58580;
 
-__uint64_t _ZN12DataManager319GetEffectManualDictEv = 0x98B8F0;
-__uint64_t _EffectManualDict_GetEffectByIdEv = 0xB0BDF0;
+__uint64_t _ZN12DataManager319GetEffectManualDictEv = 0x98B900;
+__uint64_t _EffectManualDict_GetEffectByIdEv = 0xB0C990;
 
-__uint64_t _ZN8B2Client45GetAccountLoginHistroy_LastConnectedWorldNameEv = 0xA56810;
-__uint64_t _ZN5Agent18IsAttackPlayerHeroEv = 0x9EAF90;
+__uint64_t _ZN8B2Client45GetAccountLoginHistroy_LastConnectedWorldNameEv = 0xA570A0;
+__uint64_t _ZN5Agent18IsAttackPlayerHeroEv = 0x9EAFA0;
 
-
-__int64_t _ZN11UUserWidget21GetPrivateStaticClassEv = 0x2E70960;
-__int64_t _ZN6AB2HUD21GetPrivateStaticClassEv = 0x3927630;
-__int64_t _ZN19AB2PlayerController21GetPrivateStaticClassEv = 0x392AA50;
-
-
-
-
-
-
-
+__int64_t _ZN11UUserWidget21GetPrivateStaticClassEv = 0x2E78BC0;
+__int64_t _ZN6AB2HUD21GetPrivateStaticClassEv = 0x392EDA0;
+__int64_t _ZN19AB2PlayerController21GetPrivateStaticClassEv = 0x39321C0;
 
 
 
@@ -170,322 +164,154 @@ __int64_t _ZN19AB2PlayerController21GetPrivateStaticClassEv = 0x392AA50;
 
 
 
-//20230816
+//20230823
 
+__int64_t _ZN8B2Client8instanceE = 0x5D07068; //OK
+__uint64_t _GameThreadTid = 0x5DCA9E8;
+__int64_t _EnginePtr = 0x5F5F988; //OK
+__int64_t _ZNK7UEngine25GetWorldFromContextObjectEPK7UObject18EGetWorldErrorMode = 0x386E450; //OK
+__int64_t _ZNK5FName8ToStringEv = 0x1D02B10;
 
-__int64_t _ZN8B2Client8instanceE = 0x5CFD188; //OK
-__uint64_t _GameThreadTid = 0x5DC09A8;
-__int64_t _EnginePtr = 0x5F55958; //OK
-__int64_t _ZNK7UEngine25GetWorldFromContextObjectEPK7UObject18EGetWorldErrorMode = 0x3866750; //OK
-__int64_t _ZNK5FName8ToStringEv = 0x1CF8B40;
+__int64_t _ZN7FMemory4FreeEPv = 0x1C0F400;
+__int64_t _ZNK5FText8ToStringEv = 0x1C61DE0;
 
-__int64_t _ZN7FMemory4FreeEPv = 0x1C05420;
-__int64_t _ZNK5FText8ToStringEv = 0x1C57E00;
+//__int64_t _ZN10UTextBlock14GetDisplayTextEv = 0x2DEA040;
 
-//__int64_t _ZN10UTextBlock14GetDisplayTextEv = 0x2DE0080;
+__int64_t _ZN10UTextBlock14GetDisplayTextEv = 0x2DEEEB0;
 
-__int64_t _ZN10UTextBlock14GetDisplayTextEv = 0x2DE4EF0;
+__int64_t _ZNK18UObjectBaseUtility11GetFullNameEPK7UObjectR7FString20EObjectFullNameFlags = 0x1EC4FB0;
 
-__int64_t _ZNK18UObjectBaseUtility11GetFullNameEPK7UObjectR7FString20EObjectFullNameFlags = 0x1EBAFE0;
+__int64_t _Z17GetObjectsOfClassPK6UClassR6TArrayIP7UObject22TSizedDefaultAllocatorILi32EEEb12EObjectFlags20EInternalObjectFlags = 0x1EE03A0;
 
-__int64_t _Z17GetObjectsOfClassPK6UClassR6TArrayIP7UObject22TSizedDefaultAllocatorILi32EEEb12EObjectFlags20EInternalObjectFlags = 0x1ED63D0;
+__int64_t _ZNK7UWidget9IsVisibleEv = 0x2DF3A30;
+__int64_t _ZNK7UWidget12GetIsEnabledEv = 0x2DF0450;
 
-__int64_t _ZNK7UWidget9IsVisibleEv = 0x2DE9A70;
-__int64_t _ZNK7UWidget12GetIsEnabledEv = 0x2DE6490;
+__int64_t _ZNK9UCheckBox15GetCheckedStateEv = 0x2D9B080;
+__int64_t _ZN11UWidgetTree15GetChildWidgetsEP7UWidgetR6TArrayIS1_22TSizedDefaultAllocatorILi32EEE = 0x2E50080; //UWidgetTree__GetAllWidgets
+__int64_t _ZNK7UWidget17GetCachedGeometryEv = 0x2DEE070;
 
-__int64_t _ZNK9UCheckBox15GetCheckedStateEv = 0x2D910C0;
-__int64_t _ZN11UWidgetTree15GetChildWidgetsEP7UWidgetR6TArrayIS1_22TSizedDefaultAllocatorILi32EEE = 0x2E460C0; //UWidgetTree__GetAllWidgets
-__int64_t _ZNK7UWidget17GetCachedGeometryEv = 0x2DE40B0;
+__int64_t _ZN22USlateBlueprintLibrary15LocalToViewportEP7UObjectRK9FGeometry9FVector2DRS5_S6_ = 0x2E31F60;
+__int64_t _ZNK19UGameViewportClient15GetViewportSizeER9FVector2D = 0x345CD80;
 
-__int64_t _ZN22USlateBlueprintLibrary15LocalToViewportEP7UObjectRK9FGeometry9FVector2DRS5_S6_ = 0x2E27FA0;
-__int64_t _ZNK19UGameViewportClient15GetViewportSizeER9FVector2D = 0x3453820;
+__int64_t _ZN7UButton18SlateHandleClickedEv = 0x2DC49F0;
 
-__int64_t _ZN7UButton18SlateHandleClickedEv = 0x2DBAA30;
+__int64_t _ZN7UButton18SlateHandlePressedEv = 0x2DC4CB0;
 
-__int64_t _ZN7UButton18SlateHandlePressedEv = 0x2DBACF0;
+__int64_t _ZN7UButton18SlateHandleReleaseEv = 0x2DC4EB0;
 
-__int64_t _ZN7UButton18SlateHandleReleaseEv = 0x2DBAEF0;
+__int64_t _ZN7UEngine9SetMaxFPSEf = 0x3882BE0;
 
-__int64_t _ZN7UEngine9SetMaxFPSEf = 0x387AEC0;
+__int64_t _ZN5Item212GetItemGradeEy = 0xBED290;
 
-__int64_t _ZN5Item212GetItemGradeEy = 0xBEB900;
+__int64_t _ZN5Item211GetItemNameEy = 0xBED880;
 
-__int64_t _ZN5Item211GetItemNameEy = 0xBEBEE0;
+__int64_t _ZNK4Bag218RequestConsumeItemExiy = 0xA34CF0;
 
-__int64_t _ZNK4Bag218RequestConsumeItemExiy = 0xA33740;
+__int64_t _ZNK4Bag218RequestDestroyItemExsi = 0xA35120;
 
-__int64_t _ZNK4Bag218RequestDestroyItemExsi = 0xA33B70;
+__int64_t _ZNK15UWidgetSwitcher20GetActiveWidgetIndexEv = 0x2DED520;
+__int64_t _ZNK14FWeakObjectPtr3GetEv = 0x1EDFE00;
 
-__int64_t _ZNK15UWidgetSwitcher20GetActiveWidgetIndexEv = 0x2DE3560;
-__int64_t _ZNK14FWeakObjectPtr3GetEv = 0x1ED5E30;
+__int64_t _ZN16UISleepModePanel12OnClosePanelEv = 0x13AFB10;
 
-__int64_t _ZN16UISleepModePanel12OnClosePanelEv = 0x13A6710;
+__int64_t _ClosePanelStartAddr = 0x5D2CDE0; //UIPanelManager::ClosePanel 中
 
-__int64_t _ClosePanelStartAddr = 0x5D22DE0; //UIPanelManager::ClosePanel 中
+__int64_t _ZN16UISleepModePanel4OpenEv = 0x13B44D0;
+__int64_t _ZN16UISleepModePanel13SetSleepStateENS_11ESleepStateEb = 0x13C48C0;
 
-__int64_t _ZN16UISleepModePanel4OpenEv = 0x13AB0D0;
-__int64_t _ZN16UISleepModePanel13SetSleepStateENS_11ESleepStateEb = 0x13BB4C0;
+__int64_t _ZN14UIPanelManager9OpenPanelE11UIPanelTypeb = 0x156C040;
 
-__int64_t _ZN14UIPanelManager9OpenPanelE11UIPanelTypeb = 0x15626D0;
+__int64_t _ZN10UScrollBox15SetScrollOffsetEf = 0x2E0C970;
 
-__int64_t _ZN10UScrollBox15SetScrollOffsetEf = 0x2E029B0;
+__int64_t _ZN14STableViewBase15SetScrollOffsetEf = 0x2157220;
 
-__int64_t _ZN14STableViewBase15SetScrollOffsetEf = 0x214D250;
+__int64_t _ZN4Game15AutoPlayMapMoveEy7FVectorfPKch = 0xAEDD10;
 
-__int64_t _ZN4Game15AutoPlayMapMoveEy7FVectorfPKch = 0xAEC5C0;
+__int64_t _ZNK10ICharacter14HasMoveCommandEv = 0x32445B0;
 
-__int64_t _ZNK10ICharacter14HasMoveCommandEv = 0x323AF30;
+__int64_t _ZN4Game9FindAgentEy = 0xAF8FF0;
 
-__int64_t _ZN4Game9FindAgentEy = 0xAF78A0;
+__int64_t _ZNK8EquipSet10IsEquippedEx = 0xB0B120;
 
-__int64_t _ZNK8EquipSet10IsEquippedEx = 0xB099D0;
+__int64_t _ZNK4Bag222RequestDisassembleItemExi = 0xA35610;
 
-__int64_t _ZNK4Bag222RequestDisassembleItemExi = 0xA34060;
-
-__int64_t _ZNK5Quest26GetQuestMissionProgressMaxEv = 0xD85920;
-__int64_t _ZN10UITradeBag17OnClickSlotButtonEi = 0x14AC030;
-__int64_t _ZN17UIInventoryPanel221OnClickItemSlotButtonERK5FNamei = 0x1127B50;
-__int64_t _ZN8Tutorial3EndEbb = 0xE5FA50;
+__int64_t _ZNK5Quest26GetQuestMissionProgressMaxEv = 0xD881C0;
+__int64_t _ZN10UITradeBag17OnClickSlotButtonEi = 0x14B5460;
+__int64_t _ZN17UIInventoryPanel221OnClickItemSlotButtonERK5FNamei = 0x1130270;
+__int64_t _ZN8Tutorial3EndEbb = 0xE62440;
 // 以下数据全在 _ZN4Game15AutoPlayMapMoveEy7FVectorfPKch ず
 
-__int64_t _ZN4Game34checkAvailableAutoMoveWhatHyperRunEv = 0xB30600;
-__int64_t _ZN17PlayerHeroDisplay14StopMoveOnPathEv = 0xD23D60;
-__int64_t _ZN17PlayerHeroDisplay15StopDestGimmickEv = 0xD23B70;
-__int64_t _ZN12AgentDisplay16ClearActionTimerEv = 0x9D6870;
+__int64_t _ZN4Game34checkAvailableAutoMoveWhatHyperRunEv = 0xB31D70;
+__int64_t _ZN17PlayerHeroDisplay14StopMoveOnPathEv = 0xD26580;
+__int64_t _ZN17PlayerHeroDisplay15StopDestGimmickEv = 0xD26390;
+__int64_t _ZN12AgentDisplay16ClearActionTimerEv = 0x9D7650;
 //以下数据全在 AutoPlay2::MinimapMove 内
-__int64_t _ZN9AutoPlay26FinishEv = 0xA1B970;
-__int64_t _ZN9AutoPlay212setMoveParamEy7FVectorf = 0xA46DF0;
+__int64_t _ZN9AutoPlay26FinishEv = 0xA1C820;
+__int64_t _ZN9AutoPlay212setMoveParamEy7FVectorf = 0xA483E0;
 
-__int64_t _ZN9AutoPlay219setMoveParamDungeonEy7FVectorf = 0xA47070;
+__int64_t _ZN9AutoPlay219setMoveParamDungeonEy7FVectorf = 0xA48660;
 
-__int64_t _ZN9AutoPlay215changePlayStateE14AutoPlayState2b = 0xA41BC0;
+__int64_t _ZN9AutoPlay215changePlayStateE14AutoPlayState2b = 0xA431B0;
 
-__int64_t _ZN12AutoMovePath8FindPathERK7FVectorb = 0xA1AB40;
+__int64_t _ZN12AutoMovePath8FindPathERK7FVectorb = 0xA1B9F0;
 
 //__int64_t _ZNK10PlayerHero18GetWeaponGroupTypeEv =  0x0;
-__int64_t _ZN10PlayerHero10SetUseAutoEhab = 0xCA3B70;
+__int64_t _ZN10PlayerHero10SetUseAutoEhab = 0xCA6A90;
 
-__int64_t _ZN8Grocery221ProcessUseGroceryItemEiixyybb = 0xBA3E20;
+__int64_t _ZN8Grocery221ProcessUseGroceryItemEiixyybb = 0xBA49E0;
 
-__int64_t _ZNK8EquipSet12GetEquipSlotEas = 0xAFCEF0;
-__int64_t _ZNK4Bag216RequestEquipItemEhsxhb = 0xA34B50;
+__int64_t _ZNK8EquipSet12GetEquipSlotEas = 0xAFE640;
+__int64_t _ZNK4Bag216RequestEquipItemEhsxhb = 0xA36100;
 
-__int64_t _ZN3Npc13GetRecordNameEv = 0xC7A150;
-__int64_t _ZN11IMap3DPanel21HandleSwipeDeltaEventE9FVector2D = 0x323AA50;
-__int64_t _ZNK5Party28RequestInvitePartyByHeroNameEPKc = 0xC98AF0;
-__int64_t _ZN4Game17SetAttackTargetIdEybb = 0xB27550;
-__int64_t _ZN4Game10PickTargetEyb = 0xB0F420;
+__int64_t _ZN3Npc13GetRecordNameEv = 0xC7D070;
+__int64_t _ZN11IMap3DPanel21HandleSwipeDeltaEventE9FVector2D = 0x32440D0;
+__int64_t _ZNK5Party28RequestInvitePartyByHeroNameEPKc = 0xC9BA10;
+__int64_t _ZN4Game17SetAttackTargetIdEybb = 0xB28D00;
+__int64_t _ZN4Game10PickTargetEyb = 0xB10B70;
 
-__int64_t _ZN24FB2ScalabilityController9SetMaxFPSEf = 0x324CE20;
-__int64_t __GetFB2ScalabilityController = 0x30D71C0;
+__int64_t _ZN24FB2ScalabilityController9SetMaxFPSEf = 0x32564A0;
+__int64_t __GetFB2ScalabilityController = 0x30E0540;
 
-__int64_t _ZN9AutoPlay26CombatERK7FVector12AutoPlayMode = 0xA187B0;
+__int64_t _ZN9AutoPlay26CombatERK7FVector12AutoPlayMode = 0xA19660;
 
-__int64_t _ZN10UIChatMain17sendMessageEscapeEv = 0xF87890;
+__int64_t _ZN10UIChatMain17sendMessageEscapeEv = 0xF8A4A0;
 
-__int64_t _ZN18HyperRunController21SetImpossibleAutoMoveEb = 0xE071E0;
-__int64_t _ZN18HyperRunController12PlayHyperRunEh = 0xDFD000;
+__int64_t _ZN18HyperRunController21SetImpossibleAutoMoveEb = 0xE09C90;
+__int64_t _ZN18HyperRunController12PlayHyperRunEh = 0xDFFAB0;
 
-__int64_t _ZN13SkillContext623CheckCanHitTargetByAutoEy = 0xDEB360;
+__int64_t _ZN13SkillContext623CheckCanHitTargetByAutoEy = 0xDEDE10;
 
-__int64_t _ZN12UI3DWorldMap29getUI3DMapObjectMapIconObjectEi = 0x1230910;
+__int64_t _ZN12UI3DWorldMap29getUI3DMapObjectMapIconObjectEi = 0x1239240;
 
-__int64_t _ZN12UI3DMapPanel21OnWorldMapIconTouchedEi = 0x1210840;
+__int64_t _ZN12UI3DMapPanel21OnWorldMapIconTouchedEi = 0x1219070;
 
-__int64_t _ZN12DataManager322GetEquipCollectionDictEv = 0x98BA50;
+__int64_t _ZN12DataManager322GetEquipCollectionDictEv = 0x98C7B0;
 
-__int64_t _ZN18B2ClientTextFormat7GetTextEPKc = 0xAC0120;
+__int64_t _ZN18B2ClientTextFormat7GetTextEPKc = 0xAC1950;
 
-__int64_t _ZNK6Stash222RequestMoveToInventoryEysi = 0xE3FB60;
-__int64_t _ZNK4Bag218RequestMoveToStashEysi = 0xA35D60;
-__int64_t _ZN19UICitizenShopPanel220OnClickBagSlotButtonERK5FNamei = 0x10DBF90; //SysM.Stash.RegistFail.Registered 的那FUNCTION
+__int64_t _ZNK6Stash222RequestMoveToInventoryEysi = 0xE425A0;
+__int64_t _ZNK4Bag218RequestMoveToStashEysi = 0xA37310;
+__int64_t _ZN19UICitizenShopPanel220OnClickBagSlotButtonERK5FNamei = 0x10E46C0; //SysM.Stash.RegistFail.Registered 的那FUNCTION
 
-__int64_t _ZN19CircularViewWrapper21ScrollToIndexIntoViewEi27EICircularScrollDestinationb = 0x15CB8C0;
-__int64_t _ZN18UIItemCircularView16GetGridDataIndexEi = 0x115C5F0;
+__int64_t _ZN19CircularViewWrapper21ScrollToIndexIntoViewEi27EICircularScrollDestinationb = 0x15D55A0;
+__int64_t _ZN18UIItemCircularView16GetGridDataIndexEi = 0x1164D20;
 
-__int64_t OFF_ProcessDeferredMessage = 0x1F0FDB0;
+__int64_t OFF_ProcessDeferredMessage = 0x1F19D80;
 
-__int64_t _ZN6TArrayIDs22TSizedDefaultAllocatorILi32EEE13ResizeForCopyEii = 0x67F940;
-__uint64_t _ZN18FScreenshotRequest17RequestScreenshotERK7FStringbb = 0x38794E0; //aShowui 
+__int64_t _ZN6TArrayIDs22TSizedDefaultAllocatorILi32EEE13ResizeForCopyEii = 0x67F840;
+__uint64_t _ZN18FScreenshotRequest17RequestScreenshotERK7FStringbb = 0x3881200; //aShowui 
 
-__uint64_t _ZN8B2Client39GetContentsOptionSkipEnchantResultPopupEv = 0xA57BB0;
+__uint64_t _ZN8B2Client39GetContentsOptionSkipEnchantResultPopupEv = 0xA59310;
 
-__uint64_t _ZN12DataManager319GetEffectManualDictEv = 0x98B930;
-__uint64_t _EffectManualDict_GetEffectByIdEv = 0xB0BFD0;
+__uint64_t _ZN12DataManager319GetEffectManualDictEv = 0x98C690;
+__uint64_t _EffectManualDict_GetEffectByIdEv = 0xB0D720;
 
-__uint64_t _ZN8B2Client45GetAccountLoginHistroy_LastConnectedWorldNameEv = 0xA566D0;
+__uint64_t _ZN8B2Client45GetAccountLoginHistroy_LastConnectedWorldNameEv = 0xA57E30;
+__uint64_t _ZN5Agent18IsAttackPlayerHeroEv = 0x9EBD30;
 
-__int64_t _ZN11UUserWidget21GetPrivateStaticClassEv = 0x2E6F990;
-__int64_t _ZN6AB2HUD21GetPrivateStaticClassEv = 0x3927E40;
-__int64_t _ZN19AB2PlayerController21GetPrivateStaticClassEv = 0x392B210;
-
-
-
-
-//20230802
-
-
-__int64_t _ZN8B2Client8instanceE = 0x5C92888; //OK
-__uint64_t _GameThreadTid = 0x5D54B28;
-__int64_t _EnginePtr = 0x5EE9AE8; //OK
-__int64_t _ZNK7UEngine25GetWorldFromContextObjectEPK7UObject18EGetWorldErrorMode = 0x380C5D0; //OK
-__int64_t _ZNK5FName8ToStringEv = 0x1CA1040;
-
-__int64_t _ZN7FMemory4FreeEPv = 0x1BAD930;
-__int64_t _ZNK5FText8ToStringEv = 0x1C00310;
-
-//__int64_t _ZN10UTextBlock14GetDisplayTextEv = 0x2D88560;
-
-__int64_t _ZN10UTextBlock14GetDisplayTextEv = 0x2D8D3D0;
-
-__int64_t _ZNK18UObjectBaseUtility11GetFullNameEPK7UObjectR7FString20EObjectFullNameFlags = 0x1E634F0;
-
-__int64_t _Z17GetObjectsOfClassPK6UClassR6TArrayIP7UObject22TSizedDefaultAllocatorILi32EEEb12EObjectFlags20EInternalObjectFlags = 0x1E7E8E0;
-
-__int64_t _ZNK7UWidget9IsVisibleEv = 0x2D91F50;
-__int64_t _ZNK7UWidget12GetIsEnabledEv = 0x2D8E970;
-
-__int64_t _ZNK9UCheckBox15GetCheckedStateEv = 0x2D395B0;
-__int64_t _ZN11UWidgetTree15GetChildWidgetsEP7UWidgetR6TArrayIS1_22TSizedDefaultAllocatorILi32EEE = 0x2DEE6D0; //UWidgetTree__GetAllWidgets
-__int64_t _ZNK7UWidget17GetCachedGeometryEv = 0x2D8C590;
-
-__int64_t _ZN22USlateBlueprintLibrary15LocalToViewportEP7UObjectRK9FGeometry9FVector2DRS5_S6_ = 0x2DD0480;
-__int64_t _ZNK19UGameViewportClient15GetViewportSizeER9FVector2D = 0x33F9EF0;
-
-__int64_t _ZN7UButton18SlateHandleClickedEv = 0x2D62F10;
-
-__int64_t _ZN7UButton18SlateHandlePressedEv = 0x2D631D0;
-
-__int64_t _ZN7UButton18SlateHandleReleaseEv = 0x2D633D0;
-
-__int64_t _ZN7UEngine9SetMaxFPSEf = 0x3820D40;
-
-__int64_t _ZN5Item212GetItemGradeEy = 0xBC9C60;
-
-__int64_t _ZN5Item211GetItemNameEy = 0xBCA250;
-
-__int64_t _ZNK4Bag218RequestConsumeItemExiy = 0xA32920;
-
-__int64_t _ZNK4Bag218RequestDestroyItemExsi = 0xA32D50;
-
-__int64_t _ZNK15UWidgetSwitcher20GetActiveWidgetIndexEv = 0x2D8BA40;
-__int64_t _ZNK14FWeakObjectPtr3GetEv = 0x1E7E340;
-
-__int64_t _ZN16UISleepModePanel12OnClosePanelEv = 0x13683F0;
-
-__int64_t _ClosePanelStartAddr = 0x5CB7650; //UIPanelManager::ClosePanel 中
-
-__int64_t _ZN16UISleepModePanel4OpenEv = 0x136CDB0;
-__int64_t _ZN16UISleepModePanel13SetSleepStateENS_11ESleepStateEb = 0x137D110;
-
-__int64_t _ZN14UIPanelManager9OpenPanelE11UIPanelTypeb = 0x151CC70;
-
-__int64_t _ZN10UScrollBox15SetScrollOffsetEf = 0x2DAAE90;
-
-__int64_t _ZN14STableViewBase15SetScrollOffsetEf = 0x20F58B0;
-
-__int64_t _ZN4Game15AutoPlayMapMoveEy7FVectorfPKch = 0xAE4350;
-
-__int64_t _ZNK10ICharacter14HasMoveCommandEv = 0x31E20E0;
-
-__int64_t _ZN4Game9FindAgentEy = 0xAEF430;
-
-__int64_t _ZNK8EquipSet10IsEquippedEx = 0xB01470;
-
-__int64_t _ZNK4Bag222RequestDisassembleItemExi = 0xA33240;
-
-__int64_t _ZNK5Quest26GetQuestMissionProgressMaxEv = 0xD70720;
-__int64_t _ZN10UITradeBag17OnClickSlotButtonEi = 0x146AE00;
-__int64_t _ZN17UIInventoryPanel221OnClickItemSlotButtonERK5FNamei = 0x110F3A0;
-__int64_t _ZN8Tutorial3EndEbb = 0xE45670;
-// 以下数据全在 _ZN4Game15AutoPlayMapMoveEy7FVectorfPKch ず
-
-__int64_t _ZN4Game34checkAvailableAutoMoveWhatHyperRunEv = 0xB28150;
-__int64_t _ZN17PlayerHeroDisplay14StopMoveOnPathEv = 0xD10FE0;
-__int64_t _ZN17PlayerHeroDisplay15StopDestGimmickEv = 0xD10DF0;
-__int64_t _ZN12AgentDisplay16ClearActionTimerEv = 0x9D2010;
-//以下数据全在 AutoPlay2::MinimapMove 内
-__int64_t _ZN9AutoPlay26FinishEv = 0xA18E70;
-__int64_t _ZN9AutoPlay212setMoveParamEy7FVectorf = 0xA46310;
-
-__int64_t _ZN9AutoPlay219setMoveParamDungeonEy7FVectorf = 0xA46590;
-
-__int64_t _ZN9AutoPlay215changePlayStateE14AutoPlayState2b = 0xA41010;
-
-__int64_t _ZN12AutoMovePath8FindPathERK7FVectorb = 0xA18040;
-
-//__int64_t _ZNK10PlayerHero18GetWeaponGroupTypeEv =  0x0;
-__int64_t _ZN10PlayerHero10SetUseAutoEhab = 0xC90F50;
-
-__int64_t _ZN8Grocery221ProcessUseGroceryItemEiixyybb = 0xBA1910;
-
-__int64_t _ZNK8EquipSet12GetEquipSlotEas = 0xAF4A90;
-__int64_t _ZNK4Bag216RequestEquipItemEhsxhb = 0xA33D30;
-
-__int64_t _ZN3Npc13GetRecordNameEv = 0xC65FF0;
-__int64_t _ZN11IMap3DPanel21HandleSwipeDeltaEventE9FVector2D = 0x31E1C00;
-__int64_t _ZNK5Party28RequestInvitePartyByHeroNameEPKc = 0xC85610;
-__int64_t _ZN4Game17SetAttackTargetIdEybb = 0xB1F180;
-__int64_t _ZN4Game10PickTargetEyb = 0xB06FD0;
-
-__int64_t _ZN24FB2ScalabilityController9SetMaxFPSEf = 0x31F3C80;
-__int64_t __GetFB2ScalabilityController = 0x307F430;
-
-__int64_t _ZN9AutoPlay26CombatERK7FVector12AutoPlayMode = 0xA15CB0;
-
-__int64_t _ZN10UIChatMain17sendMessageEscapeEv = 0xF2ECD0;
-
-__int64_t _ZN18HyperRunController21SetImpossibleAutoMoveEb = 0xDEF990;
-__int64_t _ZN18HyperRunController12PlayHyperRunEh = 0xDE57B0;
-
-__int64_t _ZN13SkillContext623CheckCanHitTargetByAutoEy = 0xDD3B80;
-
-__int64_t _ZN12UI3DWorldMap29getUI3DMapObjectMapIconObjectEi = 0x11FF060;
-
-__int64_t _ZN12UI3DMapPanel21OnWorldMapIconTouchedEi = 0x11E4700;
-
-__int64_t _ZN12DataManager322GetEquipCollectionDictEv = 0x987BC0;
-
-__int64_t _ZN18B2ClientTextFormat7GetTextEPKc = 0xAB89E0;
-
-__int64_t _ZNK6Stash222RequestMoveToInventoryEysi = 0xE25FF0;
-__int64_t _ZNK4Bag218RequestMoveToStashEysi = 0xA34F40;
-__int64_t _ZN19UICitizenShopPanel220OnClickBagSlotButtonERK5FNamei = 0x10BCA00;
-
-
-
-__int64_t _ZN19CircularViewWrapper21ScrollToIndexIntoViewEi27EICircularScrollDestinationb = 0x15857E0;
-__int64_t _ZN18UIItemCircularView16GetGridDataIndexEi = 0x1145EC0;
-
-__int64_t OFF_ProcessDeferredMessage = 0x1EB82C0;
-
-__int64_t _ZN6TArrayIDs22TSizedDefaultAllocatorILi32EEE13ResizeForCopyEii = 0x67C400;
-__uint64_t _ZN18FScreenshotRequest17RequestScreenshotERK7FStringbb = 0x381F360; //aShowui 
-
-__uint64_t _ZN8B2Client39GetContentsOptionSkipEnchantResultPopupEv = 0xA55170;
-
-__uint64_t _ZN12DataManager319GetEffectManualDictEv = 0x987AA0;
-__uint64_t _EffectManualDict_GetEffectByIdEv = 0xB03B80;
-
-__uint64_t _ZN8B2Client45GetAccountLoginHistroy_LastConnectedWorldNameEv = 0xA53C90;
-
-
-__int64_t _ZN11UUserWidget21GetPrivateStaticClassEv = 0x2E17F00;
-__int64_t _ZN6AB2HUD21GetPrivateStaticClassEv = 0x38CDD90;
-__int64_t _ZN19AB2PlayerController21GetPrivateStaticClassEv = 0x38D11E0;
-
-
-
-__int64_t _UWolrldPtr = 0x5EEE328;
-__int64_t _ZN7UEngine29GetFirstLocalPlayerControllerEPK6UWorld = 0x380AF20;
-__int64_t _ZN11AController18SetControlRotationERK8FRotator = 0x33489D0;
-
-
-
-__int64_t _GameObject2_ClientConfig = 0x05C94E98;
-
-__int64_t _ZN12DataManager319GetEffectManualDictEv = 0x987AA0;
-__int64_t _EffectManualDict_GetEffectByIdEv = 0x0B03B80;
+__int64_t _ZN11UUserWidget21GetPrivateStaticClassEv = 0x2E79950;
+__int64_t _ZN6AB2HUD21GetPrivateStaticClassEv = 0x392FB30;
+__int64_t _ZN19AB2PlayerController21GetPrivateStaticClassEv = 0x3932F50;
 
 
 
@@ -524,11 +350,11 @@ int LoadingScreen_Offset = 1440;// B2Client::IsShowLoadingScreen
 
 
 int ICharacterNameOffSet = 4328;//ICharacter::SetNameText   //TArray<char16_t,TSizedDefaultAllocator<32>>::ResizeForCopy(v64 + 4328, (unsigned int)v66, v67);
-int PKTargetOffset = 4272;// 4264;// 4256;// 4024;// PlayerHero::SetCounterAttackableTargetId  425*8
+int PKTargetOffset = 4288;// 4272;// PlayerHero::SetCounterAttackableTargetId  425*8
 int MaxHpOffset = 188;// 172;//AgentDisplay::UpdateBar(AgentDisplay *this)  //ICharacter::SetProgressBarPercentage
 int NowHpOffset = 124;// 124;// 112;
 int NowMpOffset = 128;// 124;// PlayerHeroDisplay::UpdateFocusBar
-int MaxMpOffset = 2240;// 2248;// 2248;// 1864;//PlayerHeroDisplay::UpdateFocusBar(PlayerHeroDisplay *this)
+int MaxMpOffset = 2248 + 8;// 2240;// 2248;// 2248;// 1864;//PlayerHeroDisplay::UpdateFocusBar(PlayerHeroDisplay *this)
 int MaxMpOffset2 = 248;//PlayerHeroDisplay::UpdateFocusBar(PlayerHeroDisplay *this)
 
 int AgentMaxMpOffset = 304;// 292;//AgentDisplay::UpdateFocusBar
@@ -553,7 +379,7 @@ int ZoneTypeOffset = 252;// 236; // Agent::IsInSafetyArea  Game::IsAvailablePk(G
 
 int GetAttackTargetId_Offset = 1472;// 183 * 8;// 1432;//Game::GetAttackTargetId(__int64 a1)
 
-int EquipSet_Offset = 1848;// 232 * 8;// 186 * 8;//ItemHelper::FindItemFuncType    v39 = *(EquipSet **)(v34 + 1856);
+int EquipSet_Offset = 1864;// 1848;//ItemHelper::FindItemFuncType    v39 = *(EquipSet **)(v34 + 1856);
 
 int ShowActionButtonOffset = 3992;// 3976;// 2496; //UIActionMenuPanel6::IsShowActionButton(UIActionMenuPanel6 *this)
 
@@ -562,11 +388,11 @@ int ShowActionButtonOffset = 3992;// 3976;// 2496; //UIActionMenuPanel6::IsShowA
 
 
 
-int QuestJournalOffset = 1720;// 1728;// 1344; //UIQuestHudPanel::makeBulletinQuestDataIdList
+int QuestJournalOffset = 1736;// 1720;// 1728;// 1344; //UIQuestHudPanel::makeBulletinQuestDataIdList
 int QuestSize =  120;// 120;// 14 * 8;  //QuestJournal::GetQuestCount(QuestJournal *this, unsigned __int8 a2)
 
-int Bag2Offset = 1816;// 1824;// 182 * 8; //UIItemDetailBasePanel::checkAttachableBead    v16 = *(_QWORD *)(v11 + 1824);
-int Stash2Offset = 1832;// 230 * 8;//PlayerHero::ReqChangeItemSlot
+int Bag2Offset = 1832;// 1816;// 1824;// 182 * 8; //UIItemDetailBasePanel::checkAttachableBead    v16 = *(_QWORD *)(v11 + 1824);
+int Stash2Offset = 1848;// 1832;// 230 * 8;//PlayerHero::ReqChangeItemSlot
 
 int TradeBagOffset = 4080;// 4064;// 2816; //UITradePanel::OnClickSlotButton  //_ZN10UITradeBag17OnClickSlotButtonEi向上一層
 int UITradeBagItemCircularViewOffset = 152;// UITradeBag::OnClickSlotButton
@@ -587,14 +413,14 @@ int EnterSleepModeOffSet = 3520;// 3504;// 3488;// 2272; //UISleepModePanel::Ope
 
 
 int AutoMovePathOffset = 368;// 360; // AutoPlay2::MinimapMove(       if ( AutoMovePath::FindPath(v7 + 360, v7 + 36, 1LL) & 1 )
-int PartyOffset = 1912;// 1920;// 194 * 8;//UIPartyManagementPanel::onClickedSearcOkButton(__int64 result, const FName *a2)  1544
+int PartyOffset = 1928;// 1912;// 1920;// 194 * 8;//UIPartyManagementPanel::onClickedSearcOkButton(__int64 result, const FName *a2)  1544
 
 int TeamListSize = 1232;// Party::GetPartyMemberByHeroName
 
 
 int Map3DPanelWrapperOffset = 10936;// 1327 * 8;//10616 1223 * 8; //UI3DWorldMap::removeImageIcon  9704
 int UI3DWorldMapOffset = 2896;// 2880;// 1776; //UI3DMapPanel::ResetMapCenterToPlayer(UI3DMapPanel *this, unsigned __int16 a2)
-int QuickSetBookOffset = 2040;// 2048;// 1696; //PlayerHero::SetUseAuto    UISignatureSkillPadPanel6::OnSwipeQuickSkillSlotButton  v32 = *(QuickSetBook **)(v39 + 1688);  QuickSetBook::SetUseAuto(v32, v33, v16, 0);
+int QuickSetBookOffset = 2056;// 2040;// //PlayerHero::SetUseAuto    UISignatureSkillPadPanel6::OnSwipeQuickSkillSlotButton  v32 = *(QuickSetBook **)(v39 + 1688);  QuickSetBook::SetUseAuto(v32, v33, v16, 0);
 
 
 
@@ -619,10 +445,10 @@ int UI3DWorldMapIconStartOffSet = UI3DWorldMapIconMaxOffSet - 72;// 216; //UI3DW
 
 int UIChatMainOffset = 2856;// 2840;// 1720;  //UIChatPanel3::OnModifiedWriteBox(UIChatPanel3 *this, const FName *a2)
 
-int SkillContext6Offset = 4256;// 4248;// 4240;// 4008;// 3416; //Game::GetSkillContext6 v3 = *(_QWORD *)(v2 + 4176);
-int HyperRunController_Offset = 4240;// 4232;// 4224;// 3992;// 3384; //Game::GetHyperRunController@<X0>(__int64 result@<X0>, _QWORD *a2@<X8>)
+int SkillContext6Offset = 4272;// 4256;// 4248;// 4240;// 4008;// 3416; //Game::GetSkillContext6 v3 = *(_QWORD *)(v2 + 4176);
+int HyperRunController_Offset = 4256;// 4240;// 4232;// 4224;// 3992;// 3384; //Game::GetHyperRunController@<X0>(__int64 result@<X0>, _QWORD *a2@<X8>)
 
-int EquipCollectionBookOffset = 1784;// 224 * 8;//UIEquipCollectionPanel::RefreshAll(__int64 result, char a2)  v19 = (int *)v11[177];
+int EquipCollectionBookOffset = 1800;// 1784;// 224 * 8;//UIEquipCollectionPanel::RefreshAll(__int64 result, char a2)  v19 = (int *)v11[177];
 int StorageShopUnknownOffset = 354 * 8;//2832 UIStashPanel::OnClickMoveToStashButton     Bag2::RequestMoveToStash(v162, *((_QWORD *)v6 + 352), (__int64)&v171, &v176);
 //int SellShopUnknownOffset = 3912;//UIBuySellItemPopupPanel::onClickedOkButton     Bag2::RequestSellItem2(v17, v30, v31, *(signed __int16 *)(v5 + 3840), 1);
 
@@ -634,7 +460,7 @@ int SetCameraOffset = 256;// Game::CameraReset
 
 int EffectBoardOffset = 672; //UIHudPlayerInfoPanel::RefreshEffectList  v49 = *(EffectBoard **)(result + 672);
 
-int IsFollowPartyLeaderOffset = 3544;// 3536; //PlayerHero::IsFollowPartyLeader   //Game::SetAttackTargetId
+int IsFollowPartyLeaderOffset = 3560;// 3544;// 3536; //PlayerHero::IsFollowPartyLeader   //Game::SetAttackTargetId
 int GameRecord2_Npc2_CannotBeTargetedOffSet = 504; //GameRecord2::Npc2::CannotBeTargeted
 
 
