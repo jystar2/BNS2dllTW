@@ -6127,7 +6127,7 @@ void FakeCallGameFunction()
             if (BagItem[FakePara1].IsUsed == 1)
             {
                 __uint64_t TmpPtr = strtoull(FakeObject.c_str(), NULL, 16);
-                DEBUG_PRINT("[+] TmpPtr: %llx  \n", TmpPtr);
+                GENERAL_PRINT("[+] TmpPtr: %llx  \n", TmpPtr);
                 if (TmpPtr == (__uint64_t)BagItem[FakePara1].Pointer) {
                     struct FMemeryType TmpMem;
                     InitFMem(&TmpMem);
@@ -6138,7 +6138,7 @@ void FakeCallGameFunction()
                         __int64_t UIInventoryPanel = 0;
                         //UIInventoryPanel = GameUI_GetPanel(UIInventoryPanelID);
                         UIInventoryPanel = GameUI_GetPanelByName(UIInventoryPanelName);
-                        DEBUG_PRINT("[+] UIInventoryPanel: %lx  \n", UIInventoryPanel);
+                        GENERAL_PRINT("[+] UIInventoryPanel: %lx  \n", UIInventoryPanel);
                         if (UIInventoryPanel != 0) {
 
                             CircularViewWrapper_ScrollToIndexIntoView(*(__int64_t*)(UIInventoryPanel + UIItemCircularViewOffset), index, 0, 1);
@@ -6158,7 +6158,7 @@ void FakeCallGameFunction()
             if (BagItem[FakePara1].IsUsed == 1)
             {
                 __uint64_t TmpPtr = strtoull(FakeObject.c_str(), NULL, 16);
-                DEBUG_PRINT("[+] TmpPtr: %llx  \n", TmpPtr);
+                GENERAL_PRINT("[+] TmpPtr: %llx  \n", TmpPtr);
                 if (TmpPtr == (__uint64_t)BagItem[FakePara1].Pointer) {
                     struct FMemeryType TmpMem;
                     InitFMem(&TmpMem);
@@ -6170,12 +6170,16 @@ void FakeCallGameFunction()
                         __int64_t UIInventoryPanel = 0;
                         //UIInventoryPanel = GameUI_GetPanel(UIInventoryPanelID);
                         UIInventoryPanel = GameUI_GetPanelByName(UIInventoryPanelName);
-                        DEBUG_PRINT("[+] UIInventoryPanel: %lx  \n", UIInventoryPanel);
+                        GENERAL_PRINT("[+] UIInventoryPanel: %lx  \n", UIInventoryPanel);
                         if (UIInventoryPanel != 0) {
 
                             CircularViewWrapper_ScrollToIndexIntoView(*(__int64_t*)(UIInventoryPanel + UIItemCircularViewOffset), index, 0, 1);
 
-                            UIInventoryPanel_OnClickItemSlotButton(UIInventoryPanel, (__int64_t)&TmpMem.A, index);//UIInventoryPanel2::OnClickItemSlotButton
+                            if (RealIndexReturn > -1) {
+                                GENERAL_PRINT("[+] RealIndexReturn: %d  \n", RealIndexReturn);
+                                UIInventoryPanel_OnClickItemSlotButton(UIInventoryPanel, (__int64_t)&TmpMem.A, RealIndexReturn);//UIInventoryPanel2::OnClickItemSlotButton
+                            }
+                           
                             CallResult = 1;
                         }
                     }
@@ -6946,8 +6950,10 @@ void FakeCallGameFunction()
                             GENERAL_PRINT("[+]UICitizenShopPanel2 UIPanelName = %s \n", UIPanelName);
 
                             CircularViewWrapper_ScrollToIndexIntoView(*(__int64_t*)(UICitizenShopPanel2 + UISellItemCircularViewOffset), index, 0, 1);
-
-                            UICitizenShopPanel_OnClickBagSlotButtonERK5FName(UICitizenShopPanel2, (__int64_t)&TmpMem.A, index);//UIInventoryPanel2::OnClickItemSlotButton
+                            if (RealIndexReturn > -1) {
+                                UICitizenShopPanel_OnClickBagSlotButtonERK5FName(UICitizenShopPanel2, (__int64_t)&TmpMem.A, RealIndexReturn);//UIInventoryPanel2::OnClickItemSlotButton
+                            }
+                          
                             CallResult = 1;
                         }
                     }
@@ -8558,6 +8564,7 @@ int GetTradeBagFNameID(__uint64_t InstanceId)
 
 int GetBagItemFNameID(__uint64_t InstanceId) //UIInventoryPanel2::OnClickItemSlotButton
 {
+    RealIndexReturn = -1;
     __int64_t UIInventoryPanel = 0;
     //UIInventoryPanel = GameUI_GetPanel(UIInventoryPanelID); 
     UIInventoryPanel = GameUI_GetPanelByName(UIInventoryPanelName);
@@ -8568,8 +8575,13 @@ int GetBagItemFNameID(__uint64_t InstanceId) //UIInventoryPanel2::OnClickItemSlo
 
     __int64_t UIItemCircularView = (UIInventoryPanel + UIItemCircularViewOffset);
     if (UIItemCircularView) {
-       
-        int MaxCount = *(int*)(UIItemCircularView + 24); //UIItemCircularView::GetUIItemSlot
+
+        __int64_t StartAddress = rU64(UIInventoryPanel ,UIInventoryPanelStartAddressOffset); //v47   v47 = *((_QWORD *)this + 355);
+        int v56 = (int)*(char*)(UIInventoryPanel + UIInventoryPanelTabIndexOffset);  //v46 = *((char *)this + 2817);      v46 = *((char *)this + 2817);
+        DEBUG_PRINT("[+] v56=%d", v56);
+        DEBUG_PRINT("[+] StartAddress=%llx", StartAddress);
+        int MaxCount = rU32(rU64(StartAddress , 32 * v56), 8);
+       // int MaxCount = *(int*)(UIItemCircularView + 24); //UIItemCircularView::GetUIItemSlot
         DEBUG_PRINT("[+] MaxCount=%llx", MaxCount);
         if (MaxCount > 0) {
             for (int i = 0; i < MaxCount; i++)
@@ -8577,14 +8589,24 @@ int GetBagItemFNameID(__uint64_t InstanceId) //UIInventoryPanel2::OnClickItemSlo
                 int DataIndex = i;//  UIItemCircularView_GetGridDataIndex(UIItemCircularView, i);//
                 DEBUG_PRINT("[+] DataIndex=%llx", DataIndex);
                 if (DataIndex > -1) {
-
-                    int v56 = (int)*(char*)(UIInventoryPanel + UIInventoryPanelTabIndexOffset);  //v46 = *((char *)this + 2817);      v46 = *((char *)this + 2817);
-                    DEBUG_PRINT("[+] v56=%d", v56);
-                    __int64_t StartAddress = *(__int64_t*)(UIInventoryPanel + UIInventoryPanelStartAddressOffset ); //v47   v47 = *((_QWORD *)this + 355);
-                    DEBUG_PRINT("[+] StartAddress=%llx", StartAddress);
-                    if (DataIndex < *(int*)(*(__int64_t*)(StartAddress + 32 * v56) + 8)) {
+                    //if (DataIndex < *(int*)(*(__int64_t*)(StartAddress + 32 * v56) + 8)) {
+                    if (DataIndex < MaxCount) {
                         __int64_t TmpInstanceId = *(__int64_t*)(*(__int64_t*)(StartAddress + 32 * v56) + 8LL * DataIndex);  //result = Bag2::GetItemByInstanceId((Bag2 *)v33, *(_QWORD *)(*(_QWORD *)(v47 + 32 * v46) + 8LL * (int)result));
                         if (TmpInstanceId == InstanceId) {
+
+                            int MaxCount2 = *(int*)(UIItemCircularView + 24); //UIItemCircularView::GetUIItemSlot
+                            DEBUG_PRINT("[+] MaxCount2=%llx", MaxCount2);
+                            if (MaxCount2 > 0) {
+                                for (int j = 0; j < MaxCount2; j++)
+                                {
+                                    int DataIndex2 = UIItemCircularView_GetGridDataIndex(UIItemCircularView, j);
+                                    if (DataIndex2 == DataIndex) {
+                                        RealIndexReturn = j;
+                                    }
+                                }
+                            }
+
+
                             return i;
                         }
                     }
@@ -8603,6 +8625,7 @@ int GetBagItemFNameID(__uint64_t InstanceId) //UIInventoryPanel2::OnClickItemSlo
 
 int GetSellBagItemFNameID(__uint64_t InstanceId) //UIInventoryPanel2::OnClickItemSlotButton
 {
+    RealIndexReturn = -1;
     __int64_t UICitizenShopPanel2 = 0;
     UICitizenShopPanel2 = GameUI_GetPanelByName(ShopPanel2Name);
     //UICitizenShopPanel2 = GameUI_GetPanel(59);
@@ -8613,8 +8636,14 @@ int GetSellBagItemFNameID(__uint64_t InstanceId) //UIInventoryPanel2::OnClickIte
 
     __int64_t UIItemCircularView = (UICitizenShopPanel2 + UISellItemCircularViewOffset);
     if (UIItemCircularView) {
+        int v56 = (int)*(char*)(UICitizenShopPanel2 + UISellInventoryPanelTabIndexOffset);  //v46 = *((char *)this + 2817);      v46 = *((char *)this + 2817);
+        DEBUG_PRINT("[+] v56=%d", v56);
+        __int64_t StartAddress = *(__int64_t*)(UICitizenShopPanel2 + UISellInventoryPanelStartAddressOffset); //v47   v47 = *((_QWORD *)this + 355);
 
-        int MaxCount = *(int*)(UIItemCircularView + 24); //UIItemCircularView::GetUIItemSlot
+        DEBUG_PRINT("[+] v56=%d", v56);
+        DEBUG_PRINT("[+] StartAddress=%llx", StartAddress);
+        int MaxCount = rU32(rU64(StartAddress, 32 * v56), 8);
+       // int MaxCount = *(int*)(UIItemCircularView + 24); //UIItemCircularView::GetUIItemSlot
         DEBUG_PRINT("[+] MaxCount=%llx", MaxCount);
         if (MaxCount > 0) {
             for (int i = 0; i < MaxCount; i++)
@@ -8623,13 +8652,24 @@ int GetSellBagItemFNameID(__uint64_t InstanceId) //UIInventoryPanel2::OnClickIte
                 DEBUG_PRINT("[+] DataIndex=%llx", DataIndex);
                 if (DataIndex > -1) {
 
-                    int v56 = (int)*(char*)(UICitizenShopPanel2 + UISellInventoryPanelTabIndexOffset);  //v46 = *((char *)this + 2817);      v46 = *((char *)this + 2817);
-                    DEBUG_PRINT("[+] v56=%d", v56);
-                    __int64_t StartAddress = *(__int64_t*)(UICitizenShopPanel2 + UISellInventoryPanelStartAddressOffset); //v47   v47 = *((_QWORD *)this + 355);
+                  
                     DEBUG_PRINT("[+] StartAddress=%llx", StartAddress);
                     if (DataIndex < *(int*)(*(__int64_t*)(StartAddress + 32 * v56) + 8)) {
                         __int64_t TmpInstanceId = *(__int64_t*)(*(__int64_t*)(StartAddress + 32 * v56) + 8LL * DataIndex);  //result = Bag2::GetItemByInstanceId((Bag2 *)v33, *(_QWORD *)(*(_QWORD *)(v47 + 32 * v46) + 8LL * (int)result));
                         if (TmpInstanceId == InstanceId) {
+
+                            int MaxCount2 = *(int*)(UIItemCircularView + 24); //UIItemCircularView::GetUIItemSlot
+                            GENERAL_PRINT("[+] MaxCount2=%llx", MaxCount2);
+                            if (MaxCount2 > 0) {
+                                for (int j = 0; j < MaxCount2; j++)
+                                {
+                                    int DataIndex2 = UIItemCircularView_GetGridDataIndex(UIItemCircularView, j);
+                                    if (DataIndex2 == DataIndex) {
+                                        RealIndexReturn = j;
+                                    }
+                                }
+                            }
+
                             return i;
                         }
                     }

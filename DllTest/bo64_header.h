@@ -5,7 +5,7 @@ int AuthorisePass = 0;
 int EncryptKey[] = { 7, 4, 1, 8, 2 };
 int SpecialEncryptKey[] = { 4, 5, 7, 8, 1 };
 
-const char* PluginVer = "1.0.66";
+const char* PluginVer = "1.0.67";
 int IsDumpSo = 1;
 
 #define ENABLE_DEBUG 1
@@ -665,7 +665,7 @@ int MaxItemCount = 0;
 int NowItemCount = 0;
 
 int CallResult = 0;
-
+int RealIndexReturn = -1;
 int IsFollowPartyLeader = 0;
 
 
