@@ -4393,7 +4393,7 @@ void GetPlayerLVExp() { ////PlayerHero::SetLvExp(PlayerHero *this, __int16 a2, _
     if (GameInstance != 0) {
         __uint64_t PlayerHero = *(__uint64_t*)(GameInstance + AgentOffset); //result = PlayerHero::GetPlayerHeroDisplay(*(_QWORD *)(v6 + 104), &v42);
         if (PlayerHero != 0) {
-            CurrentLv = *(unsigned short*)(PlayerHero + 1280); //PlayerHero::SetLvExp(PlayerHero *this, __int16 a2, __int64 a3)
+            CurrentLv = *(unsigned short*)(PlayerHero + 1288); //PlayerHero::SetLvExp(PlayerHero *this, __int16 a2, __int64 a3)  PlayerHero::SetLevel
             MyMoney = *(__uint64_t*)(PlayerHero + 0 * 8 + MoneyOffSet * 8); //PlayerHero::GetMoney(PlayerHero *this, int a2)
             MyDiamond = *(__uint64_t*)(PlayerHero + 1*8 + MoneyOffSet * 8); //PlayerHero::GetMoney(PlayerHero *this, int a2) //Account::GetCurrency
 
