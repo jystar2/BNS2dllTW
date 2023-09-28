@@ -3759,7 +3759,11 @@ __uint64_t FoundUIByTree(char* TreeStr, int IsIgnoreHide)
 
     multi_tok_t s = init();
     int i;
-    const char* WidgetTreeStr = "[WidgetTree]";
+    const char* PreWidgetTreeStr = "[WidgetTree]";
+    char WidgetTreeStr[100];
+    memset(WidgetTreeStr, 0, 100);
+    strcpy(WidgetTreeStr, (char*)PreWidgetTreeStr);
+
     const char* BlurryStr = "<#>";
     const char* delims = "-->";
     char* TmpStr;
@@ -3797,6 +3801,13 @@ __uint64_t FoundUIByTree(char* TreeStr, int IsIgnoreHide)
 
 
     IsLastWidgetVisible = 0;
+
+    if (TreeStr) {
+        ToLowerCase(TreeStr);
+    }
+    if (WidgetTreeStr) {
+        ToLowerCase(WidgetTreeStr);
+    }
 
     TmpStr = multi_tok(TreeStr, &s, delims);  //split
     //DEBUG_PRINT( "[+]Find Root UI Panel is %s  \n", TmpStr);  
@@ -3884,7 +3895,14 @@ __uint64_t FoundUIByTree(char* TreeStr, int IsIgnoreHide)
                             if (IsPanelVisible > 0 || IsIgnoreHide == 1) {
 
                                 GetFNameStr(UIPanelName, (__uint64_t)(UIPanelAddr + 24)); //From UObject
-                            
+                                if (UIPanelName) {
+                                    ToLowerCase(UIPanelName);
+                                }
+                                if (TmpStr) {
+                                    ToLowerCase(TmpStr);
+                                }
+                                
+
                                 DEBUG_PRINT( "[+]TmpStr = %s UIPanelName = %s \n",TmpStr,UIPanelName);  
                          
                                 IsFoundPanel = 0;
@@ -3937,7 +3955,9 @@ __uint64_t FoundUIByTree(char* TreeStr, int IsIgnoreHide)
 
                                             DEBUG_PRINT("[+]IsSaveTreeNodeTxt = %d \n", IsSaveTreeNodeTxt);
 
-                                            
+                                            if (TmpStr) {
+                                                ToLowerCase(TmpStr);
+                                            }
 
                                            
                                             DEBUG_PRINT("[+]WidgetSearchPos = %d \n", WidgetSearchPos);
@@ -4026,11 +4046,22 @@ __uint64_t GetChildElementByName(__uint64_t ParentElement, char* ChildElementNam
 
     
     const char* BlurryStr = "<#>";
-    const char* WidgetTreeStr = "[WidgetTree]";
+    const char* PreWidgetTreeStr = "[WidgetTree]";
+    char WidgetTreeStr[100];
+    memset(WidgetTreeStr, 0, 100);
+    strcpy(WidgetTreeStr,(char*) PreWidgetTreeStr);
     char* BlurrySearchPos;
 
     char UObjectName[200];
     char UObjectTypeName[300];
+
+
+    if (ChildElementName) {
+        ToLowerCase(ChildElementName);
+    }
+    if (WidgetTreeStr) {
+        ToLowerCase(WidgetTreeStr);
+    }
 
     BlurrySearchPos = strstr(ChildElementName, WidgetTreeStr);
     if (BlurrySearchPos)
@@ -4078,7 +4109,9 @@ __uint64_t GetChildElementByName(__uint64_t ParentElement, char* ChildElementNam
                 if (UWidget_GetParent(TmpUObject) == ParentElement || IsWidgetTree == 1 || IsLastTreeNode == 1) {
 
                     GetFNameStr(UObjectName, (__uint64_t)(TmpUObject + 24));
-
+                    if (UObjectName) {
+                        ToLowerCase(UObjectName);
+                    }
 
                     DEBUG_PRINT("[+] 22UObjectName=%s ChildElementName=%s \n", UObjectName, ChildElementName);
 
@@ -4150,6 +4183,7 @@ __uint64_t GetChildElementByName(__uint64_t ParentElement, char* ChildElementNam
                     }
                     else {
                         GetFNameStr(UObjectTypeName, (__int64_t)(*(__int64_t*)(TmpUObject + 16) + 24));
+
                         if (strcmp(UObjectTypeName, "CircularView") == 0) {
                             DEBUG_PRINT("[+] UObjectName = %s UObjectTypeName = %s \n", UObjectName, UObjectTypeName);
 
@@ -4170,6 +4204,9 @@ __uint64_t GetChildElementByName(__uint64_t ParentElement, char* ChildElementNam
 
 
                                     GetFNameStr(UObjectName, (__uint64_t)(WidgetPtr + 24));  //From UObject    //參考UWidgetTree::FindWidget //Uobject真名地址 參考 UObjectBase::AddObject
+                                    if (UObjectName) {
+                                        ToLowerCase(UObjectName);
+                                    }
                                     IsFoundChild = 0;
 
                                     if (IsBlurrySearch == 0)

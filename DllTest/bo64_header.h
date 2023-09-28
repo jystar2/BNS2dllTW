@@ -5,7 +5,7 @@ int AuthorisePass = 0;
 int EncryptKey[] = { 7, 4, 1, 8, 2 };
 int SpecialEncryptKey[] = { 4, 5, 7, 8, 1 };
 
-const char* PluginVer = "1.0.70";
+const char* PluginVer = "1.0.71";
 int IsDumpSo = 1;
 
 #define ENABLE_DEBUG 1
@@ -925,4 +925,13 @@ void* rP(void* address, WRAP offset)
 
     }
     return 0;
+}
+
+void ToLowerCase(char* s)
+{
+    while (*s)
+    {
+        *s = tolower(*s);
+        s++;
+    }
 }
