@@ -5440,6 +5440,21 @@ void GetTargetInfor() //ULHWidget_Scene_SleepMode::UpdateHPMP
                         AttackerMaxMp = (int)(float)*(signed int*)(TmpMem.A + AgentMaxMpOffset);
 
 
+                        __uint64_t v183 = (*(__int64(__fastcall**)(__uint64_t))(*(__uint64_t*)TmpMem.A + 120LL))(TmpMem.A);  //電腦版是  -8    (128 -8)  //PlayerHeroDisplay::UpdateNamePlate(__int64 result) 
+                        char* v29;
+                        if (v183 != 0 && v183 != -1) {
+                            if (*(char*)v183 != 0) {
+                                v29 = (char*)v183;
+                                if ((__uint64_t)v29 != 0) {
+                                    if (strlen(v29) < 300) {
+                                       // strcpy(ActorName, v29);
+                                        strcpy(CurrentTargetName, v29);
+                                    }
+                                }
+                            }
+                        }
+
+                        /*
                         __uint64_t TmpAgentDisplay = PlayerHero__GetPlayerHeroDisplay(TmpMem.A);
                         if (TmpAgentDisplay != 0) {
                             __uint64_t ICharacter = *(__uint64_t*)(TmpAgentDisplay + ICharacterOffset);
@@ -5463,7 +5478,7 @@ void GetTargetInfor() //ULHWidget_Scene_SleepMode::UpdateHPMP
                                 }
                             }
                         }
-
+                        */
 
                         /*
                         GENERAL_PRINT("[+]F10 5 AttackerMp = %x  AttackerMaxMp= %x ", AttackerMp, AttackerMaxMp);
@@ -9478,6 +9493,7 @@ std::string ReadActorList() {
     char ActorName16[600];
 
     char GuildName[300];
+    char GuildName2[300];
     char GuildName16[600];
     
     
@@ -9751,7 +9767,9 @@ std::string ReadActorList() {
                                                 }
 
                                                 memset(GuildName, 0, 300);
+                                                memset(GuildName2, 0, 300);
                                                 std::string GuildNameStr = "";
+                                                std::string GuildName2Str = "";
                                                 std::string ActorNameStr = "";
                                                 std::string  ActorIDStr =  "";
                                                 std::string  AttackerIDStr = "";
@@ -9819,7 +9837,7 @@ std::string ReadActorList() {
                                                                     // Guild::setGuild
                                                                     //HeroDisplay::UpdateNamePlate  
                                                                    // Hero::SetGuild(Hero* this, const MsgObj::GuildBroadcast* a2)
-
+                                                                    /*
                                                                     __uint64_t ICharacter = *(__uint64_t*)(NPCDisplay + ICharacterOffset);
                                                                     if (ICharacter) {
                                                                         if (IsValidAddress(ICharacter + 12) == 1) {
@@ -9839,26 +9857,62 @@ std::string ReadActorList() {
                                                                             }
                                                                         }
                                                                     }
-                                                                   
+                                                                   */
                                                                     IsAttackMe = Agent_IsAttackPlayerHero(Agent);
-                                                                    /*
+                                                                  
+                                                               
                                                                     const char* v115;
-                                                                    __uint64_t  v114 = *(__uint64_t*)(Agent + MsgObj_HeroGuildOffset) & 0xFFFFFFFFFFFFFFFELL;
-                                                                    if (*(char*)v114 & 1) {
+                                                                    __uint64_t  v114 = rU64(Agent, 1200) & 0xFFFFFFFFFFFFFFFELL;
 
-                                                                        v115 = (const char*)rU64(v114 , 16);
-                                                                    }
-                                                                    else {
-                                                                        v115 = (const char*)(v114 + 1);
-                                                                    }
-                                                                    if ((__uint64_t)v115 != 0) {
-                                                                        if (strlen(v115) < 300) {
-                                                                            strcpy(GuildName, v115);
+                                                                    if (IsBadReadPtr((void*)v114, 8) == false)
+                                                                    {
+                                                                        if (rU64(v114, 24) >= 0x10ui64) {
+                                                                            v115 = (const char*)rU64(v114, 0);
+                                                                        }
+                                                                        else {
+                                                                            v115 = (const char*) v114;
+                                                                        }
+
+                                                                        if ((__uint64_t)v115 != 0) {
+                                                                            if (rU8((void*)v115, 0) != 0) {
+                                                                                //if (IsBadReadPtr((void*)v115, 1) == false)
+                                                                                //{
+                                                                                if (strlen(v115) < 300) {
+                                                                                    strcpy(GuildName, v115);
+                                                                                }
+
+                                                                                //}
+                                                                            }
                                                                         }
                                                                     }
-                                                                    */
                                                                    
-                                                                 
+
+
+                                                                    v114 = rU64(Agent, 1256) & 0xFFFFFFFFFFFFFFFELL;
+
+                                                                    if (IsBadReadPtr((void*)v114, 8) == false)
+                                                                    {
+                                                                        if (rU64(v114, 24) >= 0x10ui64) {
+                                                                            v115 = (const char*)rU64(v114, 0);
+                                                                        }
+                                                                        else {
+                                                                            v115 = (const char*)v114;
+                                                                        }
+
+                                                                        if ((__uint64_t)v115 != 0) {
+                                                                            if (rU8((void*)v115, 0) != 0) {
+                                                                                //if (IsBadReadPtr((void*)v115, 1) == false)
+                                                                                //{
+                                                                                if (strlen(v115) < 300) {
+                                                                                    strcpy(GuildName2, v115);
+                                                                                }
+
+                                                                                //}
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    
+                                  
                                                                     // }
                                                                // }
                                                             }
@@ -9878,7 +9932,7 @@ std::string ReadActorList() {
 
                                                     TmpChild["CanAtk"] = CanAttackInRange;
                                                     GuildNameStr = GuildName;
-                                                    
+                                                    GuildName2Str = GuildName2;
                                                     
                                                 }
                                                 else {
@@ -9903,6 +9957,8 @@ std::string ReadActorList() {
                                                 TmpChild["AttackerID"] = AttackerIDStr;
                                                 TmpChild["Name"] = ActorNameStr;
                                                 TmpChild["GuildName"] = GuildNameStr;
+                                                TmpChild["GuildName2"] = GuildName2Str;
+                                                
                                                 TmpChild["NowHP"] = ActorHp;
                                                 TmpChild["MaxHP"] = ActorMaxHp;
 
