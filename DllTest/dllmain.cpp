@@ -9862,7 +9862,7 @@ std::string ReadActorList() {
                                                                   
                                                                
                                                                     const char* v115;
-                                                                    __uint64_t  v114 = rU64(Agent, 1200) & 0xFFFFFFFFFFFFFFFELL;
+                                                                    __uint64_t  v114 = rU64(Agent, GuildTextOffset1) & 0xFFFFFFFFFFFFFFFELL;
 
                                                                     if (IsBadReadPtr((void*)v114, 8) == false)
                                                                     {
@@ -9888,7 +9888,7 @@ std::string ReadActorList() {
                                                                    
 
 
-                                                                    v114 = rU64(Agent, 1256) & 0xFFFFFFFFFFFFFFFELL;
+                                                                    v114 = rU64(Agent, GuildTextOffset2) & 0xFFFFFFFFFFFFFFFELL;
 
                                                                     if (IsBadReadPtr((void*)v114, 8) == false)
                                                                     {
@@ -10075,7 +10075,7 @@ void SetNoAttackList() {
                                     if (v24 != 0 && v6 != 0) {// && ISNpc == 1
                                             //__uint64_t v4 = *(__uint64_t*)(Agent + Npc2nameOffset);  // Npc::GetRecordName@<GameRecord2::Npc2::name((GameRecord2::Npc2 *)(result + 744));
                                         __uint64_t GameRecord2_Npc2 = rU64(v24, Npc2nameOffset);
-                                        DEBUG_PRINT("[+] IsDead  = %d  ", IsDead);
+                                       // DEBUG_PRINT("[+] IsDead  = %d  ", IsDead);
                                         if (GameRecord2_Npc2 != 0) {
                                             __uint64_t Npc2id = rU64(GameRecord2_Npc2, 0);
                                             

@@ -5,7 +5,7 @@ int AuthorisePass = 0;
 int EncryptKey[] = { 7, 4, 1, 8, 2 };
 int SpecialEncryptKey[] = { 4, 5, 7, 8, 1 };
 
-const char* PluginVer = "1.0.72";
+const char* PluginVer = "1.0.75";
 int IsDumpSo = 1;
 
 #define ENABLE_DEBUG 1
