@@ -2122,8 +2122,13 @@ __uint64_t GetGameUI()
 
 __uint64_t UWidget_IsVisible(__uint64_t a){
    
-
-    return UWidget_GetVisibility(a);
+    if (a == 0) {
+        return 0;
+    }
+    else {
+        return UWidget_GetVisibility(a);
+    }
+ 
 
     /*
     if (UWidget_GetVisibility(a) == 0) {
@@ -3662,7 +3667,7 @@ int GetUIPanelList(__uint64_t UIMangerPtr) { // ALHHUD::GetWidgetData
 
                                 char UIPanelName[500];
                                 GetFNameStr(UIPanelName, (__uint64_t)(UiElement[j].Pointer + 24)); //From UObject
-                                //GENERAL_PRINT("[+]GameUI_GetPanelByName UIPanelName = %s \n", UIPanelName);
+                                GENERAL_PRINT("[+]GameUI_GetPanelByName UIPanelName = %s \n", UIPanelName);
 
                                 Count = Count + 1;
                             }
@@ -3883,6 +3888,7 @@ __uint64_t FoundUIByTree(char* TreeStr, int IsIgnoreHide)
                                 IsPanelVisible = UUserWidget_GetIsVisible(UIPanelAddr); //
                                 if (IsPanelVisible == 1) {
                                     ChildElement = UTSWidgetPanel_GetWidgetTree(UIPanelAddr);
+
                                     if (UWidget_IsVisible(ChildElement) == 0) {
                                         IsPanelVisible = 0;
                                     }
@@ -4430,7 +4436,7 @@ void GetPlayerLVExp() { ////PlayerHero::SetLvExp(PlayerHero *this, __int16 a2, _
     if (GameInstance != 0) {
         __uint64_t PlayerHero = *(__uint64_t*)(GameInstance + AgentOffset); //result = PlayerHero::GetPlayerHeroDisplay(*(_QWORD *)(v6 + 104), &v42);
         if (PlayerHero != 0) {
-            CurrentLv = *(unsigned short*)(PlayerHero + 1288); //PlayerHero::SetLvExp(PlayerHero *this, __int16 a2, __int64 a3)  PlayerHero::SetLevel
+            CurrentLv = *(unsigned short*)(PlayerHero + 1312); //PlayerHero::SetLvExp(PlayerHero *this, __int16 a2, __int64 a3)  PlayerHero::SetLevel
             MyMoney = *(__uint64_t*)(PlayerHero + 0 * 8 + MoneyOffSet * 8); //PlayerHero::GetMoney(PlayerHero *this, int a2)
             MyDiamond = *(__uint64_t*)(PlayerHero + 1*8 + MoneyOffSet * 8); //PlayerHero::GetMoney(PlayerHero *this, int a2) //Account::GetCurrency
 
@@ -4546,7 +4552,7 @@ void GetIsMoving() { //FNkStallManager::_ProcessStallStayPrevState
 
                 __int64_t UIActionMenuPanel6 = 0;
                 //UIActionMenuPanel6 = GameUI_GetPanel(UIActionMenuPanel6Type); //UIActionMenuPanel6::GetPanelType()
-                UIActionMenuPanel6 = GameUI_GetPanelByName(UIActionMenuPanel6Name); //UIActionMenuPanel6::GetPanelType()
+                UIActionMenuPanel6 = GameUI_GetPanelByName(SignatureSkillPadMobileName);//UIActionMenuPanel6Name  //UIActionMenuPanel6::GetPanelType()
                 if (UIActionMenuPanel6 != 0) {
                     IsShowActionButton = *(char*)(UIActionMenuPanel6 + ShowActionButtonOffset);
                  }
@@ -6184,7 +6190,7 @@ void FakeCallGameFunction()
                     struct FMemeryType TmpMem;
                     InitFMem(&TmpMem);
                     int index = GetBagItemFNameID(BagItem[FakePara1].InstanceId);
-
+                    GENERAL_PRINT("[+] index: %d  \n", index);
                     //TmpMem.A = FNameID;
                     if (index > -1) {
                         __int64_t UIInventoryPanel = 0;
@@ -7935,7 +7941,9 @@ Json::Value DumpAllUI(Json::Value Root) {
 
                         IsPanelVisible = 0; //
                         if (IsUUserWidget(UIPanelAddr)) {
+                            //DEBUG_PRINT("[+]IsUUserWidget \n");
                             IsPanelVisible = UUserWidget_GetIsVisible(UIPanelAddr); //
+                            //DEBUG_PRINT("[+]IsPanelVisible = %ld \n", IsPanelVisible);
                             if (IsPanelVisible == 1) {
                                 ChildElement = UTSWidgetPanel_GetWidgetTree(UIPanelAddr);
                                 if (UWidget_IsVisible(ChildElement) == 0) {
@@ -7944,7 +7952,7 @@ Json::Value DumpAllUI(Json::Value Root) {
                             }
                             
                         }
-                      //  DEBUG_PRINT("[+]IsPanelVisible = %ld \n", IsPanelVisible);
+                        DEBUG_PRINT("[+]2IsPanelVisible = %ld \n", IsPanelVisible);
                         struct FMemeryType TmpMem;
                         InitFMem(&TmpMem);
                         char UObjectPathName[1000];
@@ -8619,57 +8627,60 @@ int GetBagItemFNameID(__uint64_t InstanceId) //UIInventoryPanel2::OnClickItemSlo
     RealIndexReturn = -1;
     __int64_t UIInventoryPanel = 0;
     //UIInventoryPanel = GameUI_GetPanel(UIInventoryPanelID); 
+    GENERAL_PRINT("[+] GetBagItemFNameID: \n");
     UIInventoryPanel = GameUI_GetPanelByName(UIInventoryPanelName);
-
+    DEBUG_PRINT("[+] UIInventoryPanel=%llx", UIInventoryPanel);
    // char UIPanelName[500];
    // GetFNameStr(UIPanelName, (__uint64_t)(UIInventoryPanel + 24)); //From UObject
     //DEBUG_PRINT("[+] UIPanelName=%s", UIPanelName);
+    if (UIInventoryPanel != 0) {
+        __int64_t UIItemCircularView = (UIInventoryPanel + UIItemCircularViewOffset);
+        if (UIItemCircularView) {
 
-    __int64_t UIItemCircularView = (UIInventoryPanel + UIItemCircularViewOffset);
-    if (UIItemCircularView) {
+            __int64_t StartAddress = rU64(UIInventoryPanel, UIInventoryPanelStartAddressOffset); //v47   v47 = *((_QWORD *)this + 355);
+            int v56 = (int)*(char*)(UIInventoryPanel + UIInventoryPanelTabIndexOffset);  //v46 = *((char *)this + 2817);      v46 = *((char *)this + 2817);
+            DEBUG_PRINT("[+] v56=%d", v56);
+            DEBUG_PRINT("[+] StartAddress=%llx", StartAddress);
+            int MaxCount = rU32(rU64(StartAddress, 32 * v56), 8);
+            // int MaxCount = *(int*)(UIItemCircularView + 24); //UIItemCircularView::GetUIItemSlot
+            DEBUG_PRINT("[+] MaxCount=%llx", MaxCount);
+            if (MaxCount > 0) {
+                for (int i = 0; i < MaxCount; i++)
+                {
+                    int DataIndex = i;//  UIItemCircularView_GetGridDataIndex(UIItemCircularView, i);//
+                    DEBUG_PRINT("[+] DataIndex=%llx", DataIndex);
+                    if (DataIndex > -1) {
+                        //if (DataIndex < *(int*)(*(__int64_t*)(StartAddress + 32 * v56) + 8)) {
+                        if (DataIndex < MaxCount) {
+                            __int64_t TmpInstanceId = *(__int64_t*)(*(__int64_t*)(StartAddress + 32 * v56) + 8LL * DataIndex);  //result = Bag2::GetItemByInstanceId((Bag2 *)v33, *(_QWORD *)(*(_QWORD *)(v47 + 32 * v46) + 8LL * (int)result));
+                            if (TmpInstanceId == InstanceId) {
 
-        __int64_t StartAddress = rU64(UIInventoryPanel ,UIInventoryPanelStartAddressOffset); //v47   v47 = *((_QWORD *)this + 355);
-        int v56 = (int)*(char*)(UIInventoryPanel + UIInventoryPanelTabIndexOffset);  //v46 = *((char *)this + 2817);      v46 = *((char *)this + 2817);
-        DEBUG_PRINT("[+] v56=%d", v56);
-        DEBUG_PRINT("[+] StartAddress=%llx", StartAddress);
-        int MaxCount = rU32(rU64(StartAddress , 32 * v56), 8);
-       // int MaxCount = *(int*)(UIItemCircularView + 24); //UIItemCircularView::GetUIItemSlot
-        DEBUG_PRINT("[+] MaxCount=%llx", MaxCount);
-        if (MaxCount > 0) {
-            for (int i = 0; i < MaxCount; i++)
-            {
-                int DataIndex = i;//  UIItemCircularView_GetGridDataIndex(UIItemCircularView, i);//
-                DEBUG_PRINT("[+] DataIndex=%llx", DataIndex);
-                if (DataIndex > -1) {
-                    //if (DataIndex < *(int*)(*(__int64_t*)(StartAddress + 32 * v56) + 8)) {
-                    if (DataIndex < MaxCount) {
-                        __int64_t TmpInstanceId = *(__int64_t*)(*(__int64_t*)(StartAddress + 32 * v56) + 8LL * DataIndex);  //result = Bag2::GetItemByInstanceId((Bag2 *)v33, *(_QWORD *)(*(_QWORD *)(v47 + 32 * v46) + 8LL * (int)result));
-                        if (TmpInstanceId == InstanceId) {
-
-                            int MaxCount2 = *(int*)(UIItemCircularView + 24); //UIItemCircularView::GetUIItemSlot
-                            DEBUG_PRINT("[+] MaxCount2=%llx", MaxCount2);
-                            if (MaxCount2 > 0) {
-                                for (int j = 0; j < MaxCount2; j++)
-                                {
-                                    int DataIndex2 = UIItemCircularView_GetGridDataIndex(UIItemCircularView, j);
-                                    if (DataIndex2 == DataIndex) {
-                                        RealIndexReturn = j;
+                                int MaxCount2 = *(int*)(UIItemCircularView + 24); //UIItemCircularView::GetUIItemSlot
+                                DEBUG_PRINT("[+] MaxCount2=%llx", MaxCount2);
+                                if (MaxCount2 > 0) {
+                                    for (int j = 0; j < MaxCount2; j++)
+                                    {
+                                        int DataIndex2 = UIItemCircularView_GetGridDataIndex(UIItemCircularView, j);
+                                        if (DataIndex2 == DataIndex) {
+                                            RealIndexReturn = j;
+                                        }
                                     }
                                 }
+
+
+                                return i;
                             }
-
-
-                            return i;
                         }
+
                     }
-                   
+
+
                 }
-
-
             }
         }
+
     }
- 
+    
 
     return -1;
 
@@ -8681,58 +8692,60 @@ int GetSellBagItemFNameID(__uint64_t InstanceId) //UIInventoryPanel2::OnClickIte
     __int64_t UICitizenShopPanel2 = 0;
     UICitizenShopPanel2 = GameUI_GetPanelByName(ShopPanel2Name);
     //UICitizenShopPanel2 = GameUI_GetPanel(59);
-
+    DEBUG_PRINT("[+] UICitizenShopPanel2=%llx", UICitizenShopPanel2);
     // char UIPanelName[500];
     // GetFNameStr(UIPanelName, (__uint64_t)(UIInventoryPanel + 24)); //From UObject
      //DEBUG_PRINT("[+] UIPanelName=%s", UIPanelName);
+    if (UICitizenShopPanel2 != 0) {
+        __int64_t UIItemCircularView = (UICitizenShopPanel2 + UISellItemCircularViewOffset);
+        if (UIItemCircularView) {
+            int v56 = (int)*(char*)(UICitizenShopPanel2 + UISellInventoryPanelTabIndexOffset);  //v46 = *((char *)this + 2817);      v46 = *((char *)this + 2817);
+            DEBUG_PRINT("[+] v56=%d", v56);
+            __int64_t StartAddress = *(__int64_t*)(UICitizenShopPanel2 + UISellInventoryPanelStartAddressOffset); //v47   v47 = *((_QWORD *)this + 355);
 
-    __int64_t UIItemCircularView = (UICitizenShopPanel2 + UISellItemCircularViewOffset);
-    if (UIItemCircularView) {
-        int v56 = (int)*(char*)(UICitizenShopPanel2 + UISellInventoryPanelTabIndexOffset);  //v46 = *((char *)this + 2817);      v46 = *((char *)this + 2817);
-        DEBUG_PRINT("[+] v56=%d", v56);
-        __int64_t StartAddress = *(__int64_t*)(UICitizenShopPanel2 + UISellInventoryPanelStartAddressOffset); //v47   v47 = *((_QWORD *)this + 355);
+            DEBUG_PRINT("[+] v56=%d", v56);
+            DEBUG_PRINT("[+] StartAddress=%llx", StartAddress);
+            int MaxCount = rU32(rU64(StartAddress, 32 * v56), 8);
+            // int MaxCount = *(int*)(UIItemCircularView + 24); //UIItemCircularView::GetUIItemSlot
+            DEBUG_PRINT("[+] MaxCount=%llx", MaxCount);
+            if (MaxCount > 0) {
+                for (int i = 0; i < MaxCount; i++)
+                {
+                    int DataIndex = i;//  UIItemCircularView_GetGridDataIndex(UIItemCircularView, i);//
+                    DEBUG_PRINT("[+] DataIndex=%llx", DataIndex);
+                    if (DataIndex > -1) {
 
-        DEBUG_PRINT("[+] v56=%d", v56);
-        DEBUG_PRINT("[+] StartAddress=%llx", StartAddress);
-        int MaxCount = rU32(rU64(StartAddress, 32 * v56), 8);
-       // int MaxCount = *(int*)(UIItemCircularView + 24); //UIItemCircularView::GetUIItemSlot
-        DEBUG_PRINT("[+] MaxCount=%llx", MaxCount);
-        if (MaxCount > 0) {
-            for (int i = 0; i < MaxCount; i++)
-            {
-                int DataIndex = i;//  UIItemCircularView_GetGridDataIndex(UIItemCircularView, i);//
-                DEBUG_PRINT("[+] DataIndex=%llx", DataIndex);
-                if (DataIndex > -1) {
 
-                  
-                    DEBUG_PRINT("[+] StartAddress=%llx", StartAddress);
-                    if (DataIndex < *(int*)(*(__int64_t*)(StartAddress + 32 * v56) + 8)) {
-                        __int64_t TmpInstanceId = *(__int64_t*)(*(__int64_t*)(StartAddress + 32 * v56) + 8LL * DataIndex);  //result = Bag2::GetItemByInstanceId((Bag2 *)v33, *(_QWORD *)(*(_QWORD *)(v47 + 32 * v46) + 8LL * (int)result));
-                        if (TmpInstanceId == InstanceId) {
+                        DEBUG_PRINT("[+] StartAddress=%llx", StartAddress);
+                        if (DataIndex < *(int*)(*(__int64_t*)(StartAddress + 32 * v56) + 8)) {
+                            __int64_t TmpInstanceId = *(__int64_t*)(*(__int64_t*)(StartAddress + 32 * v56) + 8LL * DataIndex);  //result = Bag2::GetItemByInstanceId((Bag2 *)v33, *(_QWORD *)(*(_QWORD *)(v47 + 32 * v46) + 8LL * (int)result));
+                            if (TmpInstanceId == InstanceId) {
 
-                            int MaxCount2 = *(int*)(UIItemCircularView + 24); //UIItemCircularView::GetUIItemSlot
-                            GENERAL_PRINT("[+] MaxCount2=%llx", MaxCount2);
-                            if (MaxCount2 > 0) {
-                                for (int j = 0; j < MaxCount2; j++)
-                                {
-                                    int DataIndex2 = UIItemCircularView_GetGridDataIndex(UIItemCircularView, j);
-                                    if (DataIndex2 == DataIndex) {
-                                        RealIndexReturn = j;
+                                int MaxCount2 = *(int*)(UIItemCircularView + 24); //UIItemCircularView::GetUIItemSlot
+                                GENERAL_PRINT("[+] MaxCount2=%llx", MaxCount2);
+                                if (MaxCount2 > 0) {
+                                    for (int j = 0; j < MaxCount2; j++)
+                                    {
+                                        int DataIndex2 = UIItemCircularView_GetGridDataIndex(UIItemCircularView, j);
+                                        if (DataIndex2 == DataIndex) {
+                                            RealIndexReturn = j;
+                                        }
                                     }
                                 }
-                            }
 
-                            return i;
+                                return i;
+                            }
                         }
+
                     }
 
+
                 }
-
-
             }
         }
-    }
 
+    }
+    
 
     return -1;
 
@@ -9187,7 +9200,7 @@ void ReadBagItem()
 
                                 }
                             }
-
+                            DEBUG_PRINT("[+]  TmpCastItem = %lx ", TmpCastItem);
                             
                             TmpCastItem = Item2__CastGroceryItem(Item2Ptr, Item2Ptr);
                             if (TmpCastItem != 0) {
@@ -9202,7 +9215,7 @@ void ReadBagItem()
                                 BagItem[i].isDeCompsable = Dress2_IsDisassemble(TmpCastItem);
                             }
 
-   
+                            DEBUG_PRINT("[+]  2TmpCastItem = %lx ", TmpCastItem);
                  
 
 
