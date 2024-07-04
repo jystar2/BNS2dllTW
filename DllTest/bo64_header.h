@@ -5,7 +5,7 @@ int AuthorisePass = 0;
 int EncryptKey[] = { 7, 4, 1, 8, 2 };
 int SpecialEncryptKey[] = { 4, 5, 7, 8, 1 };
 
-const char* PluginVer = "1.0.90";
+const char* PluginVer = "1.0.97";
 int IsDumpSo = 1;
 
 #define ENABLE_DEBUG 1
@@ -190,7 +190,7 @@ __uint64_t(*GetFB2ScalabilityController) ();
 __uint64_t(*Game_UnlockTarget) (__uint64_t);
 
 
-__uint64_t(*SkillContext6_CheckCanHitTargetByAutoEy) (__uint64_t, __uint64_t);
+__uint64_t(*SkillContext6_CheckCanHitTargetByAutoEy) (__uint64_t, __uint64_t, char);
 __uint64_t(*Game_AutoPlayAttackTarget) (__uint64_t, __uint64_t, char, char);
 __uint64_t(*Game_SetPickedAgentId) (__uint64_t, char, char);
 __uint64_t(*AutoPlay2_SingleCombat) (__uint64_t);
@@ -669,31 +669,31 @@ int RealIndexReturn = -1;
 int IsFollowPartyLeader = 0;
 
 
-__int64_t MyMoney = 0;
-__int64_t MyDiamond = 0;
+__uint64_t MyMoney = 0;
+__uint64_t MyDiamond = 0;
 
-__int64_t MyOtherMoney2 = 0;
-__int64_t MyOtherMoney3 = 0;
-__int64_t MyOtherMoney4 = 0;
-__int64_t MyOtherMoney5 = 0;
-__int64_t MyOtherMoney6 = 0;
-__int64_t MyOtherMoney7 = 0;
-__int64_t MyOtherMoney8 = 0;
-__int64_t MyOtherMoney9 = 0;
-__int64_t MyOtherMoney10 = 0;
-__int64_t MyOtherMoney11 = 0;
-__int64_t MyOtherMoney12 = 0;
-__int64_t MyOtherMoney13 = 0;
-__int64_t MyOtherMoney14 = 0;
-__int64_t MyOtherMoney15 = 0;
-__int64_t MyOtherMoney16 = 0;
-__int64_t MyOtherMoney17 = 0;
-__int64_t MyOtherMoney18 = 0;
-__int64_t MyOtherMoney19 = 0;
-__int64_t MyOtherMoney20 = 0;
-__int64_t MyOtherMoney21 = 0;
-__int64_t MyOtherMoney22 = 0;
-__int64_t MyOtherMoney23 = 0;
+__uint64_t MyOtherMoney2 = 0;
+__uint64_t MyOtherMoney3 = 0;
+__uint64_t MyOtherMoney4 = 0;
+__uint64_t MyOtherMoney5 = 0;
+__uint64_t MyOtherMoney6 = 0;
+__uint64_t MyOtherMoney7 = 0;
+__uint64_t MyOtherMoney8 = 0;
+__uint64_t MyOtherMoney9 = 0;
+__uint64_t MyOtherMoney10 = 0;
+__uint64_t MyOtherMoney11 = 0;
+__uint64_t MyOtherMoney12 = 0;
+__uint64_t MyOtherMoney13 = 0;
+__uint64_t MyOtherMoney14 = 0;
+__uint64_t MyOtherMoney15 = 0;
+__uint64_t MyOtherMoney16 = 0;
+__uint64_t MyOtherMoney17 = 0;
+__uint64_t MyOtherMoney18 = 0;
+__uint64_t MyOtherMoney19 = 0;
+__uint64_t MyOtherMoney20 = 0;
+__uint64_t MyOtherMoney21 = 0;
+__uint64_t MyOtherMoney22 = 0;
+__uint64_t MyOtherMoney23 = 0;
 
 int RecordCursorX = 0;
 int RecordCursorY = 0;

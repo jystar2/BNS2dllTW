@@ -748,7 +748,7 @@ void HandleRecv(SOCKET clientSocket, std::string TmpStr)
                     AttackerPlayerIDStr = ObjAddress;
 
                     // DEBUG_PRINT("[+] getMyHp Result = %f/%f", MyHp,MyMaxHp);
-                    snprintf(buf, sizeof(buf), "{\"Lv\":%d,\"EXP\":%f,\"MaxEXP\":%f,\"hp\":%d,\"maxhp\":%d,\"mp\":%d,\"maxmp\":%d,\"name\":\"%s\",\"ServerName\":\"%s\",\"MoveState\":%d,\"gold\":%ld,\"Diamond\":%ld,\"IsAuto\":%d,\"IsFollowLeader\":%d,\"PlayState\":%d,\"IsFight\":%d,\"IsActionBtn\":%d,\"IsPK\":%d,\"AttackerID\":\"%s\",\"Atkname\":\"%s\",\"NowBagCount\":%d,\"MaxBagCount\":%d,\"Money2\":%ld,\"Money3\":%ld,\"Money4\":%ld,\"Money5\":%ld,\"Money6\":%ld,\"Money7\":%ld,\"Money8\":%ld,\"Money9\":%ld,\"Money10\":%ld,\"Money11\":%ld,\"Money12\":%ld,\"Money13\":%ld,\"Money14\":%ld,\"Money15\":%ld,\"Money16\":%ld,\"Money17\":%ld,\"Money18\":%ld,\"Money19\":%ld,\"Money20\":%ld,\"Money21\":%ld,\"Money22\":%ld,\"Money23\":%ld}"
+                    snprintf(buf, sizeof(buf), "{\"Lv\":%d,\"EXP\":%f,\"MaxEXP\":%f,\"hp\":%d,\"maxhp\":%d,\"mp\":%d,\"maxmp\":%d,\"name\":\"%s\",\"ServerName\":\"%s\",\"MoveState\":%d,\"gold\":%lld,\"Diamond\":%lld,\"IsAuto\":%d,\"IsFollowLeader\":%d,\"PlayState\":%d,\"IsFight\":%d,\"IsActionBtn\":%d,\"IsPK\":%d,\"AttackerID\":\"%s\",\"Atkname\":\"%s\",\"NowBagCount\":%d,\"MaxBagCount\":%d,\"Money2\":%lld,\"Money3\":%lld,\"Money4\":%lld,\"Money5\":%lld,\"Money6\":%lld,\"Money7\":%lld,\"Money8\":%lld,\"Money9\":%lld,\"Money10\":%lld,\"Money11\":%lld,\"Money12\":%lld,\"Money13\":%lld,\"Money14\":%lld,\"Money15\":%lld,\"Money16\":%lld,\"Money17\":%lld,\"Money18\":%lld,\"Money19\":%lld,\"Money20\":%lld,\"Money21\":%lld,\"Money22\":%lld,\"Money23\":%lld}"
                         , CurrentLv, CurrentExp, MaximumExp, MyHp, MyMaxHp, MyMp, MyMaxMp, CurrentPlayerName, CurrentServerName, IsMoving, MyMoney, MyDiamond, isAutoBattle, IsFollowPartyLeader, AutoPlayState, IsFighting, IsShowActionButton, IsPK, AttackerPlayerIDStr, PKTargetName, NowItemCount, MaxItemCount
                         , MyOtherMoney2, MyOtherMoney3, MyOtherMoney4, MyOtherMoney5, MyOtherMoney6, MyOtherMoney7, MyOtherMoney8, MyOtherMoney9, MyOtherMoney10, MyOtherMoney11, MyOtherMoney12, MyOtherMoney13, MyOtherMoney14, MyOtherMoney15, MyOtherMoney16, MyOtherMoney17, MyOtherMoney18, MyOtherMoney19, MyOtherMoney20, MyOtherMoney21, MyOtherMoney22, MyOtherMoney23);
                     ReturnStr = buf;
@@ -2677,19 +2677,19 @@ bool __fastcall EquipCollection__IsCompleted(__int64 a1)
     int v6; // eax
     __int64* v7; // rcx
 
-    if (!*(__int64*)(a1 + 16))
+    if (!*(__int64*)(a1 + 24))
         return 0;
-    v2 = *(int**)(a1 + 24);
+    v2 = *(int**)(a1 + 32);
     v3 = 0;
     v4 = 0;
-    for (i = (signed __int64)&v2[2 * *(signed int*)(a1 + 32)]; v2 != (int*)i; v4 = v6)
+    for (i = (signed __int64)&v2[2 * *(signed int*)(a1 + 40)]; v2 != (int*)i; v4 = v6)
     {
         v6 = v4 + 1;
         if (!*v2)
             v6 = v4;
         v2 += 2;
     }
-    v7 = (__int64*)*(__int64*)(GameRecord2_EquipCollection_equipCollectionConditionInfos((__int64_t)(a1 + 16)) + 8);
+    v7 = (__int64*)*(__int64*)(GameRecord2_EquipCollection_equipCollectionConditionInfos((__int64_t)(a1 + 24)) + 8);
     if (v7)
         v3 = (v7[1] - *v7) >> 3;
     return v4 == (int)v3;
@@ -3299,7 +3299,7 @@ std::string GetMapIconList() {
     int NowCount = 0;
     __int64_t GameInstance = GetGameInstanceE();
     if (GameInstance != 0) {
-        ReadValidAddress();
+       // ReadValidAddress();
         if (GameInstance != 0) {
             __int64_t UI3DMapPanel = 0;
             __int64_t UI3DWorldMap = 0;
@@ -3350,8 +3350,10 @@ std::string GetMapIconList() {
 
 
                                                             //GENERAL_PRINT("[+] *(int64*)GameRecord2_MapIconObjectPtr =%llx   \n", *(int64*)GameRecord2_MapIconObjectPtr);
-                                                            if (IsValidAddress(GameRecord2_MapIconObjectPtr) == 1) {
-                                                                if (IsValidAddress(*(int64*)GameRecord2_MapIconObjectPtr + 4) == 1) {
+                                                            //if (IsValidAddress(GameRecord2_MapIconObjectPtr) == 1) {
+                                                            if (IsBadReadPtr((void*)GameRecord2_MapIconObjectPtr, 4) == false) {
+                                                                if (IsBadReadPtr((void*)(GameRecord2_MapIconObjectPtr + 4), 4) == false) {
+                                                                //if (IsValidAddress(*(int64*)GameRecord2_MapIconObjectPtr + 4) == 1) {
 
                                                                     memset(MapIconName, 0, 500);
                                                                     memset(MapIconobjectText, 0, 500);
@@ -3364,7 +3366,8 @@ std::string GetMapIconList() {
                                                                     int index = v25;
 
                                                                   //  GENERAL_PRINT("[+]IsValidAddress  =%d   \n", IsValidAddress(*(int64*)GameRecord2_MapIconObjectPtr + 16));
-                                                                    if (IsValidAddress(*(int64*)GameRecord2_MapIconObjectPtr + 16) == 1) {
+                                                                    //if (IsValidAddress(*(int64*)GameRecord2_MapIconObjectPtr + 16) == 1) {
+                                                                    if (IsBadReadPtr((void*)(GameRecord2_MapIconObjectPtr + 16), 8) == false) {
                                                                         if (*(int64*)(*(int64*)GameRecord2_MapIconObjectPtr + 16) != 0) {
                                                                             char* nameAlias = (char*)*(int64*)(*(int64*)GameRecord2_MapIconObjectPtr + 16); //GameRecord2::MapIconObject::nameAlias
 
@@ -3667,7 +3670,7 @@ int GetUIPanelList(__uint64_t UIMangerPtr) { // ALHHUD::GetWidgetData
 
                                 char UIPanelName[500];
                                 GetFNameStr(UIPanelName, (__uint64_t)(UiElement[j].Pointer + 24)); //From UObject
-                                GENERAL_PRINT("[+]GameUI_GetPanelByName UIPanelName = %s \n", UIPanelName);
+                                //GENERAL_PRINT("[+]GameUI_GetPanelByName UIPanelName = %s \n", UIPanelName);
 
                                 Count = Count + 1;
                             }
@@ -6763,7 +6766,7 @@ void FakeCallGameFunction()
                     if (SkillContext6Ptr != 0) {
                         __uint64_t AutoPlay2 = *(__int64_t*)(GameInstance + Game_IsAutoPlay_Offset1);
                         if (AutoPlay2) {
-                            int CanAttackInRange = SkillContext6_CheckCanHitTargetByAutoEy(SkillContext6Ptr, TmpPtr);
+                            int CanAttackInRange = SkillContext6_CheckCanHitTargetByAutoEy(SkillContext6Ptr, TmpPtr,0);
                             if (CanAttackInRange) {
                                 int IsDead = 0;
 
@@ -9534,7 +9537,7 @@ std::string ReadActorList() {
         if (MaxCount > 0) {
             DEBUG_PRINT("[+]MaxCount=%d\n", MaxCount);
 
-            ReadValidAddress();
+           // ReadValidAddress();
 
             for (int i = 0; i <= MaxCount; i++)
             {
@@ -9578,7 +9581,8 @@ std::string ReadActorList() {
                                 if (NPCDisplay != 0) {
                                     try
                                     {
-                                        if (IsValidAddress(Agent + MaxHpOffset) == 1) {
+                                        if (IsBadReadPtr((void*)(Agent + MaxHpOffset), 4 ) == false) {
+                                        //if (IsValidAddress(Agent + MaxHpOffset) == 1) {
                                             int v9 = *(int*)(Agent + NowHpOffset);
                                             ActorHp = (int)(float)(v9 & ~(v9 >> 31)); //AgentDisplay::UpdateBar(AgentDisplay *this)  //ICharacter::SetProgressBarPercentage
                                             ActorMaxHp = (int)(float)*(signed int*)(Agent + MaxHpOffset);
@@ -9627,13 +9631,13 @@ std::string ReadActorList() {
                                                             ISNpc = 1;
 
 
-                                                            __uint64_t IsVisiblePtr = (*(__uint64_t*)(Agent + PlayerHeroDisplayOffset) + NpcIsVisibleOffset); // Npc::IsVisible(Npc *this)
+                                                            __uint64_t IsVisiblePtr = (rU64(Agent , PlayerHeroDisplayOffset) + NpcIsVisibleOffset); // Npc::IsVisible(Npc *this)
                                                             if (rU8((void*)IsVisiblePtr,0) == 1) {
 
                                                                            
                                                                 type = rU8((void*)GameRecord2_Npc2, NpcGradeOffset); //GameRecord2::Npc2::grade(GameRecord2::Npc2 *this)
 
-                                                                DEBUG_PRINT("[+] type  = %d  ", type);
+                                                               // DEBUG_PRINT("[+] type  = %d  ", type);
 
                                                                 if (type > 0 && type < 10) {
 
@@ -9644,12 +9648,13 @@ std::string ReadActorList() {
                                                                         DEBUG_PRINT("[+] v29  2= %llx  ", v29);
                                                                         if ((__uint64_t)v29 != 0) {
 
-                                                                            if (IsValidAddress(Agent + NpcGetRecordNameOffset + 8) == 1) {  //Npc::GetRecordName
+                                                                            //if (IsValidAddress(Agent + NpcGetRecordNameOffset + 8) == 1) {  //Npc::GetRecordName
+                                                                            if (IsBadReadPtr((void*)(Agent + NpcGetRecordNameOffset + 8),8 ) == false) {
                                                                                 Npc_GetRecordName(Agent, (__uint64_t)&TmpMem.A);
 
                                                                                 __uint64_t v29 = *(__uint64_t*)(Agent + NpcGetRecordNameOffset);
                                                                                 __uint64_t v22 = *(__uint64_t*)(Agent + NpcGetRecordNameOffset + 8);
-                                                                                DEBUG_PRINT("[+] v22  2= %llx  ", v22);
+                                                                               // DEBUG_PRINT("[+] v22  2= %llx  ", v22);
                                                                                 if ((__uint64_t)v29 != 0 && (__uint64_t)TmpMem.A != 0) {
                                                                                     __uint64_t v29 = *(__uint64_t*)(TmpMem.A);
                                                                                     if ((__uint64_t)v29 != 0) {
@@ -9664,7 +9669,7 @@ std::string ReadActorList() {
                                                                                 if (SkillContext6Ptr != 0) {
                                                                                     __uint64_t AutoPlay2 = *(__int64_t*)(GameInstance + Game_IsAutoPlay_Offset1);
                                                                                     if (AutoPlay2) {
-                                                                                        CanAttackInRange = SkillContext6_CheckCanHitTargetByAutoEy(SkillContext6Ptr, AgentID);
+                                                                                        CanAttackInRange = SkillContext6_CheckCanHitTargetByAutoEy(SkillContext6Ptr, AgentID,0);
 
                                                                                     }
                                                                                 }
@@ -9684,99 +9689,7 @@ std::string ReadActorList() {
                                                         }
                                                     }
                                             
-                                                    /*
-                                                    IsDead = 0;
-                                                    __int64* v5 = *(__int64**)(Agent + 64);
-                                                    if (IsValidAddress((__uint64_t)((char*)v5 + 27)) == 1) {
-                                                        if (*((char*)v5 + 27) == 1 || *(__uint64_t*)(Agent + 124) <= 0) //AutoPlay2::checkTargetDead(AutoPlay2 *this)  Game::CheckAgentAlive
-                                                        {
-                                                            IsDead = 1;
-                                                        }
-
-
-                                                        // if ((*(__int64(__fastcall**)(__uint64_t*))(*(__uint64_t*)Agent + 80LL))((__uint64_t*)Agent) & 1)
-                                                    // {
-                                                        DEBUG_PRINT("[+] v4  = %llx  ", v4);
-                                                        __uint64_t ICharacter = *(__uint64_t*)(NPCDisplay + ICharacterOffset);
-
-                                                        if (ICharacter != 0 && ICharacter != -1) {
-                                                            if (v4 != 0) {
-                                                                DEBUG_PRINT("[+]NPC Name Address = %llx", *(__uint64_t*)(v4 + 8));
-                                                                if (*(__uint64_t*)(v4 + 8) != 0  && *(__uint64_t*)(v4 + 16) != 0) {// && ISNpc == 1
-
-                                                                    __uint64_t IsVisiblePtr = (*(__uint64_t*)(Agent + PlayerHeroDisplayOffset) + NpcIsVisibleOffset); // Npc::IsVisible(Npc *this)
-                                                                    if (IsValidAddress(IsVisiblePtr) == 1) {
-
-
-                                                                        if (*(char*)IsVisiblePtr != 0) { //IsVisible
-                                                                            if (IsValidAddress(v4 + NpcGradeOffset) == 1) {
-                                                                                type = *(unsigned __int8*)(v4 + NpcGradeOffset); //GameRecord2::Npc2::grade(GameRecord2::Npc2 *this)
-
-                                                                                DEBUG_PRINT("[+] type  = %d  ", type);
-
-                                                                                if (type > 0 && type < 10) {
-
-                                                                                    __uint64_t v29 = *(__uint64_t*)(v4 + 8);  //GameRecord2::Npc2::name
-
-                                                                                    if ((__uint64_t)v29 != 0) {
-                         
-
-
-                                                                                        DEBUG_PRINT("[+] v29  2= %llx  ", v29);
-                                                                                        if ((__uint64_t)v29 != 0) {
-
-                                                                                            if (IsValidAddress(Agent + NpcGetRecordNameOffset + 8) == 1) {  //Npc::GetRecordName
-                                                                                                Npc_GetRecordName(Agent, (__uint64_t)&TmpMem.A);
-
-                                                                                                __uint64_t v29 = *(__uint64_t*)(Agent + NpcGetRecordNameOffset);
-                                                                                                __uint64_t v22 = *(__uint64_t*)(Agent + NpcGetRecordNameOffset + 8);
-                                                                                                DEBUG_PRINT("[+] v22  2= %llx  ", v22);
-                                                                                                if ((__uint64_t)v29 != 0 && (__uint64_t)TmpMem.A != 0) {
-                                                                                                    __uint64_t v29 = *(__uint64_t*)(TmpMem.A);
-                                                                                                    if ((__uint64_t)v29 != 0) {
-                                                                                                        if (Len((char*)v29) > 0 && Len((char*)v29) < 300) {
-                                                                                                            memcpy(ActorName, (char*)v29, Len((char*)v29));
-                                                                                                        }
-                                                                                                    }
-                                                                                                }
-                                                                                                ISNpc = 1;
-
-                                                                                                __uint64_t SkillContext6Ptr = GetSkillContext6();
-                                                                                                if (SkillContext6Ptr != 0) {
-                                                                                                    __uint64_t AutoPlay2 = *(__int64_t*)(GameInstance + Game_IsAutoPlay_Offset1);
-                                                                                                    if (AutoPlay2) {
-                                                                                                        CanAttackInRange = SkillContext6_CheckCanHitTargetByAutoEy(SkillContext6Ptr, AgentID);
-
-                                                                                                    }
-                                                                                                }
-
-                                                                                            }
-                                                                                        }
-
-                                                                                    }
-
-
-
-
-                                                                                }
-                                                                            }
-
-
-
-
-
-                                                                        }
-                                                                    }
-                                                                }
-
-                                                               
-
-                                                            }
-
-                                                        }
-                                                    }
-                                                    */
-                                                    // }
+                                                  
                                                 }
 
                                                 memset(GuildName, 0, 300);
@@ -9795,18 +9708,20 @@ std::string ReadActorList() {
                                                 
 
                                                 if (ISNpc == 0) {
-                                                    DEBUG_PRINT("[+]ISNpc = 0");
+                                                  //  DEBUG_PRINT("[+]ISNpc = 0");
                                                     ActorNameStr = ActorName;
                                                     
                                                     
                                                     if (ActorNameStr == "") {
-                                                        if (IsValidAddress(((__uint64_t)Agent + IsPlayerOffset)) == 1) {
-                                                            DEBUG_PRINT("[+]960 = %d", *(char*)((__uint64_t)Agent + IsPlayerOffset)); // UIPartyManagementPanel::makeInviteHeroListByFilteringZone
+                                                        //if (IsValidAddress(((__uint64_t)Agent + IsPlayerOffset)) == 1) {
+                                                        if (IsBadReadPtr((void*)(Agent + IsPlayerOffset),1 ) == false) {
+                                                        
+                                                           // DEBUG_PRINT("[+]960 = %d", *(char*)((__uint64_t)Agent + IsPlayerOffset)); // UIPartyManagementPanel::makeInviteHeroListByFilteringZone
                                                             if (*(char*)((__uint64_t)Agent + IsPlayerOffset) != 1) {
                                                                // if (IsValidAddress(*(__uint64_t*)((__uint64_t)Agent + 56)) == 1) {
                                                                     //    GENERAL_PRINT("[+]TmpMem.A + 960 = %d", *(char*)((__uint64_t)TmpMem.A + 960));
                                                                         //if (*(char*)((__uint64_t)TmpMem.A + 960) != 1) { //Game::snapshotHeroList(Game *this, __int64 a2)   UIPartyManagementPanel::makeInviteHeroListByFilteringZone
-                                                                DEBUG_PRINT("[+]F10 5 AttackerMp = %x  AttackerMaxMp= %x ", AttackerMp, AttackerMaxMp);
+                                                               // DEBUG_PRINT("[+]F10 5 AttackerMp = %x  AttackerMaxMp= %x ", AttackerMp, AttackerMaxMp);
                                                                     
 
                                                                     /*
